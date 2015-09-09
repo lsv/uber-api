@@ -1,0 +1,21 @@
+language: php
+php:
+  - 5.5
+  - 5.6
+  - hhvm
+  - nightly
+
+install:
+  - curl -sS https://getcomposer.org/installer | php
+  - php composer.phar install
+
+script:
+  - mkdir -p .build
+  - php bin/phpunit -c .
+
+after_script:
+  - php bin/coveralls -v
+
+notifications:
+  email:
+    - maa@scandesigns.dk
