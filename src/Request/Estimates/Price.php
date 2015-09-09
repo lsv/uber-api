@@ -12,9 +12,9 @@
 namespace Lsv\UberApi\Request\Estimates;
 
 use Geocoder\Model\Coordinates;
+use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Estimate\Price as PriceEntity;
-use Psr\Http\Message\ResponseInterface;
 
 class Price extends AbstractRequest
 {

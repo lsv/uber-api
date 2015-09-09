@@ -16,15 +16,15 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class PromotionsTest extends AbstractTestCase
 {
-    private function getProductTypes()
+    private function getRequest()
     {
-        return new Promotions($this->getFileResultsHandler('promotions.json'), 123, true);
+        return new Promotions($this->getFileResultsHandler('promotions.json'), true);
     }
 
     public function test_count_results()
     {
-        $results = $this->getProductTypes()->query($this->getCoordinates(), $this->getCoordinates());
-        $this->assertEquals(1, count($results));
+        $result = $this->getRequest()->query($this->getCoordinates(), $this->getCoordinates());
+        $this->assertInstanceOf('Lsv\UberApi\Entity\Promotion', $result);
     }
 
     /**
@@ -32,7 +32,7 @@ class PromotionsTest extends AbstractTestCase
      */
     public function test_type_getter()
     {
-        $detail = $this->getProductTypes()->query($this->getCoordinates(), $this->getCoordinates());
+        $detail = $this->getRequest()->query($this->getCoordinates(), $this->getCoordinates());
         $this->assertEquals('Free ride up to $20', $detail->getDisplayText());
         $this->assertEquals('$20', $detail->getLocalizedValue());
         $this->assertEquals('trip_credit', $detail->getType());

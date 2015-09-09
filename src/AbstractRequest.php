@@ -11,9 +11,11 @@
 
 namespace Lsv\UberApi;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Message\ResponseInterface;
+use Lsv\UberApi\Client\Oauth2;
 
 abstract class AbstractRequest
 {
@@ -28,7 +30,7 @@ abstract class AbstractRequest
     const SANDBOX_ENDPOINT = 'https://sandbox-api.uber.com';
 
     /**
-     * @var ClientInterface
+     * @var Client
      */
     private static $client = null;
 
@@ -38,36 +40,18 @@ abstract class AbstractRequest
     private static $useSandbox = false;
 
     /**
-     * @var string
-     */
-    private static $token = null;
-
-    /**
      * @param ClientInterface|null $client
-     * @param string               $server_token
-     * @param bool                 $sandbox
+     * @param string $serverToken
+     * @param string $accessToken
+     * @param bool $sandbox
      */
-    public function __construct(ClientInterface $client = null, $server_token = null, $sandbox = false)
+    public function __construct(ClientInterface $client = null, $sandbox = false)
     {
         if ($client) {
             self::setClient($client);
         }
 
-        if ($server_token) {
-            self::setServerToken($server_token);
-        }
-
         self::setSandboxMode($sandbox);
-    }
-
-    /**
-     * Use sandbox mode.
-     *
-     * @param bool $useSandbox
-     */
-    public static function setSandboxMode($useSandbox)
-    {
-        self::$useSandbox = $useSandbox;
     }
 
     /**
@@ -79,11 +63,13 @@ abstract class AbstractRequest
     }
 
     /**
-     * @param string $token
+     * Use sandbox mode.
+     *
+     * @param bool $useSandbox
      */
-    public static function setServerToken($token)
+    public static function setSandboxMode($useSandbox)
     {
-        self::$token = $token;
+        self::$useSandbox = $useSandbox;
     }
 
     /**
@@ -103,26 +89,22 @@ abstract class AbstractRequest
      */
     protected function doQuery(array $parameters)
     {
-        $this->setAuthentication($parameters);
         if (self::$client === null) {
             throw new \RuntimeException('Client needs to be set before doing any requests');
         }
 
-        try {
-            $response = self::$client->request($this->httpMethod(), $this->makeEndpoint(), [
-                'query' => $parameters,
-            ]);
+        $options = [];
+        if ($this->requireOauth() && ! self::$client instanceof Oauth2) {
+            throw new \RuntimeException('This request requires a Oauth2 client');
+        }
 
+        $options['query'] = $parameters;
+        try {
+            $request = self::$client->createRequest($this->httpMethod(), $this->makeEndpoint(), $options);
+            $response = self::$client->send($request);
             return $this->parseResponse($response);
         } catch (ClientException $e) {
             throw $e;
-        }
-    }
-
-    private function setAuthentication(array &$parameters)
-    {
-        if (!$this->requireOauth()) {
-            $parameters['server_token'] = self::$token;
         }
     }
 

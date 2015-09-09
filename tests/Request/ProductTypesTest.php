@@ -16,24 +16,24 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class ProductTypesTest extends AbstractTestCase
 {
-    private function getProductTypes()
+    private function getRequest()
     {
-        return new ProductTypes($this->getFileResultsHandler('producttypes.json'), 123, true);
+        return new ProductTypes($this->getFileResultsHandler('producttypes.json'), true);
     }
 
     public function test_null_results()
     {
         $client = $this->getNullResultsHandler('products');
 
-        $results = (new ProductTypes($client, 123, true))->query($this->getCoordinates());
+        $results = (new ProductTypes($client, true))->query($this->getCoordinates());
         $this->assertEquals(0, count($results));
-        $results = (new ProductTypes($client, 123, true))->query($this->getCoordinates());
+        $results = (new ProductTypes($client, true))->query($this->getCoordinates());
         $this->assertEquals(0, count($results));
     }
 
     public function test_count_results()
     {
-        $results = $this->getProductTypes()->query($this->getCoordinates());
+        $results = $this->getRequest()->query($this->getCoordinates());
         $this->assertEquals(5, count($results));
     }
 
@@ -42,7 +42,7 @@ class ProductTypesTest extends AbstractTestCase
      */
     public function test_type_getter()
     {
-        $results = $this->getProductTypes()->query($this->getCoordinates());
+        $results = $this->getRequest()->query($this->getCoordinates());
         $detail = $results[0];
 
         $this->assertEquals(4, $detail->getCapacity());
@@ -58,7 +58,7 @@ class ProductTypesTest extends AbstractTestCase
      */
     public function test_pricedetails_getter()
     {
-        $results = $this->getProductTypes()->query($this->getCoordinates());
+        $results = $this->getRequest()->query($this->getCoordinates());
         $detail = $results[0]->getPriceDetails();
 
         $this->assertEquals('mile', $detail->getDistanceUnit());
@@ -76,7 +76,7 @@ class ProductTypesTest extends AbstractTestCase
      */
     public function test_servicefee_getter()
     {
-        $results = $this->getProductTypes()->query($this->getCoordinates());
+        $results = $this->getRequest()->query($this->getCoordinates());
         $detail = $results[0]->getPriceDetails()->getServiceFees()[0];
 
         $this->assertEquals('Safe Rides Fee', $detail->getName());
@@ -88,7 +88,7 @@ class ProductTypesTest extends AbstractTestCase
      */
     public function test_nullable_servicefee()
     {
-        $results = $this->getProductTypes()->query($this->getCoordinates());
+        $results = $this->getRequest()->query($this->getCoordinates());
         $detail = $results[2]->getPriceDetails()->getServiceFees();
 
         $this->assertEquals(0, count($detail));
@@ -99,7 +99,7 @@ class ProductTypesTest extends AbstractTestCase
      */
     public function test_nullable_pricedetails()
     {
-        $results = $this->getProductTypes()->query($this->getCoordinates());
+        $results = $this->getRequest()->query($this->getCoordinates());
         $detail = $results[4];
 
         $this->assertNull($detail->getPriceDetails());

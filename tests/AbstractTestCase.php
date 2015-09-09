@@ -13,9 +13,10 @@ namespace Lsv\UberApiTest;
 
 use Geocoder\Model\Coordinates;
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Message\Response;
+use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Subscriber\Mock;
+use Lsv\UberApi\Client\ServerToken;
 
 abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -39,11 +40,12 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
      */
     protected function getFileResultsHandler($file)
     {
-        $mock = new MockHandler([
-            new Response(200, [], self::getReturnStub($file)),
+        $mock = new Mock([
+            new Response(200, [], Stream::factory(self::getReturnStub($file))),
         ]);
-
-        return new Client(['handler' => HandlerStack::create($mock)]);
+        $client = $this->getServerTokenClient();
+        $client->getEmitter()->attach($mock);
+        return $client;
     }
 
     /**
@@ -54,18 +56,20 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     protected function getNullResultsHandler($code)
     {
         if ($code === null) {
-            $mock = new MockHandler([
-                new Response(200, [], '[]'),
-                new Response(200, [], 'null'),
+            $mock = new Mock([
+                new Response(200, [], Stream::factory('[]')),
+                new Response(200, [], Stream::factory('null')),
             ]);
         } else {
-            $mock = new MockHandler([
-                new Response(200, [], '{"'.$code.'": null}'),
-                new Response(200, [], '{"'.$code.'": []}'),
+            $mock = new Mock([
+                new Response(200, [], Stream::factory('{"'.$code.'": null}')),
+                new Response(200, [], Stream::factory('{"'.$code.'": []}')),
             ]);
         }
 
-        return new Client(['handler' => HandlerStack::create($mock)]);
+        $client = $this->getServerTokenClient();
+        $client->getEmitter()->attach($mock);
+        return $client;
     }
 
     /**
@@ -76,5 +80,13 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     protected static function getReturnStub($file)
     {
         return file_get_contents(__DIR__.'/stubs/'.$file);
+    }
+
+    /**
+     * @return ServerToken
+     */
+    protected function getServerTokenClient()
+    {
+        return new ServerToken(123);
     }
 }

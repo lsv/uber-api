@@ -12,9 +12,10 @@
 namespace Lsv\UberApiTest;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Message\Response;
+use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Subscriber\Mock;
+use Lsv\UberApi\Client\ServerToken;
 use Lsv\UberApi\Request\Estimates\Price;
 use Lsv\UberApi\Request\ProductTypes;
 use Lsv\UberApiTest\stubs\QueryFailClass;
@@ -37,11 +38,12 @@ class AbstractRequestTest extends AbstractTestCase
 
     public function test_client_exception()
     {
-        $this->setExpectedException('GuzzleHttp\Exception\ClientException', 'Client error: 401');
-        $mock = new MockHandler([
-            new Response(401, [], self::getReturnStub('estimates_price.json')),
+        $this->setExpectedException('GuzzleHttp\Exception\ClientException', 'https://sandbox-api.uber.com/v1/estimates/price?start_latitude=123&start_longitude=123&end_latitude=123&end_longitude=123 [status code] 401 [reason phrase] Unauthorized');
+        $mock = new Mock([
+            new Response(401, [], Stream::factory(self::getReturnStub('estimates_price.json'))),
         ]);
-        $client = new Client(['handler' => HandlerStack::create($mock)]);
-        (new Price($client, 123, true))->query($this->getCoordinates(), $this->getCoordinates());
+        $client = $this->getServerTokenClient();
+        $client->getEmitter()->attach($mock);
+        (new Price($client, true))->query($this->getCoordinates(), $this->getCoordinates());
     }
 }

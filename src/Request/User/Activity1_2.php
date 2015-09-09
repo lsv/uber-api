@@ -1,21 +1,24 @@
 <?php
-
-/*
- * This file is part of the Lsv\UberApi package
- *
- * (c) Martin Aarhof <martin.aarhof@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-namespace Lsv\UberApiTest\stubs;
+namespace Lsv\UberApi\Request\User;
 
 use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\AbstractRequest;
 
-class QueryFailClass extends AbstractRequest
+class Activity1_2 extends AbstractRequest
 {
+    /**
+     * @param null $offset
+     * @param null $limit
+     * @return mixed
+     */
+    public function query($offset = null, $limit = null)
+    {
+        return $this->doQuery([
+            'offset' => $offset,
+            'limit' => $limit
+        ]);
+    }
+
     /**
      * Parse the query response.
      *
@@ -25,6 +28,7 @@ class QueryFailClass extends AbstractRequest
      */
     protected function parseResponse(ResponseInterface $response)
     {
+        // TODO: Implement parseResponse() method.
     }
 
     /**
@@ -34,6 +38,7 @@ class QueryFailClass extends AbstractRequest
      */
     protected function getEndPoint()
     {
+        return 'history';
     }
 
     /**
@@ -43,6 +48,7 @@ class QueryFailClass extends AbstractRequest
      */
     protected function requireOauth()
     {
+        return true;
     }
 
     /**
@@ -52,6 +58,7 @@ class QueryFailClass extends AbstractRequest
      */
     protected function httpMethod()
     {
+        return 'GET';
     }
 
     /**
@@ -61,6 +68,6 @@ class QueryFailClass extends AbstractRequest
      */
     protected function getApiVersion()
     {
-        return '';
+        return 'v1.2';
     }
 }

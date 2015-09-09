@@ -21,16 +21,16 @@ class TimeTest extends AbstractTestCase
      */
     private function getRequest()
     {
-        return new Time($this->getFileResultsHandler('estimates_time.json'), 123, true);
+        return new Time($this->getFileResultsHandler('estimates_time.json'), true);
     }
 
     public function test_null_results()
     {
         $client = $this->getNullResultsHandler('times');
 
-        $results = (new Time($client, 123, true))->query($this->getCoordinates());
+        $results = (new Time($client, true))->query($this->getCoordinates());
         $this->assertEquals(0, count($results));
-        $results = (new Time($client, 123, true))->query($this->getCoordinates());
+        $results = (new Time($client, true))->query($this->getCoordinates());
         $this->assertEquals(0, count($results));
     }
 

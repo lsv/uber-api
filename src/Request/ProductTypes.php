@@ -12,9 +12,9 @@
 namespace Lsv\UberApi\Request;
 
 use Geocoder\Model\Coordinates;
+use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Product\Type;
-use Psr\Http\Message\ResponseInterface;
 
 class ProductTypes extends AbstractRequest
 {
@@ -29,6 +29,20 @@ class ProductTypes extends AbstractRequest
             'latitude'  => $coordinates->getLatitude(),
             'longitude' => $coordinates->getLongitude(),
         ]);
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return Type::createFromArray($results['products']);
     }
 
     /**
@@ -59,20 +73,6 @@ class ProductTypes extends AbstractRequest
     protected function httpMethod()
     {
         return 'GET';
-    }
-
-    /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return mixed
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return Type::createFromArray($results['products']);
     }
 
     /**
