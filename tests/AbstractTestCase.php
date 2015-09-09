@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest;
 
 use Geocoder\Model\Coordinates;
@@ -9,10 +19,9 @@ use GuzzleHttp\Psr7\Response;
 
 abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 {
-
     protected function getClassName($class)
     {
-        return 'Lsv\UberApi\\' . $class;
+        return 'Lsv\UberApi\\'.$class;
     }
 
     /**
@@ -25,18 +34,21 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $file
+     *
      * @return Client
      */
     protected function getFileResultsHandler($file)
     {
         $mock = new MockHandler([
-            new Response(200, [], self::getReturnStub($file))
+            new Response(200, [], self::getReturnStub($file)),
         ]);
+
         return new Client(['handler' => HandlerStack::create($mock)]);
     }
 
     /**
      * @param $code
+     *
      * @return Client
      */
     protected function getNullResultsHandler($code)
@@ -44,12 +56,12 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
         if ($code === null) {
             $mock = new MockHandler([
                 new Response(200, [], '[]'),
-                new Response(200, [], 'null')
+                new Response(200, [], 'null'),
             ]);
         } else {
             $mock = new MockHandler([
-                new Response(200, [], '{"' . $code . '": null}'),
-                new Response(200, [], '{"' . $code . '": []}')
+                new Response(200, [], '{"'.$code.'": null}'),
+                new Response(200, [], '{"'.$code.'": []}'),
             ]);
         }
 
@@ -58,11 +70,11 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $file
+     *
      * @return string
      */
-    static protected function getReturnStub($file)
+    protected static function getReturnStub($file)
     {
-        return file_get_contents(__DIR__ . '/stubs/' . $file);
+        return file_get_contents(__DIR__.'/stubs/'.$file);
     }
-
 }

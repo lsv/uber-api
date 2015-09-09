@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\stubs;
 
 use Lsv\UberApi\AbstractRequest;
@@ -6,10 +16,11 @@ use Psr\Http\Message\ResponseInterface;
 
 class QueryFailClass extends AbstractRequest
 {
-
     /**
-     * Parse the query response
+     * Parse the query response.
+     *
      * @param ResponseInterface $response
+     *
      * @return mixed
      */
     protected function parseResponse(ResponseInterface $response)
@@ -17,7 +28,8 @@ class QueryFailClass extends AbstractRequest
     }
 
     /**
-     * API Endpoint
+     * API Endpoint.
+     *
      * @return string
      */
     protected function getEndPoint()
@@ -25,7 +37,8 @@ class QueryFailClass extends AbstractRequest
     }
 
     /**
-     * Does this request require Oauth
+     * Does this request require Oauth.
+     *
      * @return bool
      */
     protected function requireOauth()
@@ -33,7 +46,8 @@ class QueryFailClass extends AbstractRequest
     }
 
     /**
-     * Which HTTP method should be used to this endpoint
+     * Which HTTP method should be used to this endpoint.
+     *
      * @return string
      */
     protected function httpMethod()
@@ -41,7 +55,8 @@ class QueryFailClass extends AbstractRequest
     }
 
     /**
-     * API version of the method
+     * API version of the method.
+     *
      * @return string
      */
     protected function getApiVersion()

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Product;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -46,13 +56,13 @@ class PriceDetail
     protected $serviceFees;
 
     /**
-     * @param float $base
-     * @param float $minimum
-     * @param float $costPerMinute
-     * @param float $costPerDistance
-     * @param string $distanceUnit
-     * @param float $cancellationFee
-     * @param string $currencyCode
+     * @param float      $base
+     * @param float      $minimum
+     * @param float      $costPerMinute
+     * @param float      $costPerDistance
+     * @param string     $distanceUnit
+     * @param float      $cancellationFee
+     * @param string     $currencyCode
      * @param array|null $serviceFees
      */
     public function __construct($base = null, $minimum = null, $costPerMinute = null, $costPerDistance = null, $distanceUnit = null, $cancellationFee = null, $currencyCode = null, array $serviceFees = null)
@@ -70,7 +80,8 @@ class PriceDetail
     }
 
     /**
-     * Gets the Base
+     * Gets the Base.
+     *
      * @return float
      */
     public function getBase()
@@ -79,18 +90,22 @@ class PriceDetail
     }
 
     /**
-     * Sets the Base
+     * Sets the Base.
+     *
      * @param float $base
+     *
      * @return PriceDetail
      */
     public function setBase($base)
     {
         $this->base = $base;
+
         return $this;
     }
 
     /**
-     * Gets the Minimum
+     * Gets the Minimum.
+     *
      * @return float
      */
     public function getMinimum()
@@ -99,18 +114,22 @@ class PriceDetail
     }
 
     /**
-     * Sets the Minimum
+     * Sets the Minimum.
+     *
      * @param float $minimum
+     *
      * @return PriceDetail
      */
     public function setMinimum($minimum)
     {
         $this->minimum = $minimum;
+
         return $this;
     }
 
     /**
-     * Gets the CostPerMinute
+     * Gets the CostPerMinute.
+     *
      * @return float
      */
     public function getCostPerMinute()
@@ -119,18 +138,22 @@ class PriceDetail
     }
 
     /**
-     * Sets the CostPerMinute
+     * Sets the CostPerMinute.
+     *
      * @param float $costPerMinute
+     *
      * @return PriceDetail
      */
     public function setCostPerMinute($costPerMinute)
     {
         $this->costPerMinute = $costPerMinute;
+
         return $this;
     }
 
     /**
-     * Gets the CostPerDistance
+     * Gets the CostPerDistance.
+     *
      * @return float
      */
     public function getCostPerDistance()
@@ -139,18 +162,22 @@ class PriceDetail
     }
 
     /**
-     * Sets the CostPerDistance
+     * Sets the CostPerDistance.
+     *
      * @param float $costPerDistance
+     *
      * @return PriceDetail
      */
     public function setCostPerDistance($costPerDistance)
     {
         $this->costPerDistance = $costPerDistance;
+
         return $this;
     }
 
     /**
-     * Gets the DistanceUnit
+     * Gets the DistanceUnit.
+     *
      * @return string
      */
     public function getDistanceUnit()
@@ -159,18 +186,22 @@ class PriceDetail
     }
 
     /**
-     * Sets the DistanceUnit
+     * Sets the DistanceUnit.
+     *
      * @param string $distanceUnit
+     *
      * @return PriceDetail
      */
     public function setDistanceUnit($distanceUnit)
     {
         $this->distanceUnit = $distanceUnit;
+
         return $this;
     }
 
     /**
-     * Gets the CancellationFee
+     * Gets the CancellationFee.
+     *
      * @return float
      */
     public function getCancellationFee()
@@ -179,18 +210,22 @@ class PriceDetail
     }
 
     /**
-     * Sets the CancellationFee
+     * Sets the CancellationFee.
+     *
      * @param float $cancellationFee
+     *
      * @return PriceDetail
      */
     public function setCancellationFee($cancellationFee)
     {
         $this->cancellationFee = $cancellationFee;
+
         return $this;
     }
 
     /**
-     * Gets the CurrencyCode
+     * Gets the CurrencyCode.
+     *
      * @return string
      */
     public function getCurrencyCode()
@@ -199,18 +234,22 @@ class PriceDetail
     }
 
     /**
-     * Sets the CurrencyCode
+     * Sets the CurrencyCode.
+     *
      * @param string $currencyCode
+     *
      * @return PriceDetail
      */
     public function setCurrencyCode($currencyCode)
     {
         $this->currencyCode = $currencyCode;
+
         return $this;
     }
 
     /**
-     * Gets the ServiceFees
+     * Gets the ServiceFees.
+     *
      * @return ArrayCollection|ServiceFee[]
      */
     public function getServiceFees()
@@ -219,8 +258,10 @@ class PriceDetail
     }
 
     /**
-     * Sets the ServiceFees
+     * Sets the ServiceFees.
+     *
      * @param ServiceFee[] $serviceFees
+     *
      * @return PriceDetail
      */
     public function setServiceFees(array $serviceFees = null)
@@ -231,27 +272,31 @@ class PriceDetail
                 $this->addServiceFee($fee);
             }
         }
+
         return $this;
     }
 
     /**
-     * Add a service fee
+     * Add a service fee.
+     *
      * @param ServiceFee $fee
+     *
      * @return PriceDetail
      */
     public function addServiceFee(ServiceFee $fee)
     {
         $this->serviceFees->add($fee);
+
         return $this;
     }
 
     public static function createFromArray(array $results = null)
     {
-        if (! $results) {
-            return null;
+        if (!$results) {
+            return;
         }
 
-        $obj = new self;
+        $obj = new self();
         foreach ($results as $key => $value) {
             $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
             switch ($key) {
@@ -259,11 +304,12 @@ class PriceDetail
                     $obj->setServiceFees(ServiceFee::createFromArray($value));
                     break;
                 default:
-                    $setter = 'set' . $key;
+                    $setter = 'set'.$key;
                     $obj->{$setter}($value);
                     break;
             }
         }
+
         return $obj;
     }
 }
