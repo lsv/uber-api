@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Estimate;
 
 class Time
@@ -27,7 +37,7 @@ class Time
      * @param string $productId
      * @param string $localizedDisplayName
      * @param string $displayName
-     * @param int $estimate
+     * @param int    $estimate
      */
     public function __construct($productId = null, $localizedDisplayName = null, $displayName = null, $estimate = null)
     {
@@ -38,7 +48,8 @@ class Time
     }
 
     /**
-     * Gets the ProductId
+     * Gets the ProductId.
+     *
      * @return string
      */
     public function getProductId()
@@ -47,18 +58,22 @@ class Time
     }
 
     /**
-     * Sets the ProductId
+     * Sets the ProductId.
+     *
      * @param string $productId
+     *
      * @return Time
      */
     public function setProductId($productId)
     {
         $this->productId = $productId;
+
         return $this;
     }
 
     /**
-     * Gets the LocalizedDisplayName
+     * Gets the LocalizedDisplayName.
+     *
      * @return string
      */
     public function getLocalizedDisplayName()
@@ -67,18 +82,22 @@ class Time
     }
 
     /**
-     * Sets the LocalizedDisplayName
+     * Sets the LocalizedDisplayName.
+     *
      * @param string $localizedDisplayName
+     *
      * @return Time
      */
     public function setLocalizedDisplayName($localizedDisplayName)
     {
         $this->localizedDisplayName = $localizedDisplayName;
+
         return $this;
     }
 
     /**
-     * Gets the DisplayName
+     * Gets the DisplayName.
+     *
      * @return string
      */
     public function getDisplayName()
@@ -87,18 +106,22 @@ class Time
     }
 
     /**
-     * Sets the DisplayName
+     * Sets the DisplayName.
+     *
      * @param string $displayName
+     *
      * @return Time
      */
     public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
+
         return $this;
     }
 
     /**
-     * Gets the Estimate
+     * Gets the Estimate.
+     *
      * @return int
      */
     public function getEstimate()
@@ -107,31 +130,35 @@ class Time
     }
 
     /**
-     * Sets the Estimate
+     * Sets the Estimate.
+     *
      * @param int $estimate
+     *
      * @return Time
      */
     public function setEstimate($estimate)
     {
         $this->estimate = $estimate;
+
         return $this;
     }
 
     public static function createFromArray(array $results = null)
     {
         $objects = [];
-        if (! $results) {
+        if (!$results) {
             return [];
         }
         foreach ($results as $result) {
-            $obj = new self;
+            $obj = new self();
             foreach ($result as $key => $value) {
                 $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-                $setter = 'set' . $key;
+                $setter = 'set'.$key;
                 $obj->{$setter}($value);
             }
             $objects[] = $obj;
         }
+
         return $objects;
     }
 }

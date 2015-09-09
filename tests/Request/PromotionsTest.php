@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Request;
 
 use Lsv\UberApi\Request\Promotions;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class PromotionsTest extends AbstractTestCase
 {
-
     private function getProductTypes()
     {
         return new Promotions($this->getFileResultsHandler('promotions.json'), 123, true);
@@ -30,5 +39,4 @@ class PromotionsTest extends AbstractTestCase
         $this->assertEquals(20, $detail->getValue());
         $this->assertEquals('USD', $detail->getCurrencyCode());
     }
-
 }

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Request\Estimates;
 
 use Lsv\UberApi\Request\Estimates\Time;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class TimeTest extends AbstractTestCase
 {
-
     /**
      * @return Time
      */
@@ -42,5 +51,4 @@ class TimeTest extends AbstractTestCase
         $this->assertEquals('UberBLACKLocal', $result->getLocalizedDisplayName());
         $this->assertEquals(410, $result->getEstimate());
     }
-
 }

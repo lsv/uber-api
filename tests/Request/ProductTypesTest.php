@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Request;
 
 use Lsv\UberApi\Request\ProductTypes;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class ProductTypesTest extends AbstractTestCase
 {
-
     private function getProductTypes()
     {
         return new ProductTypes($this->getFileResultsHandler('producttypes.json'), 123, true);
@@ -95,5 +104,4 @@ class ProductTypesTest extends AbstractTestCase
 
         $this->assertNull($detail->getPriceDetails());
     }
-
 }

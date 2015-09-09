@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Request\Estimates;
 
 use Lsv\UberApi\Request\Estimates\Price;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class PriceTest extends AbstractTestCase
 {
-
     /**
      * @return Price
      */
@@ -61,5 +70,4 @@ class PriceTest extends AbstractTestCase
         $this->assertNull($result->getLowEstimate());
         $this->assertNull($result->getHighEstimate());
     }
-
 }

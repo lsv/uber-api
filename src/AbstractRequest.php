@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi;
 
 use GuzzleHttp\ClientInterface;
@@ -8,12 +18,12 @@ use Psr\Http\Message\ResponseInterface;
 abstract class AbstractRequest
 {
     /**
-     * Production endpoint
+     * Production endpoint.
      */
     const ENDPOINT = 'https://api.uber.com';
 
     /**
-     * Sandbox endpoint
+     * Sandbox endpoint.
      */
     const SANDBOX_ENDPOINT = 'https://sandbox-api.uber.com';
 
@@ -34,8 +44,8 @@ abstract class AbstractRequest
 
     /**
      * @param ClientInterface|null $client
-     * @param string $server_token
-     * @param bool $sandbox
+     * @param string               $server_token
+     * @param bool                 $sandbox
      */
     public function __construct(ClientInterface $client = null, $server_token = null, $sandbox = false)
     {
@@ -51,7 +61,8 @@ abstract class AbstractRequest
     }
 
     /**
-     * Use sandbox mode
+     * Use sandbox mode.
+     *
      * @param bool $useSandbox
      */
     public static function setSandboxMode($useSandbox)
@@ -76,7 +87,7 @@ abstract class AbstractRequest
     }
 
     /**
-     * Run the query up to the REST API
+     * Run the query up to the REST API.
      */
     public function query()
     {
@@ -85,8 +96,10 @@ abstract class AbstractRequest
 
     /**
      * @param array $parameters
-     * @return mixed
+     *
      * @throws ClientException
+     *
+     * @return mixed
      */
     protected function doQuery(array $parameters)
     {
@@ -97,8 +110,9 @@ abstract class AbstractRequest
 
         try {
             $response = self::$client->request($this->httpMethod(), $this->makeEndpoint(), [
-                'query' => $parameters
+                'query' => $parameters,
             ]);
+
             return $this->parseResponse($response);
         } catch (ClientException $e) {
             throw $e;
@@ -107,13 +121,14 @@ abstract class AbstractRequest
 
     private function setAuthentication(array &$parameters)
     {
-        if (! $this->requireOauth()) {
+        if (!$this->requireOauth()) {
             $parameters['server_token'] = self::$token;
         }
     }
 
     /**
-     * URL to fetch
+     * URL to fetch.
+     *
      * @return string
      */
     private function makeEndpoint()
@@ -127,32 +142,38 @@ abstract class AbstractRequest
     }
 
     /**
-     * Parse the query response
+     * Parse the query response.
+     *
      * @param ResponseInterface $response
+     *
      * @return mixed
      */
     abstract protected function parseResponse(ResponseInterface $response);
 
     /**
-     * API Endpoint
+     * API Endpoint.
+     *
      * @return string
      */
     abstract protected function getEndPoint();
 
     /**
-     * Does this request require Oauth
+     * Does this request require Oauth.
+     *
      * @return bool
      */
     abstract protected function requireOauth();
 
     /**
-     * Which HTTP method should be used to this endpoint
+     * Which HTTP method should be used to this endpoint.
+     *
      * @return string
      */
     abstract protected function httpMethod();
 
     /**
-     * API version of the method
+     * API version of the method.
+     *
      * @return string
      */
     abstract protected function getApiVersion();

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity;
 
 class Promotion
@@ -43,7 +53,8 @@ class Promotion
     }
 
     /**
-     * Gets the DisplayText
+     * Gets the DisplayText.
+     *
      * @return string
      */
     public function getDisplayText()
@@ -52,18 +63,22 @@ class Promotion
     }
 
     /**
-     * Sets the DisplayText
+     * Sets the DisplayText.
+     *
      * @param string $displayText
+     *
      * @return Promotion
      */
     public function setDisplayText($displayText)
     {
         $this->displayText = $displayText;
+
         return $this;
     }
 
     /**
-     * Gets the Value
+     * Gets the Value.
+     *
      * @return string
      */
     public function getValue()
@@ -72,18 +87,22 @@ class Promotion
     }
 
     /**
-     * Sets the Value
+     * Sets the Value.
+     *
      * @param string $value
+     *
      * @return Promotion
      */
     public function setValue($value)
     {
         $this->value = $value;
+
         return $this;
     }
 
     /**
-     * Gets the LocalizedValue
+     * Gets the LocalizedValue.
+     *
      * @return string
      */
     public function getLocalizedValue()
@@ -92,18 +111,22 @@ class Promotion
     }
 
     /**
-     * Sets the LocalizedValue
+     * Sets the LocalizedValue.
+     *
      * @param string $localizedValue
+     *
      * @return Promotion
      */
     public function setLocalizedValue($localizedValue)
     {
         $this->localizedValue = $localizedValue;
+
         return $this;
     }
 
     /**
-     * Gets the Type
+     * Gets the Type.
+     *
      * @return string
      */
     public function getType()
@@ -112,18 +135,22 @@ class Promotion
     }
 
     /**
-     * Sets the Type
+     * Sets the Type.
+     *
      * @param string $type
+     *
      * @return Promotion
      */
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
     /**
-     * Gets the CurrencyCode
+     * Gets the CurrencyCode.
+     *
      * @return string
      */
     public function getCurrencyCode()
@@ -132,24 +159,28 @@ class Promotion
     }
 
     /**
-     * Sets the CurrencyCode
+     * Sets the CurrencyCode.
+     *
      * @param string $currencyCode
+     *
      * @return Promotion
      */
     public function setCurrencyCode($currencyCode)
     {
         $this->currencyCode = $currencyCode;
+
         return $this;
     }
 
     public static function createFromArray(array $results = null)
     {
-        $obj = new self;
+        $obj = new self();
         foreach ($results as $key => $value) {
             $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            $setter = 'set' . $key;
+            $setter = 'set'.$key;
             $obj->{$setter}($value);
         }
+
         return $obj;
     }
 }
