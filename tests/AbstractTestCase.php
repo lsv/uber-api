@@ -45,6 +45,7 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
         ]);
         $client = $this->getServerTokenClient();
         $client->getEmitter()->attach($mock);
+
         return $client;
     }
 
@@ -69,6 +70,7 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
         $client = $this->getServerTokenClient();
         $client->getEmitter()->attach($mock);
+
         return $client;
     }
 

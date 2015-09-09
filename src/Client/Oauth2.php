@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Client;
 
 use CommerceGuys\Guzzle\Oauth2\GrantType\PasswordCredentials;
@@ -8,7 +18,6 @@ use GuzzleHttp\Client;
 
 class Oauth2 extends Client
 {
-
     const BASE_URL = 'https://login.uber.com';
 
     public function __construct($username, $password, $clientId, $scope, array $config = [])
@@ -16,10 +25,10 @@ class Oauth2 extends Client
         $client = new Client(['base_url' => self::BASE_URL]);
 
         $oauth2config = [
-            'username' => $username,
-            'password' => $password,
+            'username'  => $username,
+            'password'  => $password,
             'client_id' => $clientId,
-            'scope' => $scope,
+            'scope'     => $scope,
         ];
 
         $token = new PasswordCredentials($client, $oauth2config);
@@ -28,8 +37,8 @@ class Oauth2 extends Client
 
         $config['base_url'] = self::BASE_URL;
         $config['defaults'] = [
-            'auth' => 'oauth2',
-            'subscribers' => [$oauth2]
+            'auth'        => 'oauth2',
+            'subscribers' => [$oauth2],
         ];
         parent::__construct($config);
     }
