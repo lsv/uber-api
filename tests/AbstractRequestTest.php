@@ -15,7 +15,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Subscriber\Mock;
-use Lsv\UberApi\Client\ServerToken;
 use Lsv\UberApi\Request\Estimates\Price;
 use Lsv\UberApi\Request\ProductTypes;
 use Lsv\UberApiTest\stubs\QueryFailClass;
