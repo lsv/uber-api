@@ -71,14 +71,6 @@ abstract class AbstractRequest
     }
 
     /**
-     * Run the query up to the REST API.
-     */
-    public function query()
-    {
-        throw new \RuntimeException('The method "query" should be overwritten');
-    }
-
-    /**
      * @param array $parameters
      *
      * @throws ClientException

@@ -24,14 +24,6 @@ class AbstractRequestTest extends AbstractTestCase
         (new ProductTypes())->query($this->getCoordinates());
     }
 
-    public function test_class_does_not_overwrite_query()
-    {
-        $this->setExpectedException('\RuntimeException', 'The method "query" should be overwritten');
-        require_once __DIR__.'/stubs/QueryFailClass.php';
-        $class = new QueryFailClass();
-        $class->query();
-    }
-
     public function test_client_exception()
     {
         $this->setExpectedException('GuzzleHttp\Exception\ClientException', 'Client error: 401');
