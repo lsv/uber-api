@@ -9,19 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApi\Request\User;
+namespace Lsv\UberApi\Endpoints\User;
 
-use Lsv\UberApi\AbstractRequest;
-use Lsv\UberApi\Entity\User\History;
+use Lsv\UberApi\Entity\User\History11;
 use Psr\Http\Message\ResponseInterface;
 
-class Activity12 extends AbstractRequest
+class Activity11 extends Activity12
 {
     /**
      * @param null $offset
      * @param null $limit
      *
-     * @return History[]
+     * @return History11[]
      */
     public function query($offset = null, $limit = null)
     {
@@ -36,43 +35,13 @@ class Activity12 extends AbstractRequest
      *
      * @param ResponseInterface $response
      *
-     * @return History[]
+     * @return History11[]
      */
     protected function parseResponse(ResponseInterface $response)
     {
         $results = json_decode($response->getBody(), true);
 
-        return History::createFromArray($results['history']);
-    }
-
-    /**
-     * API Endpoint.
-     *
-     * @return string
-     */
-    protected function getEndPoint()
-    {
-        return 'history';
-    }
-
-    /**
-     * Does this request require Oauth.
-     *
-     * @return bool
-     */
-    protected function requireOauth()
-    {
-        return true;
-    }
-
-    /**
-     * Which HTTP method should be used to this endpoint.
-     *
-     * @return string
-     */
-    protected function httpMethod()
-    {
-        return 'GET';
+        return History11::createFromArray($results['history']);
     }
 
     /**
@@ -82,6 +51,6 @@ class Activity12 extends AbstractRequest
      */
     protected function getApiVersion()
     {
-        return 'v1.2';
+        return 'v1.1';
     }
 }

@@ -88,10 +88,29 @@ abstract class AbstractRequest
             throw new \RuntimeException('This request requires a Oauth2 client');
         }
 
-        $options['query'] = $parameters;
         try {
             /** @var ResponseInterface $response */
-            $response = self::$client->request($this->httpMethod(), $this->makeEndpoint(), $options);
+            switch (strtolower($this->httpMethod())) {
+                default:
+                case 'get':
+                    $options['query'] = $parameters;
+                    $response = self::$client->get($this->makeEndpoint(), $options);
+                    break;
+                case 'post':
+                    $options['form_params'] = $parameters;
+                    try {
+                        $response = self::$client->post($this->makeEndpoint(), $options);
+                    } catch (ClientException $e) {
+                        var_dump($e->getMessage());
+                        var_dump($e->getRequest()->getUri());
+                        var_dump($e->getRequest()->getMethod());
+                        var_dump($e->getRequest()->getHeaders());
+                        var_dump((string) $e->getRequest()->getBody());
+                        exit;
+                    }
+
+                    break;
+            }
 
             return $this->parseResponse($response);
         } catch (ClientException $e) {

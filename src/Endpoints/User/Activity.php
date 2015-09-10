@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApi\Request\User;
+namespace Lsv\UberApi\Endpoints\User;
 
 class Activity extends Activity12
 {

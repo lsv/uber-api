@@ -9,25 +9,28 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApi\Request;
+namespace Lsv\UberApi\Endpoints\Estimates;
 
 use Geocoder\Model\Coordinates;
 use Lsv\UberApi\AbstractRequest;
-use Lsv\UberApi\Entity\Product\Type;
+use Lsv\UberApi\Entity\Estimate\Price as PriceEntity;
 use Psr\Http\Message\ResponseInterface;
 
-class ProductTypes extends AbstractRequest
+class Price extends AbstractRequest
 {
     /**
-     * @param Coordinates $coordinates
+     * @param Coordinates $start
+     * @param Coordinates $end
      *
-     * @return \Lsv\UberApi\Entity\Product\Type[]
+     * @return \Lsv\UberApi\Entity\Estimate\Price[]
      */
-    public function query(Coordinates $coordinates)
+    public function query(Coordinates $start, Coordinates $end)
     {
         return $this->doQuery([
-            'latitude'  => $coordinates->getLatitude(),
-            'longitude' => $coordinates->getLongitude(),
+            'start_latitude'  => $start->getLatitude(),
+            'start_longitude' => $start->getLongitude(),
+            'end_latitude'    => $end->getLatitude(),
+            'end_longitude'   => $end->getLongitude(),
         ]);
     }
 
@@ -36,13 +39,13 @@ class ProductTypes extends AbstractRequest
      *
      * @param ResponseInterface $response
      *
-     * @return mixed
+     * @return PriceEntity[]
      */
     protected function parseResponse(ResponseInterface $response)
     {
         $results = json_decode($response->getBody(), true);
 
-        return Type::createFromArray($results['products']);
+        return PriceEntity::createFromArray($results['prices']);
     }
 
     /**
@@ -52,7 +55,7 @@ class ProductTypes extends AbstractRequest
      */
     protected function getEndPoint()
     {
-        return 'products';
+        return 'estimates/price';
     }
 
     /**

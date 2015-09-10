@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApiTest\Request\Estimates;
+namespace Lsv\UberApiTest\Endpoints\Estimates;
 
-use Lsv\UberApi\Request\Estimates\Price;
+use Lsv\UberApi\Endpoints\Estimates\Price;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class PriceTest extends AbstractTestCase

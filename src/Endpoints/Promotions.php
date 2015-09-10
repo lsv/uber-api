@@ -9,29 +9,28 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApi\Request\Estimates;
+namespace Lsv\UberApi\Endpoints;
 
 use Geocoder\Model\Coordinates;
 use Lsv\UberApi\AbstractRequest;
-use Lsv\UberApi\Entity\Estimate\Time as TimeEntity;
+use Lsv\UberApi\Entity\Promotion;
 use Psr\Http\Message\ResponseInterface;
 
-class Time extends AbstractRequest
+class Promotions extends AbstractRequest
 {
     /**
      * @param Coordinates $start
-     * @param null|string $customer_uuid
-     * @param null|string $product_id
+     * @param Coordinates $end
      *
-     * @return \Lsv\UberApi\Entity\Estimate\Time[]
+     * @return Promotion
      */
-    public function query(Coordinates $start, $customer_uuid = null, $product_id = null)
+    public function query(Coordinates $start, Coordinates $end)
     {
         return $this->doQuery([
             'start_latitude'  => $start->getLatitude(),
             'start_longitude' => $start->getLongitude(),
-            'customer_uuid'   => $customer_uuid,
-            'product_id'      => $product_id,
+            'end_latitude'    => $end->getLatitude(),
+            'end_longitude'   => $end->getLongitude(),
         ]);
     }
 
@@ -40,13 +39,13 @@ class Time extends AbstractRequest
      *
      * @param ResponseInterface $response
      *
-     * @return TimeEntity[]
+     * @return Promotion
      */
     protected function parseResponse(ResponseInterface $response)
     {
         $results = json_decode($response->getBody(), true);
 
-        return TimeEntity::createFromArray($results['times']);
+        return Promotion::createFromArray($results);
     }
 
     /**
@@ -56,7 +55,7 @@ class Time extends AbstractRequest
      */
     protected function getEndPoint()
     {
-        return 'estimates/time';
+        return 'promotions';
     }
 
     /**

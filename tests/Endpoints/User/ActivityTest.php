@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApiTest\Request\User;
+namespace Lsv\UberApiTest\Endpoints\User;
 
-use Lsv\UberApi\Request\User\Activity;
+use Lsv\UberApi\Endpoints\User\Activity;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class ActivityTest extends AbstractTestCase

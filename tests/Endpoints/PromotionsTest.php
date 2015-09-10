@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApiTest\Request;
+namespace Lsv\UberApiTest\Endpoints;
 
-use Lsv\UberApi\Request\Promotions;
+use Lsv\UberApi\Endpoints\Promotions;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class PromotionsTest extends AbstractTestCase

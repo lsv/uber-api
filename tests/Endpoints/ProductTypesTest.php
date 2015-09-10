@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApiTest\Request;
+namespace Lsv\UberApiTest\Endpoints;
 
-use Lsv\UberApi\Request\ProductTypes;
+use Lsv\UberApi\Endpoints\ProductTypes;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class ProductTypesTest extends AbstractTestCase
