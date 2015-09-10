@@ -39,6 +39,7 @@ class Request extends AbstractRequest
         if ($surgeConfirmationId) {
             $params['surge_confirmation_id'] = $surgeConfirmationId;
         }
+
         return $this->doQuery($params);
     }
 

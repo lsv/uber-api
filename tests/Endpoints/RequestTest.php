@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Endpoints;
 
 use Lsv\UberApi\Endpoints\Request;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class RequestTest extends AbstractTestCase
 {
-
     private function getRequest()
     {
         return new Request($this->getFileResultsHandler('request.json', true), true);
@@ -59,5 +68,4 @@ class RequestTest extends AbstractTestCase
         $result = $this->getRequest()->query(123, $this->getCoordinates(), $this->getCoordinates());
         $detail = $result->getLocation();
     }
-
 }
