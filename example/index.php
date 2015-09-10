@@ -1,7 +1,17 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use League\OAuth2\Client\Provider\GenericProvider;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 // App client ID
 $client_id = '_0AxROFWtvWVdjS5JU5nOIcLrTWxendL';
@@ -17,7 +27,7 @@ $provider = new GenericProvider([
     'redirectUri'             => 'http://localhost:8000/',
     'urlAuthorize'            => 'https://login.uber.com/oauth/authorize',
     'urlAccessToken'          => 'https://login.uber.com/oauth/token',
-    'urlResourceOwnerDetails' => 'https://sandbox-api.uber.com/v1/me'
+    'urlResourceOwnerDetails' => 'https://sandbox-api.uber.com/v1/me',
 ]);
 
 // If we don't have an authorization code then get one
@@ -32,25 +42,20 @@ if (!isset($_GET['code'])) {
     $_SESSION['oauth2state'] = $provider->getState();
 
     // Redirect the user to the authorization URL.
-    header('Location: ' . $authorizationUrl);
+    header('Location: '.$authorizationUrl);
     exit;
-
 } else {
-
     try {
 
         // Try to get an access token using the authorization code grant.
         $accessToken = $provider->getAccessToken('authorization_code', [
-            'code' => $_GET['code']
+            'code' => $_GET['code'],
         ]);
 
         echo sprintf('Token: %s<br />Refresh: %s', $accessToken->getToken(), $accessToken->getRefreshToken());
-
     } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
 
         // Failed to get the access token or user details.
         exit($e->getMessage());
-
     }
-
 }

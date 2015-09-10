@@ -1,7 +1,15 @@
 <?php
-namespace Lsv\UberApi\Entity\User;
 
-use Lsv\UberApi\Entity\City;
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Lsv\UberApi\Entity\User;
 
 class History1_1
 {
@@ -42,12 +50,12 @@ class History1_1
 
     /**
      * @param string $uuid
-     * @param integer $requestTime
+     * @param int    $requestTime
      * @param string $productId
      * @param string $status
-     * @param float $distance
-     * @param integer $startTime
-     * @param integer $endTime
+     * @param float  $distance
+     * @param int    $startTime
+     * @param int    $endTime
      */
     public function __construct($uuid = null, $requestTime = null, $productId = null, $status = null, $distance = null, $startTime = null, $endTime = null)
     {
@@ -61,7 +69,8 @@ class History1_1
     }
 
     /**
-     * Gets the Uuid
+     * Gets the Uuid.
+     *
      * @return string
      */
     public function getUuid()
@@ -70,18 +79,22 @@ class History1_1
     }
 
     /**
-     * Sets the Uuid
+     * Sets the Uuid.
+     *
      * @param string $uuid
+     *
      * @return History1_1
      */
     public function setUuid($uuid)
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
     /**
-     * Gets the RequestTime
+     * Gets the RequestTime.
+     *
      * @return \DateTime
      */
     public function getRequestTime()
@@ -90,19 +103,23 @@ class History1_1
     }
 
     /**
-     * Sets the RequestTime
+     * Sets the RequestTime.
+     *
      * @param int $requestTime
+     *
      * @return History
      */
     public function setRequestTime($requestTime)
     {
-        $date = new \DateTime('@' . $requestTime);
+        $date = new \DateTime('@'.$requestTime);
         $this->requestTime = $date;
+
         return $this;
     }
 
     /**
-     * Gets the ProductId
+     * Gets the ProductId.
+     *
      * @return string
      */
     public function getProductId()
@@ -111,18 +128,22 @@ class History1_1
     }
 
     /**
-     * Sets the ProductId
+     * Sets the ProductId.
+     *
      * @param string $productId
+     *
      * @return History
      */
     public function setProductId($productId)
     {
         $this->productId = $productId;
+
         return $this;
     }
 
     /**
-     * Gets the Status
+     * Gets the Status.
+     *
      * @return string
      */
     public function getStatus()
@@ -131,18 +152,22 @@ class History1_1
     }
 
     /**
-     * Sets the Status
+     * Sets the Status.
+     *
      * @param string $status
+     *
      * @return History
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
     /**
-     * Gets the Distance
+     * Gets the Distance.
+     *
      * @return float
      */
     public function getDistance()
@@ -151,18 +176,22 @@ class History1_1
     }
 
     /**
-     * Sets the Distance
+     * Sets the Distance.
+     *
      * @param float $distance
+     *
      * @return History
      */
     public function setDistance($distance)
     {
         $this->distance = $distance;
+
         return $this;
     }
 
     /**
-     * Gets the StartTime
+     * Gets the StartTime.
+     *
      * @return \DateTime
      */
     public function getStartTime()
@@ -171,19 +200,23 @@ class History1_1
     }
 
     /**
-     * Sets the StartTime
+     * Sets the StartTime.
+     *
      * @param int $startTime
+     *
      * @return History
      */
     public function setStartTime($startTime)
     {
-        $date = new \DateTime('@' . $startTime);
+        $date = new \DateTime('@'.$startTime);
         $this->startTime = $date;
+
         return $this;
     }
 
     /**
-     * Gets the EndTime
+     * Gets the EndTime.
+     *
      * @return \DateTime
      */
     public function getEndTime()
@@ -192,14 +225,17 @@ class History1_1
     }
 
     /**
-     * Sets the EndTime
+     * Sets the EndTime.
+     *
      * @param int $endTime
+     *
      * @return History
      */
     public function setEndTime($endTime)
     {
-        $date = new \DateTime('@' . $endTime);
+        $date = new \DateTime('@'.$endTime);
         $this->endTime = $date;
+
         return $this;
     }
 
