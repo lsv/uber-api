@@ -15,8 +15,13 @@ use GuzzleHttp\Client;
 
 class Oauth2 extends Client
 {
-    public function __construct(array $config = [])
+    /**
+     * @param string $accessToken
+     * @param array $config
+     */
+    public function __construct($accessToken, array $config = [])
     {
+        $config['headers']['Authorization'] = sprintf('Bearer %s', $accessToken);
         parent::__construct($config);
     }
 }

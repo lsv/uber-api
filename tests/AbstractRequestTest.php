@@ -13,6 +13,7 @@ namespace Lsv\UberApiTest;
 
 use Lsv\UberApi\Request\Estimates\Price;
 use Lsv\UberApi\Request\ProductTypes;
+use Lsv\UberApi\Request\User\Activity;
 use Lsv\UberApiTest\stubs\QueryFailClass;
 
 class AbstractRequestTest extends AbstractTestCase
@@ -38,5 +39,13 @@ class AbstractRequestTest extends AbstractTestCase
             ['status' => 401, 'body' => ''],
         ]);
         (new Price($client, true))->query($this->getCoordinates(), $this->getCoordinates());
+    }
+
+    public function test_request_require_oauth()
+    {
+        $this->setExpectedException('\RuntimeException', 'This request requires a Oauth2 client');
+        $client = $this->getServerTokenClient();
+        $activity = new Activity($client);
+        $activity->query();
     }
 }
