@@ -16,7 +16,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class QueryFailClass extends AbstractRequest
 {
-
     public function query()
     {
         $this->doQuery([]);
