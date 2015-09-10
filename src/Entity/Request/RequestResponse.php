@@ -239,7 +239,7 @@ class RequestResponse
     public static function createFromArray(array $results = null)
     {
         $obj = new self();
-        if (! $results) {
+        if (!$results) {
             return [];
         }
 
