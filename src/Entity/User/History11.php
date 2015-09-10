@@ -11,8 +11,6 @@
 
 namespace Lsv\UberApi\Entity\User;
 
-use SebastianBergmann\PHPLOC\Log\CSV\History;
-
 class History11 extends History
 {
     /**
@@ -32,12 +30,7 @@ class History11 extends History
     public function __construct($uuid = null, $requestTime = null, $productId = null, $status = null, $distance = null, $startTime = null, $endTime = null)
     {
         $this->uuid = $uuid;
-        $this->requestTime = $requestTime;
-        $this->productId = $productId;
-        $this->status = $status;
-        $this->distance = $distance;
-        $this->startTime = $startTime;
-        $this->endTime = $endTime;
+        parent::__construct(null, $requestTime, $productId, $status, $distance, $startTime, $endTime, null);
     }
 
     /**
@@ -62,5 +55,24 @@ class History11 extends History
         $this->uuid = $uuid;
 
         return $this;
+    }
+
+    public static function createFromArray(array $results = null)
+    {
+        $objects = [];
+        if (!$results) {
+            return [];
+        }
+        foreach ($results as $result) {
+            $obj = new self();
+            foreach ($result as $key => $value) {
+                $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+                $setter = 'set'.$key;
+                $obj->{$setter}($value);
+            }
+            $objects[] = $obj;
+        }
+
+        return $objects;
     }
 }
