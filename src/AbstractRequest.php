@@ -97,18 +97,8 @@ abstract class AbstractRequest
                     $response = self::$client->get($this->makeEndpoint(), $options);
                     break;
                 case 'post':
-                    $options['form_params'] = $parameters;
-                    try {
-                        $response = self::$client->post($this->makeEndpoint(), $options);
-                    } catch (ClientException $e) {
-                        var_dump($e->getMessage());
-                        var_dump($e->getRequest()->getUri());
-                        var_dump($e->getRequest()->getMethod());
-                        var_dump($e->getRequest()->getHeaders());
-                        var_dump((string) $e->getRequest()->getBody());
-                        exit;
-                    }
-
+                    $options['json'] = json_encode($parameters);
+                    $response = self::$client->post($this->makeEndpoint(), $options);
                     break;
             }
 

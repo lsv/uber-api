@@ -13,6 +13,7 @@ namespace Lsv\UberApi\Endpoints;
 
 use Geocoder\Model\Coordinates;
 use Lsv\UberApi\AbstractRequest;
+use Lsv\UberApi\Entity\Request\RequestResponse;
 use Psr\Http\Message\ResponseInterface;
 
 class Request extends AbstractRequest
@@ -27,14 +28,18 @@ class Request extends AbstractRequest
      */
     public function query($productId, Coordinates $start, Coordinates $end, $surgeConfirmationId = null)
     {
-        return $this->doQuery([
+        $params = [
             'product_id'            => $productId,
             'start_latitude'        => $start->getLatitude(),
             'start_longitude'       => $start->getLongitude(),
             'end_latitude'          => $end->getLatitude(),
             'end_longitude'         => $end->getLongitude(),
-            'surge_confirmation_id' => $surgeConfirmationId,
-        ]);
+        ];
+
+        if ($surgeConfirmationId) {
+            $params['surge_confirmation_id'] = $surgeConfirmationId;
+        }
+        return $this->doQuery($params);
     }
 
     /**

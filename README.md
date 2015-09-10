@@ -11,8 +11,8 @@ Work in progress
 
 ### TODO
 
-- [ ] User Profile
-- [ ] Request
+- [x] User Profile
+- [x] Request
 - [ ] Request - Details
 - [ ] Request - Estimate
 - [ ] Request - Cancel

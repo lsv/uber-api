@@ -145,11 +145,11 @@ class Driver
 
     public static function createFromArray(array $results = null)
     {
+        $obj = new self();
         if (!$results) {
-            return [];
+            return $obj;
         }
 
-        $obj = new self();
         foreach ($results as $key => $value) {
             $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
             $setter = 'set'.$key;
