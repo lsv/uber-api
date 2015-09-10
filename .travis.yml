@@ -10,8 +10,7 @@ install:
   - php composer.phar install
 
 script:
-  - mkdir -p .build
-  - php bin/phpunit -c .
+  - php bin/phpunit
 
 after_script:
   - php bin/coveralls -v
