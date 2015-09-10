@@ -1,5 +1,5 @@
+/.coveralls.yml          export-ignore
 /.phpmd.xml              export-ignore
-/.scrutinizer.yml        export-ignore
 /.travis.yml             export-ignore
 /build.xml               export-ignore
 /gulpfile.js             export-ignore
@@ -7,3 +7,4 @@
 /phpunit.xml.dist        export-ignore
 /tests                   export-ignore
 /.build                  export-ignore
+/example                 export-ignore
