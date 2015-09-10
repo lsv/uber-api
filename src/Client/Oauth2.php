@@ -17,7 +17,7 @@ class Oauth2 extends Client
 {
     /**
      * @param string $accessToken
-     * @param array $config
+     * @param array  $config
      */
     public function __construct($accessToken, array $config = [])
     {

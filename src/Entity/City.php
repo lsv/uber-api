@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity;
 
 class City
@@ -19,8 +29,8 @@ class City
     protected $displayName;
 
     /**
-     * @param float $latitude
-     * @param float $longitude
+     * @param float  $latitude
+     * @param float  $longitude
      * @param string $displayName
      */
     public function __construct($latitude = null, $longitude = null, $displayName = null)
@@ -31,7 +41,8 @@ class City
     }
 
     /**
-     * Gets the Latitude
+     * Gets the Latitude.
+     *
      * @return float
      */
     public function getLatitude()
@@ -40,18 +51,22 @@ class City
     }
 
     /**
-     * Sets the Latitude
+     * Sets the Latitude.
+     *
      * @param float $latitude
+     *
      * @return City
      */
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
     /**
-     * Gets the Longitude
+     * Gets the Longitude.
+     *
      * @return float
      */
     public function getLongitude()
@@ -60,18 +75,22 @@ class City
     }
 
     /**
-     * Sets the Longitude
+     * Sets the Longitude.
+     *
      * @param float $longitude
+     *
      * @return City
      */
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 
     /**
-     * Gets the DisplayName
+     * Gets the DisplayName.
+     *
      * @return string
      */
     public function getDisplayName()
@@ -80,13 +99,16 @@ class City
     }
 
     /**
-     * Sets the DisplayName
+     * Sets the DisplayName.
+     *
      * @param string $displayName
+     *
      * @return City
      */
     public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
+
         return $this;
     }
 
