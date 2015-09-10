@@ -11,23 +11,23 @@
 
 namespace Lsv\UberApiTest\Request\User;
 
-use Lsv\UberApi\Request\User\Activity1_1;
+use Lsv\UberApi\Request\User\Activity11;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class Activity1_1Test extends AbstractTestCase
 {
     private function getRequest()
     {
-        return new Activity1_1($this->getFileResultsHandler('user_activity1_1.json', true), true);
+        return new Activity11($this->getFileResultsHandler('user_activity1_1.json', true), true);
     }
 
     public function test_null_results()
     {
         $client = $this->getNullResultsHandler('history', true);
 
-        $results = (new Activity1_1($client, true))->query();
+        $results = (new Activity11($client, true))->query();
         $this->assertEquals(0, count($results));
-        $results = (new Activity1_1($client, true))->query();
+        $results = (new Activity11($client, true))->query();
         $this->assertEquals(0, count($results));
     }
 
