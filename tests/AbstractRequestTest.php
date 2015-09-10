@@ -14,7 +14,6 @@ namespace Lsv\UberApiTest;
 use Lsv\UberApi\Request\Estimates\Price;
 use Lsv\UberApi\Request\ProductTypes;
 use Lsv\UberApi\Request\User\Activity;
-use Lsv\UberApiTest\stubs\QueryFailClass;
 
 class AbstractRequestTest extends AbstractTestCase
 {
