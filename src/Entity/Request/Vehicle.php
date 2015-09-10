@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 class Vehicle
@@ -38,7 +48,8 @@ class Vehicle
     }
 
     /**
-     * Gets the Make
+     * Gets the Make.
+     *
      * @return string
      */
     public function getMake()
@@ -47,18 +58,22 @@ class Vehicle
     }
 
     /**
-     * Sets the Make
+     * Sets the Make.
+     *
      * @param string $make
+     *
      * @return Vehicle
      */
     public function setMake($make)
     {
         $this->make = $make;
+
         return $this;
     }
 
     /**
-     * Gets the Model
+     * Gets the Model.
+     *
      * @return string
      */
     public function getModel()
@@ -67,18 +82,22 @@ class Vehicle
     }
 
     /**
-     * Sets the Model
+     * Sets the Model.
+     *
      * @param string $model
+     *
      * @return Vehicle
      */
     public function setModel($model)
     {
         $this->model = $model;
+
         return $this;
     }
 
     /**
-     * Gets the LicensePlate
+     * Gets the LicensePlate.
+     *
      * @return string
      */
     public function getLicensePlate()
@@ -87,18 +106,22 @@ class Vehicle
     }
 
     /**
-     * Sets the LicensePlate
+     * Sets the LicensePlate.
+     *
      * @param string $licensePlate
+     *
      * @return Vehicle
      */
     public function setLicensePlate($licensePlate)
     {
         $this->licensePlate = $licensePlate;
+
         return $this;
     }
 
     /**
-     * Gets the PictureUrl
+     * Gets the PictureUrl.
+     *
      * @return string
      */
     public function getPictureUrl()
@@ -107,13 +130,16 @@ class Vehicle
     }
 
     /**
-     * Sets the PictureUrl
+     * Sets the PictureUrl.
+     *
      * @param string $pictureUrl
+     *
      * @return Vehicle
      */
     public function setPictureUrl($pictureUrl)
     {
         $this->pictureUrl = $pictureUrl;
+
         return $this;
     }
 
@@ -132,5 +158,4 @@ class Vehicle
 
         return $obj;
     }
-
 }

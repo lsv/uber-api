@@ -89,7 +89,7 @@ abstract class AbstractRequest
         }
 
         try {
-            /** @var ResponseInterface $response */
+            /* @var ResponseInterface $response */
             switch (strtolower($this->httpMethod())) {
                 default:
                 case 'get':

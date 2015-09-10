@@ -1,9 +1,18 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 class RequestResponse
 {
-
     /**
      * @var string
      */
@@ -40,13 +49,13 @@ class RequestResponse
     protected $surgeMultiplier;
 
     /**
-     * @param string $requestId
-     * @param string $status
-     * @param Vehicle|null $vehicle
-     * @param Driver|null $driver
+     * @param string        $requestId
+     * @param string        $status
+     * @param Vehicle|null  $vehicle
+     * @param Driver|null   $driver
      * @param Location|null $location
-     * @param int $eta
-     * @param float $surgeMultiplier
+     * @param int           $eta
+     * @param float         $surgeMultiplier
      */
     public function __construct($requestId = null, $status = null, Vehicle $vehicle = null, Driver $driver = null, Location $location = null, $eta = null, $surgeMultiplier = null)
     {
@@ -60,7 +69,8 @@ class RequestResponse
     }
 
     /**
-     * Gets the RequestId
+     * Gets the RequestId.
+     *
      * @return string
      */
     public function getRequestId()
@@ -69,18 +79,22 @@ class RequestResponse
     }
 
     /**
-     * Sets the RequestId
+     * Sets the RequestId.
+     *
      * @param string $requestId
+     *
      * @return RequestResponse
      */
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
+
         return $this;
     }
 
     /**
-     * Gets the Status
+     * Gets the Status.
+     *
      * @return string
      */
     public function getStatus()
@@ -89,18 +103,22 @@ class RequestResponse
     }
 
     /**
-     * Sets the Status
+     * Sets the Status.
+     *
      * @param string $status
+     *
      * @return RequestResponse
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
     /**
-     * Gets the Vehicle
+     * Gets the Vehicle.
+     *
      * @return Vehicle
      */
     public function getVehicle()
@@ -109,18 +127,22 @@ class RequestResponse
     }
 
     /**
-     * Sets the Vehicle
+     * Sets the Vehicle.
+     *
      * @param Vehicle $vehicle
+     *
      * @return RequestResponse
      */
     public function setVehicle($vehicle)
     {
         $this->vehicle = $vehicle;
+
         return $this;
     }
 
     /**
-     * Gets the Driver
+     * Gets the Driver.
+     *
      * @return Driver
      */
     public function getDriver()
@@ -129,18 +151,22 @@ class RequestResponse
     }
 
     /**
-     * Sets the Driver
+     * Sets the Driver.
+     *
      * @param Driver $driver
+     *
      * @return RequestResponse
      */
     public function setDriver($driver)
     {
         $this->driver = $driver;
+
         return $this;
     }
 
     /**
-     * Gets the Location
+     * Gets the Location.
+     *
      * @return Location
      */
     public function getLocation()
@@ -149,18 +175,22 @@ class RequestResponse
     }
 
     /**
-     * Sets the Location
+     * Sets the Location.
+     *
      * @param Location $location
+     *
      * @return RequestResponse
      */
     public function setLocation($location)
     {
         $this->location = $location;
+
         return $this;
     }
 
     /**
-     * Gets the Eta
+     * Gets the Eta.
+     *
      * @return int
      */
     public function getEta()
@@ -169,18 +199,22 @@ class RequestResponse
     }
 
     /**
-     * Sets the Eta
+     * Sets the Eta.
+     *
      * @param int $eta
+     *
      * @return RequestResponse
      */
     public function setEta($eta)
     {
         $this->eta = $eta;
+
         return $this;
     }
 
     /**
-     * Gets the SurgeMultiplier
+     * Gets the SurgeMultiplier.
+     *
      * @return float
      */
     public function getSurgeMultiplier()
@@ -189,13 +223,16 @@ class RequestResponse
     }
 
     /**
-     * Sets the SurgeMultiplier
+     * Sets the SurgeMultiplier.
+     *
      * @param float $surgeMultiplier
+     *
      * @return RequestResponse
      */
     public function setSurgeMultiplier($surgeMultiplier)
     {
         $this->surgeMultiplier = $surgeMultiplier;
+
         return $this;
     }
 
@@ -224,7 +261,7 @@ class RequestResponse
                     break;
             }
         }
+
         return $obj;
     }
-
 }

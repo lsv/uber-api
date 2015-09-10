@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 class Location
@@ -21,7 +31,7 @@ class Location
     /**
      * @param float $latitude
      * @param float $longitude
-     * @param int $bearing
+     * @param int   $bearing
      */
     public function __construct($latitude = null, $longitude = null, $bearing = null)
     {
@@ -31,7 +41,8 @@ class Location
     }
 
     /**
-     * Gets the Latitude
+     * Gets the Latitude.
+     *
      * @return float|null
      */
     public function getLatitude()
@@ -40,18 +51,22 @@ class Location
     }
 
     /**
-     * Sets the Latitude
+     * Sets the Latitude.
+     *
      * @param float|null $latitude
+     *
      * @return Location
      */
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
     /**
-     * Gets the Longitude
+     * Gets the Longitude.
+     *
      * @return float|null
      */
     public function getLongitude()
@@ -60,18 +75,22 @@ class Location
     }
 
     /**
-     * Sets the Longitude
+     * Sets the Longitude.
+     *
      * @param float|null $longitude
+     *
      * @return Location
      */
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 
     /**
-     * Gets the Bearing
+     * Gets the Bearing.
+     *
      * @return int|null
      */
     public function getBearing()
@@ -80,13 +99,16 @@ class Location
     }
 
     /**
-     * Sets the Bearing
+     * Sets the Bearing.
+     *
      * @param int|null $bearing
+     *
      * @return Location
      */
     public function setBearing($bearing)
     {
         $this->bearing = $bearing;
+
         return $this;
     }
 
@@ -105,5 +127,4 @@ class Location
 
         return $obj;
     }
-
 }
