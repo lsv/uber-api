@@ -11,8 +11,8 @@
 
 namespace Lsv\UberApi\Request\User;
 
-use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\AbstractRequest;
+use Psr\Http\Message\ResponseInterface;
 
 class Activity1_2 extends AbstractRequest
 {

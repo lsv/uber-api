@@ -14,8 +14,8 @@ namespace Lsv\UberApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\Client\Oauth2;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractRequest
 {
@@ -41,8 +41,6 @@ abstract class AbstractRequest
 
     /**
      * @param ClientInterface|null $client
-     * @param string               $serverToken
-     * @param string               $accessToken
      * @param bool                 $sandbox
      */
     public function __construct(ClientInterface $client = null, $sandbox = false)
@@ -100,9 +98,8 @@ abstract class AbstractRequest
 
         $options['query'] = $parameters;
         try {
-            $request = self::$client->createRequest($this->httpMethod(), $this->makeEndpoint(), $options);
-            $response = self::$client->send($request);
-
+            /** @var ResponseInterface $response */
+            $response = self::$client->request($this->httpMethod(), $this->makeEndpoint(), $options);
             return $this->parseResponse($response);
         } catch (ClientException $e) {
             throw $e;

@@ -12,9 +12,9 @@
 namespace Lsv\UberApi\Request;
 
 use Geocoder\Model\Coordinates;
-use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Promotion;
+use Psr\Http\Message\ResponseInterface;
 
 class Promotions extends AbstractRequest
 {

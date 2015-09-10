@@ -13,9 +13,9 @@ namespace Lsv\UberApiTest;
 
 use Geocoder\Model\Coordinates;
 use GuzzleHttp\Client;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
-use GuzzleHttp\Subscriber\Mock;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use Lsv\UberApi\Client\ServerToken;
 
 abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
@@ -35,18 +35,13 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $file
-     *
-     * @return Client
+     * @return ServerToken
      */
     protected function getFileResultsHandler($file)
     {
-        $mock = new Mock([
-            new Response(200, [], Stream::factory(self::getReturnStub($file))),
+        return $this->createResultMock([
+            ['status' => 200, 'body' => self::getReturnStub($file)]
         ]);
-        $client = $this->getServerTokenClient();
-        $client->getEmitter()->attach($mock);
-
-        return $client;
     }
 
     /**
@@ -57,21 +52,16 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     protected function getNullResultsHandler($code)
     {
         if ($code === null) {
-            $mock = new Mock([
-                new Response(200, [], Stream::factory('[]')),
-                new Response(200, [], Stream::factory('null')),
+            return $this->createResultMock([
+                ['status' => 200, 'body' => '[]'],
+                ['status' => 200, 'body' => null],
             ]);
         } else {
-            $mock = new Mock([
-                new Response(200, [], Stream::factory('{"'.$code.'": null}')),
-                new Response(200, [], Stream::factory('{"'.$code.'": []}')),
+            return $this->createResultMock([
+                ['status' => 200, 'body' => '{"'.$code.'": null}'],
+                ['status' => 200, 'body' => '{"'.$code.'": []}'],
             ]);
         }
-
-        $client = $this->getServerTokenClient();
-        $client->getEmitter()->attach($mock);
-
-        return $client;
     }
 
     /**
@@ -85,10 +75,27 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param array $config
      * @return ServerToken
      */
-    protected function getServerTokenClient()
+    protected function getServerTokenClient(array $config = [])
     {
-        return new ServerToken(123);
+        return new ServerToken(123, $config);
+    }
+
+    /**
+     * @param array $mockResults
+     * @return ServerToken
+     */
+    protected function createResultMock(array $mockResults)
+    {
+        $handles = [];
+        foreach($mockResults as $result) {
+            $handles[] = new Response($result['status'], [], $result['body']);
+        }
+
+        $mock = new MockHandler($handles);
+        $handler = HandlerStack::create($mock);
+        return $this->getServerTokenClient(['handler' => $handler]);
     }
 }

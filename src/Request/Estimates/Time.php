@@ -12,9 +12,9 @@
 namespace Lsv\UberApi\Request\Estimates;
 
 use Geocoder\Model\Coordinates;
-use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Estimate\Time as TimeEntity;
+use Psr\Http\Message\ResponseInterface;
 
 class Time extends AbstractRequest
 {

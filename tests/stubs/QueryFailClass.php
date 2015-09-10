@@ -11,8 +11,8 @@
 
 namespace Lsv\UberApiTest\stubs;
 
-use GuzzleHttp\Message\ResponseInterface;
 use Lsv\UberApi\AbstractRequest;
+use Psr\Http\Message\ResponseInterface;
 
 class QueryFailClass extends AbstractRequest
 {
