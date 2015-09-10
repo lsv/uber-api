@@ -35,7 +35,7 @@ class AbstractRequestTest extends AbstractTestCase
     {
         $this->setExpectedException('GuzzleHttp\Exception\ClientException', 'Client error: 401');
         $client = $this->createResultMock([
-            ['status' => 401, 'body' => '']
+            ['status' => 401, 'body' => ''],
         ]);
         (new Price($client, true))->query($this->getCoordinates(), $this->getCoordinates());
     }
