@@ -63,5 +63,4 @@ class History11 extends History
 
         return $this;
     }
-
 }
