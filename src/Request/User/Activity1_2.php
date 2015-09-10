@@ -12,6 +12,7 @@
 namespace Lsv\UberApi\Request\User;
 
 use Lsv\UberApi\AbstractRequest;
+use Lsv\UberApi\Entity\User\History;
 use Psr\Http\Message\ResponseInterface;
 
 class Activity1_2 extends AbstractRequest
@@ -20,7 +21,7 @@ class Activity1_2 extends AbstractRequest
      * @param null $offset
      * @param null $limit
      *
-     * @return mixed
+     * @return History[]
      */
     public function query($offset = null, $limit = null)
     {
@@ -35,11 +36,13 @@ class Activity1_2 extends AbstractRequest
      *
      * @param ResponseInterface $response
      *
-     * @return mixed
+     * @return History[]
      */
     protected function parseResponse(ResponseInterface $response)
     {
-        // TODO: Implement parseResponse() method.
+        $results = json_decode($response->getBody(), true);
+
+        return History::createFromArray($results['history']);
     }
 
     /**

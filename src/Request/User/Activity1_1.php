@@ -11,8 +11,39 @@
 
 namespace Lsv\UberApi\Request\User;
 
+use Lsv\UberApi\Entity\User\History1_1;
+use Psr\Http\Message\ResponseInterface;
+
 class Activity1_1 extends Activity1_2
 {
+    /**
+     * @param null $offset
+     * @param null $limit
+     *
+     * @return History1_1[]
+     */
+    public function query($offset = null, $limit = null)
+    {
+        return $this->doQuery([
+            'offset' => $offset,
+            'limit'  => $limit,
+        ]);
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     *
+     * @return History1_1[]
+     */
+    protected function parseResponse(ResponseInterface $response)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return History1_1::createFromArray($results['history']);
+    }
+
     /**
      * API version of the method.
      *

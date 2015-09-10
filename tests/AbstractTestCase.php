@@ -16,6 +16,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use Lsv\UberApi\Client\Oauth2;
 use Lsv\UberApi\Client\ServerToken;
 
 abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
@@ -35,33 +36,34 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $file
-     *
+     * @param bool $oauthServer
      * @return ServerToken
      */
-    protected function getFileResultsHandler($file)
+    protected function getFileResultsHandler($file, $oauthServer = false)
     {
         return $this->createResultMock([
             ['status' => 200, 'body' => self::getReturnStub($file)],
-        ]);
+        ], $oauthServer);
     }
 
     /**
      * @param $code
      *
+     * @param bool $oauthserver
      * @return Client
      */
-    protected function getNullResultsHandler($code)
+    protected function getNullResultsHandler($code, $oauthserver = false)
     {
         if ($code === null) {
             return $this->createResultMock([
                 ['status' => 200, 'body' => '[]'],
                 ['status' => 200, 'body' => null],
-            ]);
+            ], $oauthserver);
         } else {
             return $this->createResultMock([
                 ['status' => 200, 'body' => '{"'.$code.'": null}'],
                 ['status' => 200, 'body' => '{"'.$code.'": []}'],
-            ]);
+            ], $oauthserver);
         }
     }
 
@@ -86,11 +88,22 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param array $mockResults
+     * @param array $config
      *
      * @return ServerToken
      */
-    protected function createResultMock(array $mockResults)
+    protected function getOauthClient(array $config = [])
+    {
+        return new Oauth2(123, $config);
+    }
+
+    /**
+     * @param array $mockResults
+     *
+     * @param bool $oauthserver
+     * @return ServerToken
+     */
+    protected function createResultMock(array $mockResults, $oauthserver = false)
     {
         $handles = [];
         foreach ($mockResults as $result) {
@@ -99,6 +112,10 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
         $mock = new MockHandler($handles);
         $handler = HandlerStack::create($mock);
+
+        if ($oauthserver) {
+            return $this->getOauthClient(['handler' => $handler]);
+        }
 
         return $this->getServerTokenClient(['handler' => $handler]);
     }
