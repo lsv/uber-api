@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Endpoints;
 
 use Geocoder\Model\Coordinates;
@@ -7,23 +17,23 @@ use Psr\Http\Message\ResponseInterface;
 
 class Request extends AbstractRequest
 {
-
     /**
      * @param $productId
      * @param Coordinates $start
      * @param Coordinates $end
-     * @param null $surgeConfirmationId
+     * @param null        $surgeConfirmationId
+     *
      * @return RequestResponse
      */
     public function query($productId, Coordinates $start, Coordinates $end, $surgeConfirmationId = null)
     {
         return $this->doQuery([
-            'product_id' => $productId,
-            'start_latitude' => $start->getLatitude(),
-            'start_longitude' => $start->getLongitude(),
-            'end_latitude' => $end->getLatitude(),
-            'end_longitude' => $end->getLongitude(),
-            'surge_confirmation_id' => $surgeConfirmationId
+            'product_id'            => $productId,
+            'start_latitude'        => $start->getLatitude(),
+            'start_longitude'       => $start->getLongitude(),
+            'end_latitude'          => $end->getLatitude(),
+            'end_longitude'         => $end->getLongitude(),
+            'surge_confirmation_id' => $surgeConfirmationId,
         ]);
     }
 

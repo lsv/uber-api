@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 class Driver
@@ -25,7 +35,7 @@ class Driver
 
     /**
      * @param string $phoneNumber
-     * @param float $rating
+     * @param float  $rating
      * @param string $pictureUrl
      * @param string $name
      */
@@ -38,7 +48,8 @@ class Driver
     }
 
     /**
-     * Gets the PhoneNumber
+     * Gets the PhoneNumber.
+     *
      * @return string
      */
     public function getPhoneNumber()
@@ -47,18 +58,22 @@ class Driver
     }
 
     /**
-     * Sets the PhoneNumber
+     * Sets the PhoneNumber.
+     *
      * @param string $phoneNumber
+     *
      * @return Driver
      */
     public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
+
         return $this;
     }
 
     /**
-     * Gets the Rating
+     * Gets the Rating.
+     *
      * @return float
      */
     public function getRating()
@@ -67,18 +82,22 @@ class Driver
     }
 
     /**
-     * Sets the Rating
+     * Sets the Rating.
+     *
      * @param float $rating
+     *
      * @return Driver
      */
     public function setRating($rating)
     {
         $this->rating = $rating;
+
         return $this;
     }
 
     /**
-     * Gets the PictureUrl
+     * Gets the PictureUrl.
+     *
      * @return string
      */
     public function getPictureUrl()
@@ -87,18 +106,22 @@ class Driver
     }
 
     /**
-     * Sets the PictureUrl
+     * Sets the PictureUrl.
+     *
      * @param string $pictureUrl
+     *
      * @return Driver
      */
     public function setPictureUrl($pictureUrl)
     {
         $this->pictureUrl = $pictureUrl;
+
         return $this;
     }
 
     /**
-     * Gets the Name
+     * Gets the Name.
+     *
      * @return string
      */
     public function getName()
@@ -107,13 +130,16 @@ class Driver
     }
 
     /**
-     * Sets the Name
+     * Sets the Name.
+     *
      * @param string $name
+     *
      * @return Driver
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -132,5 +158,4 @@ class Driver
 
         return $obj;
     }
-
 }
