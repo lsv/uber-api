@@ -37,6 +37,7 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     /**
      * @param $file
      * @param bool $oauthServer
+     *
      * @return ServerToken
      */
     protected function getFileResultsHandler($file, $oauthServer = false)
@@ -48,8 +49,8 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $code
-     *
      * @param bool $oauthserver
+     *
      * @return Client
      */
     protected function getNullResultsHandler($code, $oauthserver = false)
@@ -99,8 +100,8 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param array $mockResults
+     * @param bool  $oauthserver
      *
-     * @param bool $oauthserver
      * @return ServerToken
      */
     protected function createResultMock(array $mockResults, $oauthserver = false)

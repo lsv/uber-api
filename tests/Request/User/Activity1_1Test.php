@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Request\User;
 
 use Lsv\UberApi\Request\User\Activity1_1;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class Activity1_1Test extends AbstractTestCase
 {
-
     private function getRequest()
     {
         return new Activity1_1($this->getFileResultsHandler('user_activity1_1.json', true), true);
@@ -44,5 +53,4 @@ class Activity1_1Test extends AbstractTestCase
         $this->assertEquals(new \DateTime('@1401884646'), $detail->getStartTime());
         $this->assertEquals(new \DateTime('@1401884732'), $detail->getEndTime());
     }
-
 }
