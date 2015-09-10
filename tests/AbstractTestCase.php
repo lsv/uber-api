@@ -35,12 +35,13 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $file
+     *
      * @return ServerToken
      */
     protected function getFileResultsHandler($file)
     {
         return $this->createResultMock([
-            ['status' => 200, 'body' => self::getReturnStub($file)]
+            ['status' => 200, 'body' => self::getReturnStub($file)],
         ]);
     }
 
@@ -76,6 +77,7 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param array $config
+     *
      * @return ServerToken
      */
     protected function getServerTokenClient(array $config = [])
@@ -85,17 +87,19 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 
     /**
      * @param array $mockResults
+     *
      * @return ServerToken
      */
     protected function createResultMock(array $mockResults)
     {
         $handles = [];
-        foreach($mockResults as $result) {
+        foreach ($mockResults as $result) {
             $handles[] = new Response($result['status'], [], $result['body']);
         }
 
         $mock = new MockHandler($handles);
         $handler = HandlerStack::create($mock);
+
         return $this->getServerTokenClient(['handler' => $handler]);
     }
 }

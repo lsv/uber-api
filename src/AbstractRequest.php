@@ -100,6 +100,7 @@ abstract class AbstractRequest
         try {
             /** @var ResponseInterface $response */
             $response = self::$client->request($this->httpMethod(), $this->makeEndpoint(), $options);
+
             return $this->parseResponse($response);
         } catch (ClientException $e) {
             throw $e;
