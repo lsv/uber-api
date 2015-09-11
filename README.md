@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/lsv/uber-api.svg?branch=master)](https://travis-ci.org/lsv/uber-api)
 
+[![StyleCI](https://styleci.io/repos/42185897/shield)](https://styleci.io/repos/42185897)
+
 Uber API for PHP
 ================
 
