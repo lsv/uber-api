@@ -210,7 +210,7 @@ class Type
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::multipleCreateFromArray(self::class, $results, [
-            'PriceDetails' => ['setter' => 'setPriceDetails', 'class' => PriceDetail::class]
+            'PriceDetails' => ['setter' => 'setPriceDetails', 'class' => PriceDetail::class],
         ]);
     }
 }

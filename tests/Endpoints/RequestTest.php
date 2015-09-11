@@ -51,6 +51,4 @@ class RequestTest extends AbstractTestCase
         $this->assertEquals(5, $detail->getEta(), 'Eta');
         $this->assertNull($detail->getSurgeMultiplier(), 'getSurgeMultiplier');
     }
-
-
 }

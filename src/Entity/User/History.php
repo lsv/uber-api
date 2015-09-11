@@ -276,7 +276,7 @@ class History
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::multipleCreateFromArray(self::class, $results, [
-            'StartCity' => ['setter' => 'setStartCity', 'class' => City::class]
+            'StartCity' => ['setter' => 'setStartCity', 'class' => City::class],
         ]);
     }
 }

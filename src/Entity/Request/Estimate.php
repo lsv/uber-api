@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 use Lsv\UberApi\Util\EntityUtil;
@@ -22,8 +32,8 @@ class Estimate
 
     /**
      * @param EstimatePrice $price
-     * @param EstimateTrip $trip
-     * @param int $pickupEstimate
+     * @param EstimateTrip  $trip
+     * @param int           $pickupEstimate
      */
     public function __construct(EstimatePrice $price = null, EstimateTrip $trip = null, $pickupEstimate = null)
     {
@@ -33,7 +43,8 @@ class Estimate
     }
 
     /**
-     * Gets the Price
+     * Gets the Price.
+     *
      * @return EstimatePrice
      */
     public function getPrice()
@@ -42,18 +53,22 @@ class Estimate
     }
 
     /**
-     * Sets the Price
+     * Sets the Price.
+     *
      * @param EstimatePrice $price
+     *
      * @return Estimate
      */
     public function setPrice($price)
     {
         $this->price = $price;
+
         return $this;
     }
 
     /**
-     * Gets the Trip
+     * Gets the Trip.
+     *
      * @return EstimateTrip
      */
     public function getTrip()
@@ -62,18 +77,22 @@ class Estimate
     }
 
     /**
-     * Sets the Trip
+     * Sets the Trip.
+     *
      * @param EstimateTrip $trip
+     *
      * @return Estimate
      */
     public function setTrip($trip)
     {
         $this->trip = $trip;
+
         return $this;
     }
 
     /**
-     * Gets the PickupEstimate
+     * Gets the PickupEstimate.
+     *
      * @return int
      */
     public function getPickupEstimate()
@@ -82,13 +101,16 @@ class Estimate
     }
 
     /**
-     * Sets the PickupEstimate
+     * Sets the PickupEstimate.
+     *
      * @param int $pickupEstimate
+     *
      * @return Estimate
      */
     public function setPickupEstimate($pickupEstimate)
     {
         $this->pickupEstimate = $pickupEstimate;
+
         return $this;
     }
 
@@ -96,7 +118,7 @@ class Estimate
     {
         return EntityUtil::singleCreateFromArray(self::class, $results, [
             'Price' => ['setter' => 'setPrice', 'class' => EstimatePrice::class],
-            'Trip' => ['setter' => 'setTrip', 'class' => EstimateTrip::class],
+            'Trip'  => ['setter' => 'setTrip', 'class' => EstimateTrip::class],
         ]);
     }
 }

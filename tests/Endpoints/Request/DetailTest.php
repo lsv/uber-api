@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Endpoints\Request;
 
 use Lsv\UberApi\Endpoints\Request\Detail;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class DetailTest extends AbstractTestCase
 {
-
     private function getRequest()
     {
         return new Detail($this->getFileResultsHandler('request_detail.json', true), true);
@@ -20,7 +29,7 @@ class DetailTest extends AbstractTestCase
         $req = $request->getRequest();
 
         $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1/requests/' . $key, $req->getUri()->getPath());
+        $this->assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
     }
 
     public function test_null_results()
@@ -91,5 +100,4 @@ class DetailTest extends AbstractTestCase
         $this->assertEquals(37.776033, $detail->getLatitude());
         $this->assertEquals(-122.418143, $detail->getLongitude());
     }
-
 }

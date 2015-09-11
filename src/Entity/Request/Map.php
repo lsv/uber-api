@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 use Lsv\UberApi\Util\EntityUtil;
@@ -26,7 +36,8 @@ class Map
     }
 
     /**
-     * Gets the RequestId
+     * Gets the RequestId.
+     *
      * @return string
      */
     public function getRequestId()
@@ -35,18 +46,22 @@ class Map
     }
 
     /**
-     * Sets the RequestId
+     * Sets the RequestId.
+     *
      * @param string $requestId
+     *
      * @return Map
      */
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
+
         return $this;
     }
 
     /**
-     * Gets the Href
+     * Gets the Href.
+     *
      * @return string
      */
     public function getHref()
@@ -55,13 +70,16 @@ class Map
     }
 
     /**
-     * Sets the Href
+     * Sets the Href.
+     *
      * @param string $href
+     *
      * @return Map
      */
     public function setHref($href)
     {
         $this->href = $href;
+
         return $this;
     }
 

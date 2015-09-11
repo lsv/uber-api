@@ -294,7 +294,7 @@ class PriceDetail
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results, [
-            'ServiceFees' => ['setter' => 'setServiceFees', 'class' => ServiceFee::class]
+            'ServiceFees' => ['setter' => 'setServiceFees', 'class' => ServiceFee::class],
         ]);
     }
 }

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Endpoints\Request;
 
 use GuzzleHttp\Handler\MockHandler;
@@ -9,14 +19,14 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class CancelTest extends AbstractTestCase
 {
-
     private function getRequest()
     {
         $mock = new MockHandler([
-            new Response(204, [], 'Success')
+            new Response(204, [], 'Success'),
         ]);
         $handler = HandlerStack::create($mock);
         $client = $this->getOauthClient(['handler' => $handler]);
+
         return new Cancel($client, true);
     }
 
@@ -28,7 +38,7 @@ class CancelTest extends AbstractTestCase
         $req = $request->getRequest();
 
         $this->assertEquals('DELETE', $req->getMethod());
-        $this->assertEquals('/v1/requests/' . $key, $req->getUri()->getPath());
+        $this->assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
     }
 
     public function test_can_cancel()
@@ -36,5 +46,4 @@ class CancelTest extends AbstractTestCase
         $request = $this->getRequest()->query(123);
         $this->assertEquals('[204] Success', $request);
     }
-
 }
