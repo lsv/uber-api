@@ -11,6 +11,8 @@
 
 namespace Lsv\UberApi\Entity;
 
+use Lsv\UberApi\Util\EntityUtil;
+
 class City
 {
     /**
@@ -114,13 +116,6 @@ class City
 
     public static function createFromArray(array $results = null)
     {
-        $obj = new self();
-        foreach ($results as $key => $value) {
-            $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            $setter = 'set'.$key;
-            $obj->{$setter}($value);
-        }
-
-        return $obj;
+        return EntityUtil::singleCreateFromArray(self::class, $results);
     }
 }

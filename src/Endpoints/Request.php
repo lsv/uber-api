@@ -13,7 +13,7 @@ namespace Lsv\UberApi\Endpoints;
 
 use Geocoder\Model\Coordinates;
 use Lsv\UberApi\AbstractRequest;
-use Lsv\UberApi\Entity\Request\RequestResponse;
+use Lsv\UberApi\Entity\Request\Detail;
 use Psr\Http\Message\ResponseInterface;
 
 class Request extends AbstractRequest
@@ -24,7 +24,7 @@ class Request extends AbstractRequest
      * @param Coordinates $end
      * @param null        $surgeConfirmationId
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function query($productId, Coordinates $start, Coordinates $end, $surgeConfirmationId = null)
     {
@@ -47,13 +47,13 @@ class Request extends AbstractRequest
      *
      * @param ResponseInterface $response
      *
-     * @return RequestResponse
+     * @return Detail
      */
     protected function parseResponse(ResponseInterface $response)
     {
         $results = json_decode($response->getBody(), true);
 
-        return RequestResponse::createFromArray($results);
+        return Detail::createFromArray($results);
     }
 
     /**
@@ -67,16 +67,6 @@ class Request extends AbstractRequest
     }
 
     /**
-     * Does this request require Oauth.
-     *
-     * @return bool
-     */
-    protected function requireOauth()
-    {
-        return true;
-    }
-
-    /**
      * Which HTTP method should be used to this endpoint.
      *
      * @return string
@@ -84,15 +74,5 @@ class Request extends AbstractRequest
     protected function httpMethod()
     {
         return 'POST';
-    }
-
-    /**
-     * API version of the method.
-     *
-     * @return string
-     */
-    protected function getApiVersion()
-    {
-        return 'v1';
     }
 }

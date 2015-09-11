@@ -11,7 +11,9 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
-class Driver
+use Lsv\UberApi\Util\EntityUtil;
+
+class DetailDriver
 {
     /**
      * @var string
@@ -62,7 +64,7 @@ class Driver
      *
      * @param string $phoneNumber
      *
-     * @return Driver
+     * @return DetailDriver
      */
     public function setPhoneNumber($phoneNumber)
     {
@@ -86,7 +88,7 @@ class Driver
      *
      * @param float $rating
      *
-     * @return Driver
+     * @return DetailDriver
      */
     public function setRating($rating)
     {
@@ -110,7 +112,7 @@ class Driver
      *
      * @param string $pictureUrl
      *
-     * @return Driver
+     * @return DetailDriver
      */
     public function setPictureUrl($pictureUrl)
     {
@@ -134,7 +136,7 @@ class Driver
      *
      * @param string $name
      *
-     * @return Driver
+     * @return DetailDriver
      */
     public function setName($name)
     {
@@ -145,17 +147,6 @@ class Driver
 
     public static function createFromArray(array $results = null)
     {
-        $obj = new self();
-        if (!$results) {
-            return $obj;
-        }
-
-        foreach ($results as $key => $value) {
-            $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            $setter = 'set'.$key;
-            $obj->{$setter}($value);
-        }
-
-        return $obj;
+        return EntityUtil::singleCreateFromArray(self::class, $results);
     }
 }

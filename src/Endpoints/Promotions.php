@@ -57,34 +57,4 @@ class Promotions extends AbstractRequest
     {
         return 'promotions';
     }
-
-    /**
-     * Does this request require Oauth.
-     *
-     * @return bool
-     */
-    protected function requireOauth()
-    {
-        return false;
-    }
-
-    /**
-     * Which HTTP method should be used to this endpoint.
-     *
-     * @return string
-     */
-    protected function httpMethod()
-    {
-        return 'GET';
-    }
-
-    /**
-     * API version of the method.
-     *
-     * @return string
-     */
-    protected function getApiVersion()
-    {
-        return 'v1';
-    }
 }

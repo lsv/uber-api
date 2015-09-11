@@ -11,7 +11,9 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
-class Vehicle
+use Lsv\UberApi\Util\EntityUtil;
+
+class DetailVehicle
 {
     /**
      * @var string
@@ -62,7 +64,7 @@ class Vehicle
      *
      * @param string $make
      *
-     * @return Vehicle
+     * @return DetailVehicle
      */
     public function setMake($make)
     {
@@ -86,7 +88,7 @@ class Vehicle
      *
      * @param string $model
      *
-     * @return Vehicle
+     * @return DetailVehicle
      */
     public function setModel($model)
     {
@@ -110,7 +112,7 @@ class Vehicle
      *
      * @param string $licensePlate
      *
-     * @return Vehicle
+     * @return DetailVehicle
      */
     public function setLicensePlate($licensePlate)
     {
@@ -134,7 +136,7 @@ class Vehicle
      *
      * @param string $pictureUrl
      *
-     * @return Vehicle
+     * @return DetailVehicle
      */
     public function setPictureUrl($pictureUrl)
     {
@@ -145,17 +147,6 @@ class Vehicle
 
     public static function createFromArray(array $results = null)
     {
-        $obj = new self();
-        if (!$results) {
-            return $obj;
-        }
-
-        foreach ($results as $key => $value) {
-            $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            $setter = 'set'.$key;
-            $obj->{$setter}($value);
-        }
-
-        return $obj;
+        return EntityUtil::singleCreateFromArray(self::class, $results);
     }
 }

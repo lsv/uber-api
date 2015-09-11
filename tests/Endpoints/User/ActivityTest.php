@@ -21,20 +21,30 @@ class ActivityTest extends AbstractTestCase
         return new Activity($this->getFileResultsHandler('user_activity1_2.json', true), true);
     }
 
+    public function test_method_url()
+    {
+        $request = $this->getRequest();
+        $request->query();
+        $req = $request->getRequest();
+
+        $this->assertEquals('GET', $req->getMethod());
+        $this->assertEquals('/v1.2/history', $req->getUri()->getPath());
+    }
+
     public function test_null_results()
     {
         $client = $this->getNullResultsHandler('history', true);
 
         $results = (new Activity($client, true))->query();
-        $this->assertEquals(0, count($results));
+        $this->assertCount(0, $results);
         $results = (new Activity($client, true))->query();
-        $this->assertEquals(0, count($results));
+        $this->assertCount(0, $results);
     }
 
     public function test_count_results()
     {
         $results = $this->getRequest()->query();
-        $this->assertEquals(3, count($results));
+        $this->assertCount(3, $results);
     }
 
     /**

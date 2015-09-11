@@ -20,19 +20,27 @@ class Time extends AbstractRequest
 {
     /**
      * @param Coordinates $start
-     * @param null|string $customer_uuid
-     * @param null|string $product_id
+     * @param null|string $customerUuid
+     * @param null|string $productId
      *
      * @return \Lsv\UberApi\Entity\Estimate\Time[]
      */
-    public function query(Coordinates $start, $customer_uuid = null, $product_id = null)
+    public function query(Coordinates $start, $customerUuid = null, $productId = null)
     {
-        return $this->doQuery([
+        $params = [
             'start_latitude'  => $start->getLatitude(),
             'start_longitude' => $start->getLongitude(),
-            'customer_uuid'   => $customer_uuid,
-            'product_id'      => $product_id,
-        ]);
+        ];
+
+        if ($customerUuid) {
+            $params['customer_uuid'] = $customerUuid;
+        }
+
+        if ($productId) {
+            $params['product_id'] = $productId;
+        }
+
+        return $this->doQuery($params);
     }
 
     /**
@@ -57,35 +65,5 @@ class Time extends AbstractRequest
     protected function getEndPoint()
     {
         return 'estimates/time';
-    }
-
-    /**
-     * Does this request require Oauth.
-     *
-     * @return bool
-     */
-    protected function requireOauth()
-    {
-        return false;
-    }
-
-    /**
-     * Which HTTP method should be used to this endpoint.
-     *
-     * @return string
-     */
-    protected function httpMethod()
-    {
-        return 'GET';
-    }
-
-    /**
-     * API version of the method.
-     *
-     * @return string
-     */
-    protected function getApiVersion()
-    {
-        return 'v1';
     }
 }

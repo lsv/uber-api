@@ -66,16 +66,6 @@ class Activity12 extends AbstractRequest
     }
 
     /**
-     * Which HTTP method should be used to this endpoint.
-     *
-     * @return string
-     */
-    protected function httpMethod()
-    {
-        return 'GET';
-    }
-
-    /**
      * API version of the method.
      *
      * @return string

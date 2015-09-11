@@ -42,7 +42,7 @@
     <!-- ============================================  -->
     <target name="phpmessdetector">
         <exec command="${bindir}/phpcs --standard=PSR2 ${srcdir} --report-file=${builddir}/phpcs.log" />
-        <exec command="${bindir}/phpmd ${srcdir} text ${rootdir}/.phpmd.xml --reportfile=${builddir}/phpmd.log" />
+        <exec command="${bindir}/phpmd ${srcdir} text ${rootdir}/.phpmd.xml --reportfile '${builddir}/phpmd.log'" />
         <exec command="${bindir}/phpcpd ${srcdir} --log-pmd=${builddir}/phpcpd.log" />
     </target>
 

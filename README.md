@@ -13,8 +13,9 @@ Work in progress
 
 - [x] User Profile
 - [x] Request
-- [ ] Request - Details
-- [ ] Request - Estimate
-- [ ] Request - Cancel
-- [ ] Request - Map
-- [ ] Request - Receipt
+- [x] Request - Details
+- [x] Request - Estimate
+- [x] Request - Cancel
+- [x] Request - Map
+- [x] Request - Receipt
+- [ ] Docs Docs Docs

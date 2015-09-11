@@ -14,6 +14,8 @@ namespace Lsv\UberApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use Lsv\UberApi\Client\Oauth2;
 use Psr\Http\Message\ResponseInterface;
 
@@ -40,10 +42,20 @@ abstract class AbstractRequest
     private static $useSandbox = false;
 
     /**
-     * @param ClientInterface|null $client
-     * @param bool                 $sandbox
+     * @var Request
      */
-    public function __construct(ClientInterface $client = null, $sandbox = false)
+    private $request;
+
+    /**
+     * @var Response
+     */
+    private $response;
+
+    /**
+     * @param ClientInterface|null $client
+     * @param bool|null            $sandbox
+     */
+    public function __construct(ClientInterface $client = null, $sandbox = null)
     {
         if ($client) {
             self::setClient($client);
@@ -71,38 +83,54 @@ abstract class AbstractRequest
     }
 
     /**
-     * @param array $parameters
-     *
-     * @throws ClientException
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param array $queryParameters
+     * @param array $pathParameters
      *
      * @return mixed
      */
-    protected function doQuery(array $parameters)
+    protected function doQuery(array $queryParameters, array $pathParameters = [])
     {
         if (self::$client === null) {
             throw new \RuntimeException('Client needs to be set before doing any requests');
         }
 
-        $options = [];
         if ($this->requireOauth() && !self::$client instanceof Oauth2) {
             throw new \RuntimeException('This request requires a Oauth2 client');
         }
 
         try {
-            /* @var ResponseInterface $response */
+            $options = [];
             switch (strtolower($this->httpMethod())) {
                 default:
                 case 'get':
-                    $options['query'] = $parameters;
-                    $response = self::$client->get($this->makeEndpoint(), $options);
+                    $options['query'] = $queryParameters;
                     break;
                 case 'post':
-                    $options['json'] = json_encode($parameters);
-                    $response = self::$client->post($this->makeEndpoint(), $options);
+                    $options['json'] = json_encode($queryParameters);
+                    break;
+                case 'delete':
                     break;
             }
 
-            return $this->parseResponse($response);
+            $this->request = new Request($this->httpMethod(), $this->makeEndpoint($pathParameters), $options);
+            $this->response = self::$client->send($this->getRequest());
+            return $this->parseResponse($this->getResponse());
         } catch (ClientException $e) {
             throw $e;
         }
@@ -111,16 +139,65 @@ abstract class AbstractRequest
     /**
      * URL to fetch.
      *
+     * @param array $pathParameters
      * @return string
      */
-    private function makeEndpoint()
+    private function makeEndpoint(array $pathParameters)
     {
+        $endpoint = $this->getEndPoint();
+        foreach ($pathParameters as $key => $value) {
+            $keyString = '{' . $key . '}';
+            if (strpos($endpoint, $keyString) !== false) {
+                $endpoint = str_replace($keyString, $value, $endpoint);
+                unset($pathParameters[$key]);
+            }
+        }
+
         return sprintf(
-            '%s/%s/%s',
-            self::$useSandbox ? self::SANDBOX_ENDPOINT : self::ENDPOINT,
+            '%s/%s/%s%s',
+            self::useSandbox(),
             $this->getApiVersion(),
-            $this->getEndpoint()
+            $endpoint,
+            ($pathParameters ? '/' . implode('/', $pathParameters) : '')
         );
+    }
+
+    /**
+     * @return string
+     */
+    private static function useSandbox()
+    {
+        return self::$useSandbox ? self::SANDBOX_ENDPOINT : self::ENDPOINT;
+    }
+
+    /**
+     * Does this request require Oauth.
+     *
+     * @return bool
+     */
+    protected function requireOauth()
+    {
+        return false;
+    }
+
+    /**
+     * Which HTTP method should be used to this endpoint.
+     *
+     * @return string
+     */
+    protected function httpMethod()
+    {
+        return 'GET';
+    }
+
+    /**
+     * API version of the method.
+     *
+     * @return string
+     */
+    protected function getApiVersion()
+    {
+        return 'v1';
     }
 
     /**
@@ -138,25 +215,4 @@ abstract class AbstractRequest
      * @return string
      */
     abstract protected function getEndPoint();
-
-    /**
-     * Does this request require Oauth.
-     *
-     * @return bool
-     */
-    abstract protected function requireOauth();
-
-    /**
-     * Which HTTP method should be used to this endpoint.
-     *
-     * @return string
-     */
-    abstract protected function httpMethod();
-
-    /**
-     * API version of the method.
-     *
-     * @return string
-     */
-    abstract protected function getApiVersion();
 }

@@ -12,6 +12,7 @@
 namespace Lsv\UberApi\Entity\Product;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Lsv\UberApi\Util\EntityUtil;
 
 class PriceDetail
 {
@@ -292,24 +293,8 @@ class PriceDetail
 
     public static function createFromArray(array $results = null)
     {
-        if (!$results) {
-            return;
-        }
-
-        $obj = new self();
-        foreach ($results as $key => $value) {
-            $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            switch ($key) {
-                case 'ServiceFees':
-                    $obj->setServiceFees(ServiceFee::createFromArray($value));
-                    break;
-                default:
-                    $setter = 'set'.$key;
-                    $obj->{$setter}($value);
-                    break;
-            }
-        }
-
-        return $obj;
+        return EntityUtil::singleCreateFromArray(self::class, $results, [
+            'ServiceFees' => ['setter' => 'setServiceFees', 'class' => ServiceFee::class]
+        ]);
     }
 }

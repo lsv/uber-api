@@ -21,20 +21,30 @@ class ProductTypesTest extends AbstractTestCase
         return new ProductTypes($this->getFileResultsHandler('producttypes.json'), true);
     }
 
+    public function test_method_url()
+    {
+        $request = $this->getRequest();
+        $request->query($this->getCoordinates());
+        $req = $request->getRequest();
+
+        $this->assertEquals('GET', $req->getMethod());
+        $this->assertEquals('/v1/products', $req->getUri()->getPath());
+    }
+
     public function test_null_results()
     {
         $client = $this->getNullResultsHandler('products');
 
         $results = (new ProductTypes($client, true))->query($this->getCoordinates());
-        $this->assertEquals(0, count($results));
+        $this->assertCount(0, $results);
         $results = (new ProductTypes($client, true))->query($this->getCoordinates());
-        $this->assertEquals(0, count($results));
+        $this->assertCount(0, $results);
     }
 
     public function test_count_results()
     {
         $results = $this->getRequest()->query($this->getCoordinates());
-        $this->assertEquals(5, count($results));
+        $this->assertCount(5, $results);
     }
 
     /**
@@ -91,7 +101,7 @@ class ProductTypesTest extends AbstractTestCase
         $results = $this->getRequest()->query($this->getCoordinates());
         $detail = $results[2]->getPriceDetails()->getServiceFees();
 
-        $this->assertEquals(0, count($detail));
+        $this->assertCount(0, $detail);
     }
 
     /**

@@ -12,6 +12,7 @@
 namespace Lsv\UberApi\Entity\User;
 
 use Lsv\UberApi\Entity\City;
+use Lsv\UberApi\Util\EntityUtil;
 
 class History
 {
@@ -274,27 +275,8 @@ class History
 
     public static function createFromArray(array $results = null)
     {
-        $objects = [];
-        if (!$results) {
-            return [];
-        }
-        foreach ($results as $result) {
-            $obj = new self();
-            foreach ($result as $key => $value) {
-                $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-                switch ($key) {
-                    case 'StartCity':
-                        $obj->setStartCity(City::createFromArray($value));
-                        break;
-                    default:
-                        $setter = 'set'.$key;
-                        $obj->{$setter}($value);
-                        break;
-                }
-            }
-            $objects[] = $obj;
-        }
-
-        return $objects;
+        return EntityUtil::multipleCreateFromArray(self::class, $results, [
+            'StartCity' => ['setter' => 'setStartCity', 'class' => City::class]
+        ]);
     }
 }

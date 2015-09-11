@@ -11,7 +11,9 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
-class RequestResponse
+use Lsv\UberApi\Util\EntityUtil;
+
+class Detail
 {
     /**
      * @var string
@@ -24,17 +26,17 @@ class RequestResponse
     protected $status;
 
     /**
-     * @var Vehicle
+     * @var DetailVehicle
      */
     protected $vehicle;
 
     /**
-     * @var Driver
+     * @var DetailDriver
      */
     protected $driver;
 
     /**
-     * @var Location
+     * @var DetailLocation
      */
     protected $location;
 
@@ -51,13 +53,13 @@ class RequestResponse
     /**
      * @param string        $requestId
      * @param string        $status
-     * @param Vehicle|null  $vehicle
-     * @param Driver|null   $driver
-     * @param Location|null $location
+     * @param DetailVehicle|null  $vehicle
+     * @param DetailDriver|null   $driver
+     * @param DetailLocation|null $location
      * @param int           $eta
      * @param float         $surgeMultiplier
      */
-    public function __construct($requestId = null, $status = null, Vehicle $vehicle = null, Driver $driver = null, Location $location = null, $eta = null, $surgeMultiplier = null)
+    public function __construct($requestId = null, $status = null, DetailVehicle $vehicle = null, DetailDriver $driver = null, DetailLocation $location = null, $eta = null, $surgeMultiplier = null)
     {
         $this->requestId = $requestId;
         $this->status = $status;
@@ -83,7 +85,7 @@ class RequestResponse
      *
      * @param string $requestId
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function setRequestId($requestId)
     {
@@ -107,7 +109,7 @@ class RequestResponse
      *
      * @param string $status
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function setStatus($status)
     {
@@ -119,7 +121,7 @@ class RequestResponse
     /**
      * Gets the Vehicle.
      *
-     * @return Vehicle
+     * @return DetailVehicle
      */
     public function getVehicle()
     {
@@ -129,9 +131,9 @@ class RequestResponse
     /**
      * Sets the Vehicle.
      *
-     * @param Vehicle $vehicle
+     * @param DetailVehicle $vehicle
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function setVehicle($vehicle)
     {
@@ -143,7 +145,7 @@ class RequestResponse
     /**
      * Gets the Driver.
      *
-     * @return Driver
+     * @return DetailDriver
      */
     public function getDriver()
     {
@@ -153,9 +155,9 @@ class RequestResponse
     /**
      * Sets the Driver.
      *
-     * @param Driver $driver
+     * @param DetailDriver $driver
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function setDriver($driver)
     {
@@ -167,7 +169,7 @@ class RequestResponse
     /**
      * Gets the Location.
      *
-     * @return Location
+     * @return DetailLocation
      */
     public function getLocation()
     {
@@ -177,9 +179,9 @@ class RequestResponse
     /**
      * Sets the Location.
      *
-     * @param Location $location
+     * @param DetailLocation $location
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function setLocation($location)
     {
@@ -203,7 +205,7 @@ class RequestResponse
      *
      * @param int $eta
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function setEta($eta)
     {
@@ -227,7 +229,7 @@ class RequestResponse
      *
      * @param float $surgeMultiplier
      *
-     * @return RequestResponse
+     * @return Detail
      */
     public function setSurgeMultiplier($surgeMultiplier)
     {
@@ -238,30 +240,10 @@ class RequestResponse
 
     public static function createFromArray(array $results = null)
     {
-        $obj = new self();
-        if (! $results) {
-            return [];
-        }
-
-        foreach ($results as $key => $value) {
-            $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            switch ($key) {
-                case 'Driver':
-                    $obj->setDriver(Driver::createFromArray($value));
-                    break;
-                case 'Location':
-                    $obj->setLocation(Location::createFromArray($value));
-                    break;
-                case 'Vehicle':
-                    $obj->setVehicle(Vehicle::createFromArray($value));
-                    break;
-                default:
-                    $setter = 'set'.$key;
-                    $obj->{$setter}($value);
-                    break;
-            }
-        }
-
-        return $obj;
+        return EntityUtil::singleCreateFromArray(self::class, $results, [
+            'Driver' => ['setter' => 'setDriver', 'class' => DetailDriver::class],
+            'Location' => ['setter' => 'setLocation', 'class' => DetailLocation::class],
+            'Vehicle' => ['setter' => 'setVehicle', 'class' => DetailVehicle::class],
+        ]);
     }
 }

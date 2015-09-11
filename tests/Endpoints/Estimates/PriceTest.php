@@ -24,20 +24,30 @@ class PriceTest extends AbstractTestCase
         return new Price($this->getFileResultsHandler('estimates_price.json'), true);
     }
 
+    public function test_method_url()
+    {
+        $request = $this->getRequest();
+        $request->query($this->getCoordinates(), $this->getCoordinates());
+        $req = $request->getRequest();
+
+        $this->assertEquals('GET', $req->getMethod());
+        $this->assertEquals('/v1/estimates/price', $req->getUri()->getPath());
+    }
+
     public function test_null_results()
     {
         $client = $this->getNullResultsHandler('prices');
 
         $results = (new Price($client, true))->query($this->getCoordinates(), $this->getCoordinates());
-        $this->assertEquals(0, count($results));
+        $this->assertCount(0, $results);
         $results = (new Price($client, true))->query($this->getCoordinates(), $this->getCoordinates());
-        $this->assertEquals(0, count($results));
+        $this->assertCount(0, $results);
     }
 
     public function test_count_results()
     {
         $results = $this->getRequest()->query($this->getCoordinates(), $this->getCoordinates());
-        $this->assertEquals(4, count($results));
+        $this->assertCount(4, $results);
     }
 
     /**

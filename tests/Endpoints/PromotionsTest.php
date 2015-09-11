@@ -21,6 +21,16 @@ class PromotionsTest extends AbstractTestCase
         return new Promotions($this->getFileResultsHandler('promotions.json'), true);
     }
 
+    public function test_method_url()
+    {
+        $request = $this->getRequest();
+        $request->query($this->getCoordinates(), $this->getCoordinates());
+        $req = $request->getRequest();
+
+        $this->assertEquals('GET', $req->getMethod());
+        $this->assertEquals('/v1/promotions', $req->getUri()->getPath());
+    }
+
     public function test_count_results()
     {
         $result = $this->getRequest()->query($this->getCoordinates(), $this->getCoordinates());

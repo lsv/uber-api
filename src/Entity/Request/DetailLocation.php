@@ -11,7 +11,9 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
-class Location
+use Lsv\UberApi\Util\EntityUtil;
+
+class DetailLocation
 {
     /**
      * @var float
@@ -55,7 +57,7 @@ class Location
      *
      * @param float|null $latitude
      *
-     * @return Location
+     * @return DetailLocation
      */
     public function setLatitude($latitude)
     {
@@ -79,7 +81,7 @@ class Location
      *
      * @param float|null $longitude
      *
-     * @return Location
+     * @return DetailLocation
      */
     public function setLongitude($longitude)
     {
@@ -103,7 +105,7 @@ class Location
      *
      * @param int|null $bearing
      *
-     * @return Location
+     * @return DetailLocation
      */
     public function setBearing($bearing)
     {
@@ -114,17 +116,6 @@ class Location
 
     public static function createFromArray(array $results = null)
     {
-        $obj = new self();
-        if (!$results) {
-            return $obj;
-        }
-
-        foreach ($results as $key => $value) {
-            $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            $setter = 'set'.$key;
-            $obj->{$setter}($value);
-        }
-
-        return $obj;
+        return EntityUtil::singleCreateFromArray(self::class, $results);
     }
 }

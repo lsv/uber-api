@@ -11,6 +11,8 @@
 
 namespace Lsv\UberApi\Entity\Product;
 
+use Lsv\UberApi\Util\EntityUtil;
+
 class Type
 {
     /**
@@ -207,27 +209,8 @@ class Type
 
     public static function createFromArray(array $results = null)
     {
-        $objects = [];
-        if (!$results) {
-            return [];
-        }
-        foreach ($results as $result) {
-            $obj = new self();
-            foreach ($result as $key => $value) {
-                $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-                switch ($key) {
-                    case 'PriceDetails':
-                        $obj->setPriceDetails(PriceDetail::createFromArray($value));
-                        break;
-                    default:
-                        $setter = 'set'.$key;
-                        $obj->{$setter}($value);
-                        break;
-                }
-            }
-            $objects[] = $obj;
-        }
-
-        return $objects;
+        return EntityUtil::multipleCreateFromArray(self::class, $results, [
+            'PriceDetails' => ['setter' => 'setPriceDetails', 'class' => PriceDetail::class]
+        ]);
     }
 }

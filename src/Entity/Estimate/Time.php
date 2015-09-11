@@ -11,6 +11,8 @@
 
 namespace Lsv\UberApi\Entity\Estimate;
 
+use Lsv\UberApi\Util\EntityUtil;
+
 class Time
 {
     /**
@@ -145,20 +147,6 @@ class Time
 
     public static function createFromArray(array $results = null)
     {
-        $objects = [];
-        if (!$results) {
-            return [];
-        }
-        foreach ($results as $result) {
-            $obj = new self();
-            foreach ($result as $key => $value) {
-                $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-                $setter = 'set'.$key;
-                $obj->{$setter}($value);
-            }
-            $objects[] = $obj;
-        }
-
-        return $objects;
+        return EntityUtil::multipleCreateFromArray(self::class, $results);
     }
 }
