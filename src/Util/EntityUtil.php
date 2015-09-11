@@ -14,14 +14,15 @@ namespace Lsv\UberApi\Util;
 class EntityUtil
 {
     /**
-     * @param string $obj
+     * @param string $objClass
      * @param array  $results
      * @param array  $setters
      *
      * @return object
      */
-    private static function createFromArray($obj, array $results, array $setters)
+    private static function createFromArray($objClass, array $results, array $setters)
     {
+        $obj = new $objClass();
         foreach ($results as $key => $value) {
             $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
             if (isset($setters[$key])) {
@@ -51,7 +52,7 @@ class EntityUtil
             return;
         }
 
-        return self::createFromArray(new $class(), $results, $setters);
+        return self::createFromArray($class, $results, $setters);
     }
 
     /**
@@ -69,7 +70,7 @@ class EntityUtil
         }
 
         foreach ($results as $result) {
-            $objects[] = self::createFromArray(new $class(), $result, $setters);
+            $objects[] = self::createFromArray($class, $result, $setters);
         }
 
         return $objects;
