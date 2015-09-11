@@ -23,16 +23,14 @@ use Psr\Http\Message\ResponseInterface;
  * The response also includes low and high estimates, and the ISO 4217 currency code for situations requiring currency conversion.
  * When surge is active for a particular product, its surge_multiplier will be greater than 1,
  * but the price estimate already factors in this multiplier.
- *
- * @package Lsv\UberApi\Endpoints\Estimates
  */
 class Price extends AbstractRequest
 {
     /**
-     * Query price estimate
+     * Query price estimate.
      *
      * @param Coordinates $start Coordinates of start location.
-     * @param Coordinates $end Coordinates of end location.
+     * @param Coordinates $end   Coordinates of end location.
      *
      * @return \Lsv\UberApi\Entity\Estimate\Price[]
      */

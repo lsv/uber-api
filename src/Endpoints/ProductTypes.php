@@ -21,13 +21,11 @@ use Psr\Http\Message\ResponseInterface;
  * The response includes the display name and other details about each product, and lists the products in the proper display order.
  *
  * Some Products, such as experiments or promotions such as UberPOOL and UberFRESH, will not be returned by this endpoint.
- *
- * @package Lsv\UberApi\Endpoints
  */
 class ProductTypes extends AbstractRequest
 {
     /**
-     * Query product types
+     * Query product types.
      *
      * @param Coordinates $coordinates Coordinates of location
      *

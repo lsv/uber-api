@@ -14,25 +14,27 @@ namespace Lsv\UberApi\Entity;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Class ProductTypePriceFee
- * @package Lsv\UberApi\Entity
+ * Class ProductTypePriceFee.
  */
 class ProductTypePriceFee implements EntityInterface
 {
     /**
      * The name of the service fee.
+     *
      * @var string
      */
     protected $name;
 
     /**
      * The amount of the service fee.
+     *
      * @var float
      */
     protected $fee;
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param string $name
      * @param float  $fee
      */
@@ -92,7 +94,9 @@ class ProductTypePriceFee implements EntityInterface
 
     /**
      * {@inheritdoc}
+     *
      * @param array|null $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = null)

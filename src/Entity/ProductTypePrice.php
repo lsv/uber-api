@@ -14,61 +14,69 @@ namespace Lsv\UberApi\Entity;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Class ProductTypePrice
- * @package Lsv\UberApi\Entity
+ * Class ProductTypePrice.
  */
 class ProductTypePrice implements EntityInterface
 {
     /**
      * The base price.
+     *
      * @var float
      */
     protected $base;
 
     /**
      * The minimum price of a trip.
+     *
      * @var float
      */
     protected $minimum;
 
     /**
      * The charge per minute (if applicable for the product type).
+     *
      * @var float
      */
     protected $costPerMinute;
 
     /**
      * The charge per distance unit (if applicable for the product type).
+     *
      * @var float
      */
     protected $costPerDistance;
 
     /**
      * The unit of distance used to calculate the fare (either mile or km).
+     *
      * @var string
      */
     protected $distanceUnit;
 
     /**
      * The fee if a rider cancels the trip after the grace period.
+     *
      * @var float
      */
     protected $cancellationFee;
 
     /**
      * ISO 4217 currency code.
+     *
      * @var string
      */
     protected $currencyCode;
 
     /**
      * Array containing additional fees added to the price of a product.
+     *
      * @var ProductTypePriceFee[]
      */
     protected $productTypePriceFees;
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param float      $base
      * @param float      $minimum
      * @param float      $costPerMinute
@@ -278,12 +286,15 @@ class ProductTypePrice implements EntityInterface
     public function setProductTypePriceFees($productTypePriceFees)
     {
         $this->productTypePriceFees = $productTypePriceFees;
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
+     *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)
