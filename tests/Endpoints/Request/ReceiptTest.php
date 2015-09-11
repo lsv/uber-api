@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Endpoints\Request;
 
 use Lsv\UberApi\Endpoints\Request\Receipt;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class ReceiptTest extends AbstractTestCase
 {
-
     /**
      * @return Receipt
      */
@@ -23,7 +32,7 @@ class ReceiptTest extends AbstractTestCase
         $req = $request->getRequest();
 
         $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1/requests/' . $requestId . '/receipt', $req->getUri()->getPath());
+        $this->assertEquals('/v1/requests/'.$requestId.'/receipt', $req->getUri()->getPath());
     }
 
     public function test_null_results()
@@ -61,7 +70,6 @@ class ReceiptTest extends AbstractTestCase
         $this->assertEquals('00:11:35', $detail->getDuration(), 'getDuration');
         $this->assertEquals('1.49', $detail->getDistance(), 'getDistance');
         $this->assertEquals('miles', $detail->getDistanceLabel(), 'getDistanceLabel');
-
     }
 
     /**
@@ -96,5 +104,4 @@ class ReceiptTest extends AbstractTestCase
         $this->assertEquals('-2.43', $detail->getAmount());
         $this->assertEquals('promotion', $detail->getType());
     }
-
 }

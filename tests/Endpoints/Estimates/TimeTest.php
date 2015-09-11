@@ -30,7 +30,7 @@ class TimeTest extends AbstractTestCase
         $request->query($this->getCoordinates());
         $req = $request->getRequest();
 
-        $this->assertEquals('GET', $req->getMethod() , 'method');
+        $this->assertEquals('GET', $req->getMethod(), 'method');
         $this->assertEquals('/v1/estimates/time', $req->getUri()->getPath(), 'uri');
     }
 

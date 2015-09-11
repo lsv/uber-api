@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 use Lsv\UberApi\Util\EntityUtil;
@@ -47,11 +57,11 @@ class EstimatePrice
 
     /**
      * @param string $surgeConfirmationHref
-     * @param int $highEstimate
+     * @param int    $highEstimate
      * @param string $surgeConfirmationId
-     * @param int $minimum
-     * @param int $lowEstimate
-     * @param float $surgeMultiplier
+     * @param int    $minimum
+     * @param int    $lowEstimate
+     * @param float  $surgeMultiplier
      * @param string $display
      * @param string $currencyCode
      */
@@ -68,7 +78,8 @@ class EstimatePrice
     }
 
     /**
-     * Gets the SurgeConfirmationHref
+     * Gets the SurgeConfirmationHref.
+     *
      * @return string
      */
     public function getSurgeConfirmationHref()
@@ -77,18 +88,22 @@ class EstimatePrice
     }
 
     /**
-     * Sets the SurgeConfirmationHref
+     * Sets the SurgeConfirmationHref.
+     *
      * @param string $surgeConfirmationHref
+     *
      * @return EstimatePrice
      */
     public function setSurgeConfirmationHref($surgeConfirmationHref)
     {
         $this->surgeConfirmationHref = $surgeConfirmationHref;
+
         return $this;
     }
 
     /**
-     * Gets the HighEstimate
+     * Gets the HighEstimate.
+     *
      * @return int
      */
     public function getHighEstimate()
@@ -97,18 +112,22 @@ class EstimatePrice
     }
 
     /**
-     * Sets the HighEstimate
+     * Sets the HighEstimate.
+     *
      * @param int $highEstimate
+     *
      * @return EstimatePrice
      */
     public function setHighEstimate($highEstimate)
     {
         $this->highEstimate = $highEstimate;
+
         return $this;
     }
 
     /**
-     * Gets the SurgeConfirmationId
+     * Gets the SurgeConfirmationId.
+     *
      * @return string
      */
     public function getSurgeConfirmationId()
@@ -117,18 +136,22 @@ class EstimatePrice
     }
 
     /**
-     * Sets the SurgeConfirmationId
+     * Sets the SurgeConfirmationId.
+     *
      * @param string $surgeConfirmationId
+     *
      * @return EstimatePrice
      */
     public function setSurgeConfirmationId($surgeConfirmationId)
     {
         $this->surgeConfirmationId = $surgeConfirmationId;
+
         return $this;
     }
 
     /**
-     * Gets the Minimum
+     * Gets the Minimum.
+     *
      * @return int
      */
     public function getMinimum()
@@ -137,18 +160,22 @@ class EstimatePrice
     }
 
     /**
-     * Sets the Minimum
+     * Sets the Minimum.
+     *
      * @param int $minimum
+     *
      * @return EstimatePrice
      */
     public function setMinimum($minimum)
     {
         $this->minimum = $minimum;
+
         return $this;
     }
 
     /**
-     * Gets the LowEstimate
+     * Gets the LowEstimate.
+     *
      * @return int
      */
     public function getLowEstimate()
@@ -157,18 +184,22 @@ class EstimatePrice
     }
 
     /**
-     * Sets the LowEstimate
+     * Sets the LowEstimate.
+     *
      * @param int $lowEstimate
+     *
      * @return EstimatePrice
      */
     public function setLowEstimate($lowEstimate)
     {
         $this->lowEstimate = $lowEstimate;
+
         return $this;
     }
 
     /**
-     * Gets the SurgeMultiplier
+     * Gets the SurgeMultiplier.
+     *
      * @return float
      */
     public function getSurgeMultiplier()
@@ -177,18 +208,22 @@ class EstimatePrice
     }
 
     /**
-     * Sets the SurgeMultiplier
+     * Sets the SurgeMultiplier.
+     *
      * @param float $surgeMultiplier
+     *
      * @return EstimatePrice
      */
     public function setSurgeMultiplier($surgeMultiplier)
     {
         $this->surgeMultiplier = $surgeMultiplier;
+
         return $this;
     }
 
     /**
-     * Gets the Display
+     * Gets the Display.
+     *
      * @return string
      */
     public function getDisplay()
@@ -197,18 +232,22 @@ class EstimatePrice
     }
 
     /**
-     * Sets the Display
+     * Sets the Display.
+     *
      * @param string $display
+     *
      * @return EstimatePrice
      */
     public function setDisplay($display)
     {
         $this->display = $display;
+
         return $this;
     }
 
     /**
-     * Gets the CurrencyCode
+     * Gets the CurrencyCode.
+     *
      * @return string
      */
     public function getCurrencyCode()
@@ -217,13 +256,16 @@ class EstimatePrice
     }
 
     /**
-     * Sets the CurrencyCode
+     * Sets the CurrencyCode.
+     *
      * @param string $currencyCode
+     *
      * @return EstimatePrice
      */
     public function setCurrencyCode($currencyCode)
     {
         $this->currencyCode = $currencyCode;
+
         return $this;
     }
 

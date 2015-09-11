@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 use Lsv\UberApi\Util\EntityUtil;
@@ -21,9 +31,9 @@ class EstimateTrip
     protected $durationEstimate;
 
     /**
-     * @param float $distanceEstimate
+     * @param float  $distanceEstimate
      * @param string $distanceUnit
-     * @param int $durationEstimate
+     * @param int    $durationEstimate
      */
     public function __construct($distanceEstimate = null, $distanceUnit = null, $durationEstimate = null)
     {
@@ -33,7 +43,8 @@ class EstimateTrip
     }
 
     /**
-     * Gets the DistanceEstimate
+     * Gets the DistanceEstimate.
+     *
      * @return float
      */
     public function getDistanceEstimate()
@@ -42,18 +53,22 @@ class EstimateTrip
     }
 
     /**
-     * Sets the DistanceEstimate
+     * Sets the DistanceEstimate.
+     *
      * @param float $distanceEstimate
+     *
      * @return EstimateTrip
      */
     public function setDistanceEstimate($distanceEstimate)
     {
         $this->distanceEstimate = $distanceEstimate;
+
         return $this;
     }
 
     /**
-     * Gets the DistanceUnit
+     * Gets the DistanceUnit.
+     *
      * @return string
      */
     public function getDistanceUnit()
@@ -62,18 +77,22 @@ class EstimateTrip
     }
 
     /**
-     * Sets the DistanceUnit
+     * Sets the DistanceUnit.
+     *
      * @param string $distanceUnit
+     *
      * @return EstimateTrip
      */
     public function setDistanceUnit($distanceUnit)
     {
         $this->distanceUnit = $distanceUnit;
+
         return $this;
     }
 
     /**
-     * Gets the DurationEstimate
+     * Gets the DurationEstimate.
+     *
      * @return int
      */
     public function getDurationEstimate()
@@ -82,13 +101,16 @@ class EstimateTrip
     }
 
     /**
-     * Sets the DurationEstimate
+     * Sets the DurationEstimate.
+     *
      * @param int $durationEstimate
+     *
      * @return EstimateTrip
      */
     public function setDurationEstimate($durationEstimate)
     {
         $this->durationEstimate = $durationEstimate;
+
         return $this;
     }
 

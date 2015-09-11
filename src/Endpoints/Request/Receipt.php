@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Endpoints\Request;
 
 use Lsv\UberApi\AbstractRequest;
@@ -15,7 +25,7 @@ class Receipt extends AbstractRequest
     public function query($requestId)
     {
         return $this->doQuery([], [
-            'request_id' => $requestId
+            'request_id' => $requestId,
         ]);
     }
 

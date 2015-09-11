@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 use Lsv\UberApi\Util\EntityUtil;
@@ -66,18 +76,18 @@ class Receipt
     protected $distanceLabel;
 
     /**
-     * @param string $requestId
-     * @param ReceiptCharge[] $charges
-     * @param ReceiptSurgeCharge $surgeCharges
+     * @param string                    $requestId
+     * @param ReceiptCharge[]           $charges
+     * @param ReceiptSurgeCharge        $surgeCharges
      * @param ReceiptChargeAdjustment[] $chargeAdjustments
-     * @param float $normalFare
-     * @param float $subtotal
-     * @param float $totalCharged
-     * @param float $totalOwed
-     * @param string $currencyCode
-     * @param string $duration
-     * @param string $distance
-     * @param string $distanceLabel
+     * @param float                     $normalFare
+     * @param float                     $subtotal
+     * @param float                     $totalCharged
+     * @param float                     $totalOwed
+     * @param string                    $currencyCode
+     * @param string                    $duration
+     * @param string                    $distance
+     * @param string                    $distanceLabel
      */
     public function __construct($requestId = null, array $charges = null, ReceiptSurgeCharge $surgeCharges = null, array $chargeAdjustments = null, $normalFare = null, $subtotal = null, $totalCharged = null, $totalOwed = null, $currencyCode = null, $duration = null, $distance = null, $distanceLabel = null)
     {
@@ -96,7 +106,8 @@ class Receipt
     }
 
     /**
-     * Gets the RequestId
+     * Gets the RequestId.
+     *
      * @return string
      */
     public function getRequestId()
@@ -105,18 +116,22 @@ class Receipt
     }
 
     /**
-     * Sets the RequestId
+     * Sets the RequestId.
+     *
      * @param string $requestId
+     *
      * @return Receipt
      */
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
+
         return $this;
     }
 
     /**
-     * Gets the Charges
+     * Gets the Charges.
+     *
      * @return ReceiptCharge[]
      */
     public function getCharges()
@@ -125,18 +140,22 @@ class Receipt
     }
 
     /**
-     * Sets the Charges
+     * Sets the Charges.
+     *
      * @param ReceiptCharge[] $charges
+     *
      * @return Receipt
      */
     public function setCharges($charges)
     {
         $this->charges = $charges;
+
         return $this;
     }
 
     /**
-     * Gets the SurgeCharges
+     * Gets the SurgeCharges.
+     *
      * @return ReceiptSurgeCharge
      */
     public function getSurgeCharge()
@@ -145,18 +164,22 @@ class Receipt
     }
 
     /**
-     * Sets the SurgeCharges
+     * Sets the SurgeCharges.
+     *
      * @param ReceiptSurgeCharge $surgeCharge
+     *
      * @return Receipt
      */
     public function setSurgeCharge($surgeCharge)
     {
         $this->surgeCharge = $surgeCharge;
+
         return $this;
     }
 
     /**
-     * Gets the ChargeAdjustments
+     * Gets the ChargeAdjustments.
+     *
      * @return ReceiptChargeAdjustment[]
      */
     public function getChargeAdjustments()
@@ -165,18 +188,22 @@ class Receipt
     }
 
     /**
-     * Sets the ChargeAdjustments
+     * Sets the ChargeAdjustments.
+     *
      * @param ReceiptChargeAdjustment[] $chargeAdjustments
+     *
      * @return Receipt
      */
     public function setChargeAdjustments($chargeAdjustments)
     {
         $this->chargeAdjustments = $chargeAdjustments;
+
         return $this;
     }
 
     /**
-     * Gets the NormalFare
+     * Gets the NormalFare.
+     *
      * @return float
      */
     public function getNormalFare()
@@ -185,18 +212,22 @@ class Receipt
     }
 
     /**
-     * Sets the NormalFare
+     * Sets the NormalFare.
+     *
      * @param float $normalFare
+     *
      * @return Receipt
      */
     public function setNormalFare($normalFare)
     {
         $this->normalFare = $normalFare;
+
         return $this;
     }
 
     /**
-     * Gets the Subtotal
+     * Gets the Subtotal.
+     *
      * @return float
      */
     public function getSubtotal()
@@ -205,18 +236,22 @@ class Receipt
     }
 
     /**
-     * Sets the Subtotal
+     * Sets the Subtotal.
+     *
      * @param float $subtotal
+     *
      * @return Receipt
      */
     public function setSubtotal($subtotal)
     {
         $this->subtotal = $subtotal;
+
         return $this;
     }
 
     /**
-     * Gets the TotalCharged
+     * Gets the TotalCharged.
+     *
      * @return float
      */
     public function getTotalCharged()
@@ -225,18 +260,22 @@ class Receipt
     }
 
     /**
-     * Sets the TotalCharged
+     * Sets the TotalCharged.
+     *
      * @param float $totalCharged
+     *
      * @return Receipt
      */
     public function setTotalCharged($totalCharged)
     {
         $this->totalCharged = $totalCharged;
+
         return $this;
     }
 
     /**
-     * Gets the TotalOwed
+     * Gets the TotalOwed.
+     *
      * @return float
      */
     public function getTotalOwed()
@@ -245,18 +284,22 @@ class Receipt
     }
 
     /**
-     * Sets the TotalOwed
+     * Sets the TotalOwed.
+     *
      * @param float $totalOwed
+     *
      * @return Receipt
      */
     public function setTotalOwed($totalOwed)
     {
         $this->totalOwed = $totalOwed;
+
         return $this;
     }
 
     /**
-     * Gets the CurrencyCode
+     * Gets the CurrencyCode.
+     *
      * @return string
      */
     public function getCurrencyCode()
@@ -265,18 +308,22 @@ class Receipt
     }
 
     /**
-     * Sets the CurrencyCode
+     * Sets the CurrencyCode.
+     *
      * @param string $currencyCode
+     *
      * @return Receipt
      */
     public function setCurrencyCode($currencyCode)
     {
         $this->currencyCode = $currencyCode;
+
         return $this;
     }
 
     /**
-     * Gets the Duration
+     * Gets the Duration.
+     *
      * @return string
      */
     public function getDuration()
@@ -285,18 +332,22 @@ class Receipt
     }
 
     /**
-     * Sets the Duration
+     * Sets the Duration.
+     *
      * @param string $duration
+     *
      * @return Receipt
      */
     public function setDuration($duration)
     {
         $this->duration = $duration;
+
         return $this;
     }
 
     /**
-     * Gets the Distance
+     * Gets the Distance.
+     *
      * @return string
      */
     public function getDistance()
@@ -305,18 +356,22 @@ class Receipt
     }
 
     /**
-     * Sets the Distance
+     * Sets the Distance.
+     *
      * @param string $distance
+     *
      * @return Receipt
      */
     public function setDistance($distance)
     {
         $this->distance = $distance;
+
         return $this;
     }
 
     /**
-     * Gets the DistanceLabel
+     * Gets the DistanceLabel.
+     *
      * @return string
      */
     public function getDistanceLabel()
@@ -325,21 +380,24 @@ class Receipt
     }
 
     /**
-     * Sets the DistanceLabel
+     * Sets the DistanceLabel.
+     *
      * @param string $distanceLabel
+     *
      * @return Receipt
      */
     public function setDistanceLabel($distanceLabel)
     {
         $this->distanceLabel = $distanceLabel;
+
         return $this;
     }
 
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results, [
-            'Charges' => ['setter' => 'setCharges', 'class' => ReceiptCharge::class],
-            'SurgeCharge' => ['setter' => 'setSurgeCharge', 'class' => ReceiptSurgeCharge::class],
+            'Charges'           => ['setter' => 'setCharges', 'class' => ReceiptCharge::class],
+            'SurgeCharge'       => ['setter' => 'setSurgeCharge', 'class' => ReceiptSurgeCharge::class],
             'ChargeAdjustments' => ['setter' => 'setChargeAdjustments', 'class' => ReceiptChargeAdjustment::class],
         ]);
     }

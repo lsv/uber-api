@@ -51,13 +51,13 @@ class Detail
     protected $surgeMultiplier;
 
     /**
-     * @param string        $requestId
-     * @param string        $status
+     * @param string              $requestId
+     * @param string              $status
      * @param DetailVehicle|null  $vehicle
      * @param DetailDriver|null   $driver
      * @param DetailLocation|null $location
-     * @param int           $eta
-     * @param float         $surgeMultiplier
+     * @param int                 $eta
+     * @param float               $surgeMultiplier
      */
     public function __construct($requestId = null, $status = null, DetailVehicle $vehicle = null, DetailDriver $driver = null, DetailLocation $location = null, $eta = null, $surgeMultiplier = null)
     {
@@ -241,9 +241,9 @@ class Detail
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results, [
-            'Driver' => ['setter' => 'setDriver', 'class' => DetailDriver::class],
+            'Driver'   => ['setter' => 'setDriver', 'class' => DetailDriver::class],
             'Location' => ['setter' => 'setLocation', 'class' => DetailLocation::class],
-            'Vehicle' => ['setter' => 'setVehicle', 'class' => DetailVehicle::class],
+            'Vehicle'  => ['setter' => 'setVehicle', 'class' => DetailVehicle::class],
         ]);
     }
 }

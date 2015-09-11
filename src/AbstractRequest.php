@@ -130,6 +130,7 @@ abstract class AbstractRequest
 
             $this->request = new Request($this->httpMethod(), $this->makeEndpoint($pathParameters), $options);
             $this->response = self::$client->send($this->getRequest());
+
             return $this->parseResponse($this->getResponse());
         } catch (ClientException $e) {
             throw $e;
@@ -140,13 +141,14 @@ abstract class AbstractRequest
      * URL to fetch.
      *
      * @param array $pathParameters
+     *
      * @return string
      */
     private function makeEndpoint(array $pathParameters)
     {
         $endpoint = $this->getEndPoint();
         foreach ($pathParameters as $key => $value) {
-            $keyString = '{' . $key . '}';
+            $keyString = '{'.$key.'}';
             if (strpos($endpoint, $keyString) !== false) {
                 $endpoint = str_replace($keyString, $value, $endpoint);
                 unset($pathParameters[$key]);
@@ -158,7 +160,7 @@ abstract class AbstractRequest
             self::useSandbox(),
             $this->getApiVersion(),
             $endpoint,
-            ($pathParameters ? '/' . implode('/', $pathParameters) : '')
+            ($pathParameters ? '/'.implode('/', $pathParameters) : '')
         );
     }
 

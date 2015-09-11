@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Endpoints\Request;
 
 use Geocoder\Model\Coordinates;
@@ -10,15 +20,16 @@ class Estimate extends AbstractRequest
 {
     /**
      * @param $productId
-     * @param Coordinates $start
+     * @param Coordinates      $start
      * @param Coordinates|null $end
+     *
      * @return EntityEstimate|[]
      */
     public function query($productId, Coordinates $start, Coordinates $end = null)
     {
         $params = [
-            'product_id' => $productId,
-            'start_latitude' => $start->getLatitude(),
+            'product_id'      => $productId,
+            'start_latitude'  => $start->getLatitude(),
             'start_longitude' => $start->getLongitude(),
         ];
 

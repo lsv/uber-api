@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Endpoints\Request;
 
 use Lsv\UberApi\Endpoints\Request\Map;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class MapTest extends AbstractTestCase
 {
-
     /**
      * @return Map
      */
@@ -23,7 +32,7 @@ class MapTest extends AbstractTestCase
         $req = $request->getRequest();
 
         $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1/requests/' . $requestId . '/map', $req->getUri()->getPath());
+        $this->assertEquals('/v1/requests/'.$requestId.'/map', $req->getUri()->getPath());
     }
 
     public function test_null_results()
@@ -51,5 +60,4 @@ class MapTest extends AbstractTestCase
         $this->assertEquals('b5512127-a134-4bf4-b1ba-fe9f48f56d9d', $detail->getRequestId());
         $this->assertEquals('https://trip.uber.com/abc123', $detail->getHref());
     }
-
 }

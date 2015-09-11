@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\Request;
 
 use Lsv\UberApi\Util\EntityUtil;
@@ -9,7 +19,7 @@ class ReceiptChargeAdjustment
 
     /**
      * @param string $name
-     * @param float $amount
+     * @param float  $amount
      * @param string $type
      */
     public function __construct($name = null, $amount = null, $type = null)

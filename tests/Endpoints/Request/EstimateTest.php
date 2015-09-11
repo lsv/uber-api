@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApiTest\Endpoints\Request;
 
 use Lsv\UberApi\Endpoints\Request\Estimate;
@@ -6,7 +16,6 @@ use Lsv\UberApiTest\AbstractTestCase;
 
 class EstimateTest extends AbstractTestCase
 {
-
     /**
      * @return Estimate
      */
@@ -68,7 +77,6 @@ class EstimateTest extends AbstractTestCase
         $this->assertEquals(1.2, $detail->getSurgeMultiplier());
         $this->assertEquals('$5-6', $detail->getDisplay());
         $this->assertEquals('USD', $detail->getCurrencyCode());
-
     }
 
     /**
@@ -83,5 +91,4 @@ class EstimateTest extends AbstractTestCase
         $this->assertEquals(9, $detail->getDurationEstimate());
         $this->assertEquals(2.1, $detail->getDistanceEstimate());
     }
-
 }
