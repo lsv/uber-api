@@ -14,53 +14,59 @@ namespace Lsv\UberApi\Entity;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Class ProductType
- * @package Lsv\UberApi\Entity
+ * Class ProductType.
  */
 class ProductType implements EntityInterface
 {
     /**
      * Unique identifier representing a specific product for a given latitude & longitude.
+     *
      * @var string
      */
     protected $productId;
 
     /**
      * Capacity of product. For example, 4 people.
+     *
      * @var int
      */
     protected $capacity;
 
     /**
      * Description of product.
+     *
      * @var string
      */
     protected $description;
 
     /**
      * Image URL representing the product.
+     *
      * @var string
      */
     protected $image;
 
     /**
      * The basic price details (not including any surge pricing adjustments). If null, the price is a metered fare such as a taxi service.
+     *
      * @var ProductTypePrice
      */
     protected $priceDetail;
 
     /**
      * Display name of product.
+     *
      * @var string
      */
     protected $displayName;
 
     /**
-     * Constructor
-     * @param string           $productId Unique identifier representing a specific product for a given latitude & longitude.
-     * @param int              $capacity Capacity of product. For example, 4 people.
+     * Constructor.
+     *
+     * @param string           $productId   Unique identifier representing a specific product for a given latitude & longitude.
+     * @param int              $capacity    Capacity of product. For example, 4 people.
      * @param string           $description Description of product.
-     * @param string           $image Image URL representing the product.
+     * @param string           $image       Image URL representing the product.
      * @param ProductTypePrice $priceDetail The basic price details (not including any surge pricing adjustments). If null, the price is a metered fare such as a taxi service.
      * @param string           $displayName Display name of product.
      */
@@ -220,7 +226,9 @@ class ProductType implements EntityInterface
 
     /**
      * {@inheritdoc}
+     *
      * @param array|null $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = null)

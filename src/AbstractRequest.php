@@ -20,8 +20,7 @@ use Lsv\UberApi\Client\Oauth2;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class AbstractRequest
- * @package Lsv\UberApi
+ * Class AbstractRequest.
  */
 abstract class AbstractRequest
 {
@@ -36,31 +35,36 @@ abstract class AbstractRequest
     const SANDBOX_ENDPOINT = 'https://sandbox-api.uber.com';
 
     /**
-     * HTTP Client
+     * HTTP Client.
+     *
      * @var Client
      */
     private static $client = null;
 
     /**
-     * Should we use the uber sandbox
+     * Should we use the uber sandbox.
+     *
      * @var bool
      */
     private static $useSandbox = false;
 
     /**
-     * The request object
+     * The request object.
+     *
      * @var Request
      */
     private $request;
 
     /**
-     * The response object
+     * The response object.
+     *
      * @var Response
      */
     private $response;
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param ClientInterface|null $client
      * @param bool|null            $sandbox
      */
@@ -74,7 +78,8 @@ abstract class AbstractRequest
     }
 
     /**
-     * Set the HTTP client
+     * Set the HTTP client.
+     *
      * @param ClientInterface $client
      */
     public static function setClient(ClientInterface $client = null)
@@ -93,7 +98,8 @@ abstract class AbstractRequest
     }
 
     /**
-     * Get the request object
+     * Get the request object.
+     *
      * @return Request
      */
     public function getRequest()
@@ -102,7 +108,8 @@ abstract class AbstractRequest
     }
 
     /**
-     * Get the response object
+     * Get the response object.
+     *
      * @return Response
      */
     public function getResponse()
@@ -111,7 +118,8 @@ abstract class AbstractRequest
     }
 
     /**
-     * Create and execute the actual query
+     * Create and execute the actual query.
+     *
      * @param array $queryParameters
      * @param array $pathParameters
      *
@@ -178,7 +186,8 @@ abstract class AbstractRequest
     }
 
     /**
-     * Get the endpoint base url
+     * Get the endpoint base url.
+     *
      * @return string
      */
     private static function useSandbox()

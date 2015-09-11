@@ -53,7 +53,7 @@ class EntityUtil
     public static function singleCreateFromArray($class, array $results = null, array $setters = [])
     {
         if (!$results) {
-            return null;
+            return;
         }
 
         return self::createFromArray($class, $results, $setters);
