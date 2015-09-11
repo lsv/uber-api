@@ -31,8 +31,8 @@
     <!-- PHP CS Fixer (php-cs-fixer)                   -->
     <!-- ============================================  -->
     <target name="phpcsfixer">
-        <exec command="${bindir}/php-cs-fixer fix ${srcdir} --level=psr2" />
-        <exec command="${bindir}/phpcbf --standard=PSR2 ${srcdir}" />
+        <exec command="${bindir}/php-cs-fixer fix ${srcdir} --level=psr2" logoutput="false" />
+        <exec command="${bindir}/phpcbf --standard=PSR2 ${srcdir}" logoutput="false" />
     </target>
 
     <!-- ============================================  -->
@@ -41,9 +41,9 @@
     <!-- PHP CPD (phpcpf)                              -->
     <!-- ============================================  -->
     <target name="phpmessdetector">
-        <exec command="${bindir}/phpcs --standard=PSR2 ${srcdir} --report-file=${builddir}/phpcs.log" />
-        <exec command="${bindir}/phpmd ${srcdir} text ${rootdir}/.phpmd.xml --reportfile '${builddir}/phpmd.log'" />
-        <exec command="${bindir}/phpcpd ${srcdir} --log-pmd=${builddir}/phpcpd.log" />
+        <exec command="${bindir}/phpcs --standard=PSR2 ${srcdir} --report-file=${builddir}/phpcs.log" logoutput="false" />
+        <exec command="${bindir}/phpmd ${srcdir} text ${rootdir}/.phpmd.xml --reportfile '${builddir}/phpmd.log'" logoutput="false" />
+        <exec command="${bindir}/phpcpd ${srcdir} --log-pmd=${builddir}/phpcpd.log" logoutput="false" />
     </target>
 
     <!-- ============================================  -->
@@ -59,7 +59,7 @@
     <!-- PHP Documentor 2 (phpdoc)                     -->
     <!-- ============================================  -->
     <target name="phpdoc">
-        <exec command="${bindir}/phpdoc run -t ${docsdir} -d ${srcdir} --title='${title}' --sourcecode --log=${builddir}/phpdoc.log --template=responsive-twig" logoutput="false" checkreturn="true" />
+        <exec command="${bindir}/phpdoc run -t ${docsdir} -d ${srcdir} --title='${title}' --sourcecode --log='${builddir}/phpdoc.log' --template=responsive-twig" logoutput="false" checkreturn="true" />
     </target>
 
     <!-- ============================================  -->
@@ -73,7 +73,7 @@
     <!-- Unit tests (phpunit)                          -->
     <!-- ============================================  -->
     <target name="phpunit">
-        <exec command="${bindir}/phpunit -c ${rootdir} --coverage-text --coverage-html=${builddir}/coverage" logoutput="true" checkreturn="true" />
+        <exec command="${bindir}/phpunit -c ${rootdir} --coverage-text --coverage-html=${builddir}/coverage" logoutput="false" checkreturn="true" />
     </target>
 
     <!-- ============================================  -->

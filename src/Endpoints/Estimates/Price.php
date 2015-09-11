@@ -16,11 +16,23 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Estimate\Price as PriceEntity;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * The Price Estimates endpoint returns an estimated price range for each product offered at a given location.
+ * The price estimate is provided as a formatted string with the full price range and the localized currency symbol.
+ *
+ * The response also includes low and high estimates, and the ISO 4217 currency code for situations requiring currency conversion.
+ * When surge is active for a particular product, its surge_multiplier will be greater than 1,
+ * but the price estimate already factors in this multiplier.
+ *
+ * @package Lsv\UberApi\Endpoints\Estimates
+ */
 class Price extends AbstractRequest
 {
     /**
-     * @param Coordinates $start
-     * @param Coordinates $end
+     * Query price estimate
+     *
+     * @param Coordinates $start Coordinates of start location.
+     * @param Coordinates $end Coordinates of end location.
      *
      * @return \Lsv\UberApi\Entity\Estimate\Price[]
      */

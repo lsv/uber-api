@@ -12,9 +12,10 @@
 namespace Lsv\UberApi\Entity\User;
 
 use Lsv\UberApi\Entity\City;
+use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
-class History
+class History implements EntityInterface
 {
     /**
      * @var string

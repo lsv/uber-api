@@ -13,15 +13,25 @@ namespace Lsv\UberApi\Endpoints;
 
 use Geocoder\Model\Coordinates;
 use Lsv\UberApi\AbstractRequest;
-use Lsv\UberApi\Entity\Product\Type;
+use Lsv\UberApi\Entity\ProductType;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * The Products endpoint returns information about the Uber products offered at a given location.
+ * The response includes the display name and other details about each product, and lists the products in the proper display order.
+ *
+ * Some Products, such as experiments or promotions such as UberPOOL and UberFRESH, will not be returned by this endpoint.
+ *
+ * @package Lsv\UberApi\Endpoints
+ */
 class ProductTypes extends AbstractRequest
 {
     /**
-     * @param Coordinates $coordinates
+     * Query product types
      *
-     * @return \Lsv\UberApi\Entity\Product\Type[]
+     * @param Coordinates $coordinates Coordinates of location
+     *
+     * @return \Lsv\UberApi\Entity\ProductType[]
      */
     public function query(Coordinates $coordinates)
     {
@@ -42,7 +52,7 @@ class ProductTypes extends AbstractRequest
     {
         $results = json_decode($response->getBody(), true);
 
-        return Type::createFromArray($results['products']);
+        return ProductType::createFromArray($results['products']);
     }
 
     /**

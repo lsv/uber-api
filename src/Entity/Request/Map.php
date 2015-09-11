@@ -11,9 +11,10 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
+use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
-class Map
+class Map implements EntityInterface
 {
     /**
      * @var string
@@ -83,7 +84,7 @@ class Map
         return $this;
     }
 
-    public static function createFromArray($results = null)
+    public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);
     }

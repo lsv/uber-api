@@ -57,7 +57,7 @@ class ProductTypesTest extends AbstractTestCase
 
         $this->assertEquals(4, $detail->getCapacity());
         $this->assertEquals('The low-cost Uber', $detail->getDescription());
-        $this->assertInstanceOf($this->getClassName('Entity\Product\PriceDetail'), $detail->getPriceDetails());
+        $this->assertInstanceOf($this->getClassName('Entity\ProductTypePrice'), $detail->getPriceDetail());
         $this->assertEquals('http://d1a3f4spazzrp4.cloudfront.net/car.jpg', $detail->getImage());
         $this->assertEquals('uberX', $detail->getDisplayName());
         $this->assertEquals('a1111c8c-c720-46c3-8534-2fcdd730040d', $detail->getProductId());
@@ -69,11 +69,11 @@ class ProductTypesTest extends AbstractTestCase
     public function test_pricedetails_getter()
     {
         $results = $this->getRequest()->query($this->getCoordinates());
-        $detail = $results[0]->getPriceDetails();
+        $detail = $results[0]->getPriceDetail();
 
         $this->assertEquals('mile', $detail->getDistanceUnit());
         $this->assertEquals(0.26, $detail->getCostPerMinute());
-        $this->assertEquals(1, count($detail->getServiceFees()));
+        $this->assertEquals(1, count($detail->getProductTypePriceFees()));
         $this->assertEquals(5, $detail->getMinimum());
         $this->assertEquals(1.3, $detail->getCostPerDistance());
         $this->assertEquals(2.2, $detail->getBase());
@@ -87,7 +87,7 @@ class ProductTypesTest extends AbstractTestCase
     public function test_servicefee_getter()
     {
         $results = $this->getRequest()->query($this->getCoordinates());
-        $detail = $results[0]->getPriceDetails()->getServiceFees()[0];
+        $detail = $results[0]->getPriceDetail()->getProductTypePriceFees()[0];
 
         $this->assertEquals('Safe Rides Fee', $detail->getName());
         $this->assertEquals(1, $detail->getFee());
@@ -99,7 +99,7 @@ class ProductTypesTest extends AbstractTestCase
     public function test_nullable_servicefee()
     {
         $results = $this->getRequest()->query($this->getCoordinates());
-        $detail = $results[2]->getPriceDetails()->getServiceFees();
+        $detail = $results[2]->getPriceDetail()->getProductTypePriceFees();
 
         $this->assertCount(0, $detail);
     }
@@ -112,6 +112,6 @@ class ProductTypesTest extends AbstractTestCase
         $results = $this->getRequest()->query($this->getCoordinates());
         $detail = $results[4];
 
-        $this->assertNull($detail->getPriceDetails());
+        $this->assertNull($detail->getPriceDetail());
     }
 }

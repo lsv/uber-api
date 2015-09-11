@@ -11,9 +11,10 @@
 
 namespace Lsv\UberApi\Entity\Estimate;
 
+use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
-class Time
+class Time implements EntityInterface
 {
     /**
      * @var string

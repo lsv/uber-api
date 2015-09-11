@@ -13,7 +13,7 @@ namespace Lsv\UberApi\Entity;
 
 use Lsv\UberApi\Util\EntityUtil;
 
-class Promotion
+class Promotion implements EntityInterface
 {
     /**
      * @var string
@@ -42,8 +42,10 @@ class Promotion
 
     /**
      * @param string $displayText
+     * @param string $value
      * @param string $localizedValue
      * @param string $type
+     * @param string $currencyCode
      */
     public function __construct($displayText = null, $value = null, $localizedValue = null, $type = null, $currencyCode = null)
     {

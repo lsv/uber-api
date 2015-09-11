@@ -9,23 +9,30 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApi\Entity\Product;
+namespace Lsv\UberApi\Entity;
 
 use Lsv\UberApi\Util\EntityUtil;
 
-class ServiceFee
+/**
+ * Class ProductTypePriceFee
+ * @package Lsv\UberApi\Entity
+ */
+class ProductTypePriceFee implements EntityInterface
 {
     /**
+     * The name of the service fee.
      * @var string
      */
     protected $name;
 
     /**
+     * The amount of the service fee.
      * @var float
      */
     protected $fee;
 
     /**
+     * Constructor
      * @param string $name
      * @param float  $fee
      */
@@ -50,7 +57,7 @@ class ServiceFee
      *
      * @param string $name
      *
-     * @return ServiceFee
+     * @return ProductTypePriceFee
      */
     public function setName($name)
     {
@@ -74,7 +81,7 @@ class ServiceFee
      *
      * @param float $fee
      *
-     * @return ServiceFee
+     * @return ProductTypePriceFee
      */
     public function setFee($fee)
     {
@@ -83,6 +90,11 @@ class ServiceFee
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     * @param array|null $results
+     * @return array
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::multipleCreateFromArray(self::class, $results);

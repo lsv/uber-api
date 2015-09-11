@@ -11,6 +11,8 @@
 
 namespace Lsv\UberApi\Util;
 
+use Lsv\UberApi\Entity\EntityInterface;
+
 class EntityUtil
 {
     /**
@@ -27,7 +29,9 @@ class EntityUtil
             $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
             if (isset($setters[$key])) {
                 $method = $setters[$key]['setter'];
-                $value = $setters[$key]['class']::createFromArray($value);
+                /** @var EntityInterface $class */
+                $class = $setters[$key]['class'];
+                $value = $class::createFromArray($value);
                 $obj->$method($value);
                 continue;
             }
@@ -49,7 +53,7 @@ class EntityUtil
     public static function singleCreateFromArray($class, array $results = null, array $setters = [])
     {
         if (!$results) {
-            return;
+            return null;
         }
 
         return self::createFromArray($class, $results, $setters);

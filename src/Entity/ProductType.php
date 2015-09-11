@@ -9,57 +9,68 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApi\Entity\Product;
+namespace Lsv\UberApi\Entity;
 
 use Lsv\UberApi\Util\EntityUtil;
 
-class Type
+/**
+ * Class ProductType
+ * @package Lsv\UberApi\Entity
+ */
+class ProductType implements EntityInterface
 {
     /**
+     * Unique identifier representing a specific product for a given latitude & longitude.
      * @var string
      */
     protected $productId;
 
     /**
+     * Capacity of product. For example, 4 people.
      * @var int
      */
     protected $capacity;
 
     /**
+     * Description of product.
      * @var string
      */
     protected $description;
 
     /**
+     * Image URL representing the product.
      * @var string
      */
     protected $image;
 
     /**
-     * @var PriceDetail
+     * The basic price details (not including any surge pricing adjustments). If null, the price is a metered fare such as a taxi service.
+     * @var ProductTypePrice
      */
-    protected $priceDetails;
+    protected $priceDetail;
 
     /**
+     * Display name of product.
      * @var string
      */
     protected $displayName;
 
     /**
-     * @param string           $productId
-     * @param int              $capacity
-     * @param string           $description
-     * @param string           $image
-     * @param PriceDetail|null $priceDetails
-     * @param string           $displayName
+     * Constructor
+     * @param string           $productId Unique identifier representing a specific product for a given latitude & longitude.
+     * @param int              $capacity Capacity of product. For example, 4 people.
+     * @param string           $description Description of product.
+     * @param string           $image Image URL representing the product.
+     * @param ProductTypePrice $priceDetail The basic price details (not including any surge pricing adjustments). If null, the price is a metered fare such as a taxi service.
+     * @param string           $displayName Display name of product.
      */
-    public function __construct($productId = null, $capacity = null, $description = null, $image = null, PriceDetail $priceDetails = null, $displayName = null)
+    public function __construct($productId = null, $capacity = null, $description = null, $image = null, ProductTypePrice $priceDetail = null, $displayName = null)
     {
         $this->productId = $productId;
         $this->capacity = $capacity;
         $this->description = $description;
         $this->image = $image;
-        $this->priceDetails = $priceDetails;
+        $this->priceDetail = $priceDetail;
         $this->displayName = $displayName;
     }
 
@@ -78,7 +89,7 @@ class Type
      *
      * @param string $productId
      *
-     * @return Type
+     * @return ProductType
      */
     public function setProductId($productId)
     {
@@ -102,7 +113,7 @@ class Type
      *
      * @param int $capacity
      *
-     * @return Type
+     * @return ProductType
      */
     public function setCapacity($capacity)
     {
@@ -126,7 +137,7 @@ class Type
      *
      * @param string $description
      *
-     * @return Type
+     * @return ProductType
      */
     public function setDescription($description)
     {
@@ -150,7 +161,7 @@ class Type
      *
      * @param string $image
      *
-     * @return Type
+     * @return ProductType
      */
     public function setImage($image)
     {
@@ -162,23 +173,23 @@ class Type
     /**
      * Gets the PriceDetails.
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
-    public function getPriceDetails()
+    public function getPriceDetail()
     {
-        return $this->priceDetails;
+        return $this->priceDetail;
     }
 
     /**
      * Sets the PriceDetails.
      *
-     * @param PriceDetail $priceDetails
+     * @param ProductTypePrice $priceDetail
      *
-     * @return Type
+     * @return ProductType
      */
-    public function setPriceDetails($priceDetails)
+    public function setPriceDetail($priceDetail)
     {
-        $this->priceDetails = $priceDetails;
+        $this->priceDetail = $priceDetail;
 
         return $this;
     }
@@ -198,7 +209,7 @@ class Type
      *
      * @param string $displayName
      *
-     * @return Type
+     * @return ProductType
      */
     public function setDisplayName($displayName)
     {
@@ -207,10 +218,15 @@ class Type
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     * @param array|null $results
+     * @return array
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::multipleCreateFromArray(self::class, $results, [
-            'PriceDetails' => ['setter' => 'setPriceDetails', 'class' => PriceDetail::class],
+            'PriceDetails' => ['setter' => 'setPriceDetail', 'class' => ProductTypePrice::class],
         ]);
     }
 }

@@ -11,9 +11,10 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
+use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
-class ReceiptSurgeCharge
+class ReceiptSurgeCharge implements EntityInterface
 {
     use ChargeTrait;
 

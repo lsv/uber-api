@@ -13,7 +13,7 @@ namespace Lsv\UberApi\Entity;
 
 use Lsv\UberApi\Util\EntityUtil;
 
-class City
+class City implements EntityInterface
 {
     /**
      * @var float

@@ -9,54 +9,66 @@
  * file that was distributed with this source code.
  */
 
-namespace Lsv\UberApi\Entity\Product;
+namespace Lsv\UberApi\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Lsv\UberApi\Util\EntityUtil;
 
-class PriceDetail
+/**
+ * Class ProductTypePrice
+ * @package Lsv\UberApi\Entity
+ */
+class ProductTypePrice implements EntityInterface
 {
     /**
+     * The base price.
      * @var float
      */
     protected $base;
 
     /**
+     * The minimum price of a trip.
      * @var float
      */
     protected $minimum;
 
     /**
+     * The charge per minute (if applicable for the product type).
      * @var float
      */
     protected $costPerMinute;
 
     /**
+     * The charge per distance unit (if applicable for the product type).
      * @var float
      */
     protected $costPerDistance;
 
     /**
+     * The unit of distance used to calculate the fare (either mile or km).
      * @var string
      */
     protected $distanceUnit;
 
     /**
+     * The fee if a rider cancels the trip after the grace period.
      * @var float
      */
     protected $cancellationFee;
 
     /**
+     * ISO 4217 currency code.
      * @var string
      */
     protected $currencyCode;
 
     /**
-     * @var ServiceFee[]|ArrayCollection
+     * Array containing additional fees added to the price of a product.
+     * @var ProductTypePriceFee[]
      */
-    protected $serviceFees;
+    protected $productTypePriceFees;
 
     /**
+     * Constructor
      * @param float      $base
      * @param float      $minimum
      * @param float      $costPerMinute
@@ -64,12 +76,10 @@ class PriceDetail
      * @param string     $distanceUnit
      * @param float      $cancellationFee
      * @param string     $currencyCode
-     * @param array|null $serviceFees
+     * @param array|null $productTypePriceFees
      */
-    public function __construct($base = null, $minimum = null, $costPerMinute = null, $costPerDistance = null, $distanceUnit = null, $cancellationFee = null, $currencyCode = null, array $serviceFees = null)
+    public function __construct($base = null, $minimum = null, $costPerMinute = null, $costPerDistance = null, $distanceUnit = null, $cancellationFee = null, $currencyCode = null, array $productTypePriceFees = null)
     {
-        $this->serviceFees = new ArrayCollection();
-
         $this->base = $base;
         $this->minimum = $minimum;
         $this->costPerMinute = $costPerMinute;
@@ -77,7 +87,7 @@ class PriceDetail
         $this->distanceUnit = $distanceUnit;
         $this->cancellationFee = $cancellationFee;
         $this->currencyCode = $currencyCode;
-        $this->serviceFees = $serviceFees;
+        $this->productTypePriceFees = $productTypePriceFees;
     }
 
     /**
@@ -95,7 +105,7 @@ class PriceDetail
      *
      * @param float $base
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
     public function setBase($base)
     {
@@ -119,7 +129,7 @@ class PriceDetail
      *
      * @param float $minimum
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
     public function setMinimum($minimum)
     {
@@ -143,7 +153,7 @@ class PriceDetail
      *
      * @param float $costPerMinute
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
     public function setCostPerMinute($costPerMinute)
     {
@@ -167,7 +177,7 @@ class PriceDetail
      *
      * @param float $costPerDistance
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
     public function setCostPerDistance($costPerDistance)
     {
@@ -191,7 +201,7 @@ class PriceDetail
      *
      * @param string $distanceUnit
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
     public function setDistanceUnit($distanceUnit)
     {
@@ -215,7 +225,7 @@ class PriceDetail
      *
      * @param float $cancellationFee
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
     public function setCancellationFee($cancellationFee)
     {
@@ -239,7 +249,7 @@ class PriceDetail
      *
      * @param string $currencyCode
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
     public function setCurrencyCode($currencyCode)
     {
@@ -249,52 +259,37 @@ class PriceDetail
     }
 
     /**
-     * Gets the ServiceFees.
+     * Gets the ProductTypePriceFee.
      *
-     * @return ArrayCollection|ServiceFee[]
+     * @return ProductTypePriceFee[]
      */
-    public function getServiceFees()
+    public function getProductTypePriceFees()
     {
-        return $this->serviceFees;
+        return $this->productTypePriceFees;
     }
 
     /**
-     * Sets the ServiceFees.
+     * Sets the ProductTypePriceFee.
      *
-     * @param ServiceFee[] $serviceFees
+     * @param ProductTypePriceFee[] $productTypePriceFees
      *
-     * @return PriceDetail
+     * @return ProductTypePrice
      */
-    public function setServiceFees(array $serviceFees = null)
+    public function setProductTypePriceFees($productTypePriceFees)
     {
-        $this->serviceFees = new ArrayCollection();
-        if ($serviceFees) {
-            foreach ($serviceFees as $fee) {
-                $this->addServiceFee($fee);
-            }
-        }
-
+        $this->productTypePriceFees = $productTypePriceFees;
         return $this;
     }
 
     /**
-     * Add a service fee.
-     *
-     * @param ServiceFee $fee
-     *
-     * @return PriceDetail
+     * {@inheritdoc}
+     * @param array|null $results
+     * @return null|object
      */
-    public function addServiceFee(ServiceFee $fee)
-    {
-        $this->serviceFees->add($fee);
-
-        return $this;
-    }
-
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results, [
-            'ServiceFees' => ['setter' => 'setServiceFees', 'class' => ServiceFee::class],
+            'ServiceFees' => ['setter' => 'setProductTypePriceFees', 'class' => ProductTypePriceFee::class],
         ]);
     }
 }
