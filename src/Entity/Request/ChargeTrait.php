@@ -11,19 +11,28 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
+/**
+ * Trait for a charge
+ */
 trait ChargeTrait
 {
     /**
+     * The name of the charge.
+     *
      * @var string
      */
     protected $name;
 
     /**
+     * The amount of the charge.
+     *
      * @var float
      */
     protected $amount;
 
     /**
+     * The key of the type
+     *
      * @var string
      */
     protected $type;

@@ -79,7 +79,7 @@
     <!-- ============================================  -->
     <!-- Target: build                                 -->
     <!-- ============================================  -->
-    <target name="build" depends="prepare, phpcsfixer, phpmessdetector, phploc, phpdoc, phpunit" />
+    <target name="build" depends="prepare, phpcsfixer, phpmessdetector, phploc, apigen, phpunit" />
 
     <!-- ============================================  -->
     <!-- (DEFAULT)  Target: dist                       -->

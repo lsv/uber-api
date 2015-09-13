@@ -13,27 +13,38 @@ namespace Lsv\UberApi\Entity;
 
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * City object
+ */
 class City implements EntityInterface
 {
     /**
+     * Latitude of the center of the city.
+     *
      * @var float
      */
     protected $latitude;
 
     /**
+     * Longitude of the center of the city.
+     *
      * @var float
      */
     protected $longitude;
 
     /**
+     * The name of the city
+     *
      * @var string
      */
     protected $displayName;
 
     /**
-     * @param float  $latitude
-     * @param float  $longitude
-     * @param string $displayName
+     * Constructor
+     *
+     * @param float  $latitude Latitude of the center of the city.
+     * @param float  $longitude Longitude of the center of the city.
+     * @param string $displayName The name of the city
      */
     public function __construct($latitude = null, $longitude = null, $displayName = null)
     {
@@ -114,6 +125,12 @@ class City implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);

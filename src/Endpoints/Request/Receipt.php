@@ -15,10 +15,15 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Request\Receipt as ReceiptEntity;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Get the receipt information of the completed request.
+ */
 class Receipt extends AbstractRequest
 {
     /**
-     * @param string $requestId
+     * Get the receipt
+     *
+     * @param string $requestId Unique identifier representing a Request.
      *
      * @return ReceiptEntity
      */

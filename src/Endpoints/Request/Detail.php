@@ -15,10 +15,15 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Request\Detail as DetailEntity;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Get the real time status of an ongoing trip that was created using the Ride Request endpoint.
+ */
 class Detail extends AbstractRequest
 {
     /**
-     * @param $requestId
+     * Get details for a request
+     *
+     * @param string $requestId Unique identifier representing a Request.
      *
      * @return DetailEntity
      */

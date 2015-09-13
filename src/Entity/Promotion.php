@@ -13,39 +13,53 @@ namespace Lsv\UberApi\Entity;
 
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Promotion object
+ */
 class Promotion implements EntityInterface
 {
     /**
+     * A localized string we recommend to use when offering the promotion to users.
+     *
      * @var string
      */
     protected $displayText;
 
     /**
+     * The value of the promotion that is available to a user in this location in the local currency.
+     *
      * @var string
      */
     protected $value;
 
     /**
+     * The localized value of the promotion.
+     *
      * @var string
      */
     protected $localizedValue;
 
     /**
+     * The type of the promo which is either "trip_credit" or "account_credit".
+     *
      * @var string
      */
     protected $type;
 
     /**
+     * ISO 4217 currency code.
      * @var string
      */
     protected $currencyCode;
 
     /**
-     * @param string $displayText
-     * @param string $value
-     * @param string $localizedValue
-     * @param string $type
-     * @param string $currencyCode
+     * Constructor
+     *
+     * @param string $displayText A localized string we recommend to use when offering the promotion to users.
+     * @param string $value The value of the promotion that is available to a user in this location in the local currency.
+     * @param string $localizedValue The localized value of the promotion.
+     * @param string $type The type of the promo which is either "trip_credit" or "account_credit".
+     * @param string $currencyCode ISO 4217 currency code.
      */
     public function __construct($displayText = null, $value = null, $localizedValue = null, $type = null, $currencyCode = null)
     {
@@ -176,6 +190,12 @@ class Promotion implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);

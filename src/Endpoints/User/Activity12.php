@@ -15,9 +15,19 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\User\History;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * The User Activity endpoint returns a limited amount of data about a user's lifetime activity with Uber.
+ * The response will include pickup and dropoff times, the distance of past requests,
+ * and information about which products were requested.
+ *
+ * The history array in the response will have a maximum length based on the limit parameter.
+ * The response value count may exceed limit, therefore subsequent API requests may be necessary.
+ */
 class Activity12 extends AbstractRequest
 {
     /**
+     * Get activity
+     *
      * @param null $offset
      * @param null $limit
      *

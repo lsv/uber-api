@@ -15,57 +15,78 @@ use Lsv\UberApi\Entity\City;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * User history (version 1.2)
+ */
 class History implements EntityInterface
 {
     /**
+     * Unique activity identifier.
+     *
      * @var string
      */
     protected $requestId;
 
     /**
+     * Unix timestamp of activity request time.
+     *
      * @var \DateTime
      */
     protected $requestTime;
 
     /**
+     * Unique identifier representing a specific product
+     *
      * @var string
      */
     protected $productId;
 
     /**
+     * Status of the activity. Only returns completed for now.
+     *
      * @var string
      */
     protected $status;
 
     /**
+     * Length of activity in miles.
+     *
      * @var float
      */
     protected $distance;
 
     /**
+     * Date of activity start time.
+     *
      * @var \DateTime
      */
     protected $startTime;
 
     /**
+     * Date of activity end time.
+     *
      * @var \DateTime
      */
     protected $endTime;
 
     /**
+     * Details about the city the activity started in.
+     *
      * @var City
      */
     protected $startCity;
 
     /**
-     * @param string $requestId
-     * @param int    $requestTime
-     * @param string $productId
-     * @param string $status
-     * @param float  $distance
-     * @param int    $startTime
-     * @param int    $endTime
-     * @param City   $startCity
+     * Constructor
+     *
+     * @param string $requestId Unique activity identifier.
+     * @param int    $requestTime Unix timestamp of activity request time.
+     * @param string $productId Unique identifier representing a specific product
+     * @param string $status Status of the activity. Only returns completed for now.
+     * @param float  $distance Length of activity in miles.
+     * @param int    $startTime Unix timestamp of activity start time.
+     * @param int    $endTime Unix timestamp of activity end time.
+     * @param City   $startCity Details about the city the activity started in.
      */
     public function __construct($requestId = null, $requestTime = null, $productId = null, $status = null, $distance = null, $startTime = null, $endTime = null, City $startCity = null)
     {
@@ -274,6 +295,12 @@ class History implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return array
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::multipleCreateFromArray(self::class, $results, [

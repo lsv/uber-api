@@ -11,6 +11,9 @@
 
 namespace Lsv\UberApi\Endpoints\User;
 
+/**
+ * {@inheritdoc}
+ */
 class Activity extends Activity12
 {
 }

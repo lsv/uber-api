@@ -15,10 +15,15 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Request\Map as MapEntity;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Get a map with a visual representation of a Request.
+ */
 class Map extends AbstractRequest
 {
     /**
-     * @param string $requestId
+     * Query for the map
+     *
+     * @param string $requestId Unique identifier representing a Request.
      *
      * @return MapEntity
      */

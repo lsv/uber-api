@@ -16,13 +16,18 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Request\Detail;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * The Request endpoint allows a ride to be requested on behalf of an Uber user given their desired product, start, and end locations.
+ */
 class Request extends AbstractRequest
 {
     /**
-     * @param $productId
-     * @param Coordinates $start
-     * @param Coordinates $end
-     * @param null        $surgeConfirmationId
+     * Make a request
+     *
+     * @param string      $productId The unique ID of the product being requested.
+     * @param Coordinates $start The beginning or "pickup" coordinate.
+     * @param Coordinates $end The final or destination coordinate.
+     * @param string      $surgeConfirmationId The unique identifier of the surge session for a user. Required when returned from a 409 Conflict response on previous POST attempt.
      *
      * @return Detail
      */

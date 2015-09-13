@@ -14,81 +14,111 @@ namespace Lsv\UberApi\Entity\Request;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Request receipt
+ */
 class Receipt implements EntityInterface
 {
     /**
+     * Unique identifier representing a Request.
+     *
      * @var string
      */
     protected $requestId;
 
     /**
+     * Describes the charges made against the rider.
+     *
      * @var ReceiptCharge[]
      */
     protected $charges;
 
     /**
+     * Describes the surge charge. May be null if surge pricing was not in effect.
+     *
      * @var ReceiptSurgeCharge
      */
     protected $surgeCharge;
 
     /**
+     * Adjustments made to the charges such as promotions, and fees.
+     *
      * @var ReceiptChargeAdjustment[]
      */
     protected $chargeAdjustments;
 
     /**
+     * The summation of the charges.
+     *
      * @var float
      */
     protected $normalFare;
 
     /**
+     * The summation of the normal_fare and surge_charge.
+     *
      * @var float
      */
     protected $subtotal;
 
     /**
+     * The total amount charged to the users payment method.
+     * This is the the subtotal (split if applicable) with taxes included.
+     *
      * @var float
      */
     protected $totalCharged;
 
     /**
+     * The total amount still owed after attempting to charge the user.
+     * May be null if amount was paid in full.
+     *
      * @var float
      */
     protected $totalOwed;
 
     /**
+     * Currency in ISO 4217
      * @var string
      */
     protected $currencyCode;
 
     /**
+     * Time duration of the trip in ISO 8061 HH:MM:SS format.
+     *
      * @var string
      */
     protected $duration;
 
     /**
+     * Distance of the trip charged.
+     *
      * @var string
      */
     protected $distance;
 
     /**
+     * The localized unit of distance.
+     *
      * @var string
      */
     protected $distanceLabel;
 
     /**
-     * @param string                    $requestId
-     * @param ReceiptCharge[]           $charges
-     * @param ReceiptSurgeCharge        $surgeCharges
-     * @param ReceiptChargeAdjustment[] $chargeAdjustments
-     * @param float                     $normalFare
-     * @param float                     $subtotal
-     * @param float                     $totalCharged
-     * @param float                     $totalOwed
-     * @param string                    $currencyCode
-     * @param string                    $duration
-     * @param string                    $distance
-     * @param string                    $distanceLabel
+     * Constructor
+     *
+     * @param string                    $requestId Unique identifier representing a Request.
+     * @param ReceiptCharge[]           $charges Describes the charges made against the rider.
+     * @param ReceiptSurgeCharge        $surgeCharges Describes the surge charge. May be null if surge pricing was not in effect.
+     * @param ReceiptChargeAdjustment[] $chargeAdjustments Adjustments made to the charges such as promotions, and fees.
+     * @param float                     $normalFare The summation of the charges.
+     * @param float                     $subtotal The summation of the normal_fare and surge_charge.
+     * @param float                     $totalCharged The total amount charged to the users payment method.
+     * @param float                     $totalOwed The total amount still owed after attempting to charge the user
+     * @param string                    $currencyCode Currency in ISO 4217
+     * @param string                    $duration Time duration of the trip in ISO 8061 HH:MM:SS format.
+     * @param string                    $distance Distance of the trip charged.
+     * @param string                    $distanceLabel The localized unit of distance.
      */
     public function __construct($requestId = null, array $charges = null, ReceiptSurgeCharge $surgeCharges = null, array $chargeAdjustments = null, $normalFare = null, $subtotal = null, $totalCharged = null, $totalOwed = null, $currencyCode = null, $duration = null, $distance = null, $distanceLabel = null)
     {
@@ -394,6 +424,12 @@ class Receipt implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results, [

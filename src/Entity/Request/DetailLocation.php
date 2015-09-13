@@ -14,27 +14,38 @@ namespace Lsv\UberApi\Entity\Request;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Detail location
+ */
 class DetailLocation implements EntityInterface
 {
     /**
+     * The current latitude of the vehicle.
+     *
      * @var float
      */
     protected $latitude;
 
     /**
+     * The current longitude of the vehicle.
+     *
      * @var float
      */
     protected $longitude;
 
     /**
+     * The current bearing of the vehicle in degrees (0-359).
+     *
      * @var int
      */
     protected $bearing;
 
     /**
-     * @param float $latitude
-     * @param float $longitude
-     * @param int   $bearing
+     * Constructor
+     *
+     * @param float $latitude The current latitude of the vehicle.
+     * @param float $longitude The current longitude of the vehicle.
+     * @param int   $bearing The current bearing of the vehicle in degrees (0-359).
      */
     public function __construct($latitude = null, $longitude = null, $bearing = null)
     {
@@ -115,6 +126,12 @@ class DetailLocation implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);

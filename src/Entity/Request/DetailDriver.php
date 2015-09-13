@@ -14,33 +14,46 @@ namespace Lsv\UberApi\Entity\Request;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Driver details
+ */
 class DetailDriver implements EntityInterface
 {
     /**
+     * The formatted phone number for contacting the driver.
+     *
      * @var string
      */
     protected $phoneNumber;
 
     /**
+     * The driver's star rating out of 5 stars.
+     *
      * @var float
      */
     protected $rating;
 
     /**
+     * The URL to the photo of the driver.
+     *
      * @var string
      */
     protected $pictureUrl;
 
     /**
+     * The first name of the driver.
+     *
      * @var string
      */
     protected $name;
 
     /**
-     * @param string $phoneNumber
-     * @param float  $rating
-     * @param string $pictureUrl
-     * @param string $name
+     * Constructor
+     *
+     * @param string $phoneNumber The formatted phone number for contacting the driver.
+     * @param float  $rating The driver's star rating out of 5 stars.
+     * @param string $pictureUrl The URL to the photo of the driver.
+     * @param string $name The first name of the driver.
      */
     public function __construct($phoneNumber = null, $rating = null, $pictureUrl = null, $name = null)
     {
@@ -146,6 +159,12 @@ class DetailDriver implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);

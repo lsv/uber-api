@@ -14,57 +14,80 @@ namespace Lsv\UberApi\Entity\Request;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Details of the estimated fare. If end location is omitted, only the minimum is returned.
+ */
 class EstimatePrice implements EntityInterface
 {
     /**
+     * The URL a user must visit to accept surge pricing.
+     *
      * @var string
      */
     protected $surgeConfirmationHref;
 
     /**
+     * Upper bound of the estimated price.
+     *
      * @var int
      */
     protected $highEstimate;
 
     /**
+     * The unique identifier of the surge session for a user. null if no surge is currently in effect.
+     *
      * @var string
      */
     protected $surgeConfirmationId;
 
     /**
+     * The minimum fare of a trip. Should only be displayed or used if no end location is provided.
+     *
      * @var int
      */
     protected $minimum;
 
     /**
+     * Lower bound of the estimated price.
+     *
      * @var int
      */
     protected $lowEstimate;
 
     /**
+     * Expected surge multiplier.
+     * Surge is active if surge_multiplier is greater than 1.
+     * Fare estimates below factor in the surge multiplier.
+     *
      * @var float
      */
     protected $surgeMultiplier;
 
     /**
+     * Formatted string of estimate in local currency
+     *
      * @var string
      */
     protected $display;
 
     /**
+     * ISO 4217 currency code.
+     *
      * @var string
      */
     protected $currencyCode;
 
     /**
-     * @param string $surgeConfirmationHref
-     * @param int    $highEstimate
-     * @param string $surgeConfirmationId
-     * @param int    $minimum
-     * @param int    $lowEstimate
-     * @param float  $surgeMultiplier
-     * @param string $display
-     * @param string $currencyCode
+     * Constructor
+     *
+     * @param string $surgeConfirmationHref The URL a user must visit to accept surge pricing.
+     * @param int    $highEstimate Upper bound of the estimated price.
+     * @param string $surgeConfirmationId The unique identifier of the surge session for a user. null if no surge is currently in effect.
+     * @param int    $minimum The minimum fare of a trip. Should only be displayed or used if no end location is provided.
+     * @param int    $lowEstimate Lower bound of the estimated price.
+     * @param float  $surgeMultiplier Expected surge multiplier
+     * @param string $display Formatted string of estimate in local currency
+     * @param string $currencyCode ISO 4217 currency code.
      */
     public function __construct($surgeConfirmationHref = null, $highEstimate = null, $surgeConfirmationId = null, $minimum = null, $lowEstimate = null, $surgeMultiplier = null, $display = null, $currencyCode = null)
     {
@@ -270,6 +293,12 @@ class EstimatePrice implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);

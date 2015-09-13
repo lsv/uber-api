@@ -14,21 +14,30 @@ namespace Lsv\UberApi\Entity\Request;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Map object
+ */
 class Map implements EntityInterface
 {
     /**
+     * Unique identifier representing a Request.
+     *
      * @var string
      */
     protected $requestId;
 
     /**
+     * URL to a map representing the requested trip.
+     *
      * @var string
      */
     protected $href;
 
     /**
-     * @param string $requestId
-     * @param string $href
+     * Constructor
+     *
+     * @param string $requestId Unique identifier representing a Request.
+     * @param string $href URL to a map representing the requested trip.
      */
     public function __construct($requestId = null, $href = null)
     {
@@ -84,6 +93,12 @@ class Map implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);

@@ -14,75 +14,106 @@ namespace Lsv\UberApi\Entity\Estimate;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Estimated price object
+ */
 class Price implements EntityInterface
 {
     /**
+     * Unique identifier representing a specific product for a given latitude & longitude.
+     *
      * @var string
      */
     protected $productId;
 
     /**
+     * ISO 4217 currency code.
+     *
      * @var string
      */
     protected $currencyCode;
 
     /**
+     * Display name of product.
+     *
      * @var string
      */
     protected $displayName;
 
     /**
+     * Localized display name of product.
+     *
      * @var string
      */
     protected $localizedDisplayName;
 
     /**
+     * Formatted string of estimate in local currency of the start location.
+     * Estimate could be a range, a single number (flat rate) or "Metered" for TAXI.
+     *
      * @var string
      */
     protected $estimate;
 
     /**
+     * Lower bound of the estimated price.
+     *
      * @var int
      */
     protected $lowEstimate;
 
     /**
+     * Minimum bound of the estimated price.
+     *
      * @var int
      */
     protected $minimum;
 
     /**
+     * Upper bound of the estimated price.
+     *
      * @var int
      */
     protected $highEstimate;
 
     /**
+     * Expected surge multiplier.
+     * Surge is active if surge_multiplier is greater than 1.
+     * Price estimate already factors in the surge multiplier.
+     *
      * @var float
      */
     protected $surgeMultiplier;
 
     /**
+     * Expected activity duration (in seconds).
+     * Always show duration in minutes.
+     *
      * @var int
      */
     protected $duration;
 
     /**
+     * Expected activity distance (in miles).
+     *
      * @var float
      */
     protected $distance;
 
     /**
-     * @param string $productId
-     * @param string $currencyCode
-     * @param string $localizedDisplayName
-     * @param string $displayName
-     * @param string $estimate
-     * @param int    $lowEstimate
-     * @param int    $minimum
-     * @param int    $highEstimate
-     * @param float  $surgeMultiplier
-     * @param int    $duration
-     * @param float  $distance
+     * Constructor
+     *
+     * @param string $productId Unique identifier representing a specific product
+     * @param string $currencyCode ISO 4217 currency code.
+     * @param string $localizedDisplayName Display name of product.
+     * @param string $displayName Display name of product.
+     * @param string $estimate Formatted string of estimate in local currency
+     * @param int    $lowEstimate Lower bound of the estimated price.
+     * @param int    $minimum Minimum bound of the estimated price.
+     * @param int    $highEstimate Upper bound of the estimated price.
+     * @param float  $surgeMultiplier Expected surge multiplier
+     * @param int    $duration Expected activity duration (in seconds)
+     * @param float  $distance Expected activity distance (in miles).
      */
     public function __construct($productId = null, $currencyCode = null, $localizedDisplayName = null, $displayName = null, $estimate = null, $lowEstimate = null, $minimum = null, $highEstimate = null, $surgeMultiplier = null, $duration = null, $distance = null)
     {
@@ -363,6 +394,12 @@ class Price implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return array
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::multipleCreateFromArray(self::class, $results);

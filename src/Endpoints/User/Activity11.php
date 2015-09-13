@@ -14,11 +14,16 @@ namespace Lsv\UberApi\Endpoints\User;
 use Lsv\UberApi\Entity\User\History11;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class Activity11 extends Activity12
 {
     /**
-     * @param null $offset
-     * @param null $limit
+     * {@inheritdoc}
+     *
+     * @param null $offset Offset the list of returned results by this amount. Default is zero.
+     * @param null $limit Number of items to retrieve. Default is 5, maximum is 50.
      *
      * @return History11[]
      */

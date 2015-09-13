@@ -14,33 +14,46 @@ namespace Lsv\UberApi\Entity\Request;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * The object that contains vehicle details.
+ */
 class DetailVehicle implements EntityInterface
 {
     /**
+     * The vehicle make or brand.
+     *
      * @var string
      */
     protected $make;
 
     /**
+     * The vehicle model or type.
+     *
      * @var string
      */
     protected $model;
 
     /**
+     * The license plate number of the vehicle.
+     *
      * @var string
      */
     protected $licensePlate;
 
     /**
+     * The URL to a stock photo of the vehicle (may be null).
+     *
      * @var string
      */
     protected $pictureUrl;
 
     /**
-     * @param string $make
-     * @param string $model
-     * @param string $licensePlate
-     * @param string $pictureUrl
+     * Constructor
+     *
+     * @param string $make The vehicle make or brand.
+     * @param string $model The vehicle model or type.
+     * @param string $licensePlate The license plate number of the vehicle.
+     * @param string $pictureUrl The URL to a stock photo of the vehicle (may be null).
      */
     public function __construct($make = null, $model = null, $licensePlate = null, $pictureUrl = null)
     {
@@ -146,6 +159,12 @@ class DetailVehicle implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results);

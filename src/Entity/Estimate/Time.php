@@ -14,33 +14,46 @@ namespace Lsv\UberApi\Entity\Estimate;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Estimated time object
+ */
 class Time implements EntityInterface
 {
     /**
+     * Unique identifier representing a specific product for a given latitude & longitude.
+     *
      * @var string
      */
     protected $productId;
 
     /**
+     * Display name of product.
+     *
      * @var string
      */
     protected $displayName;
 
     /**
+     * Localized display name of product.
+     *
      * @var string
      */
     protected $localizedDisplayName;
 
     /**
+     * ETA for the product (in seconds).
+     *
      * @var int
      */
     protected $estimate;
 
     /**
-     * @param string $productId
-     * @param string $localizedDisplayName
-     * @param string $displayName
-     * @param int    $estimate
+     * Constructor
+     *
+     * @param string $productId Unique identifier representing a specific product
+     * @param string $localizedDisplayName Display name of product.
+     * @param string $displayName Display name of product.
+     * @param int    $estimate ETA for the product (in seconds)
      */
     public function __construct($productId = null, $localizedDisplayName = null, $displayName = null, $estimate = null)
     {
@@ -146,6 +159,12 @@ class Time implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return array
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::multipleCreateFromArray(self::class, $results);

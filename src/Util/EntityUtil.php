@@ -13,12 +13,17 @@ namespace Lsv\UberApi\Util;
 
 use Lsv\UberApi\Entity\EntityInterface;
 
+/**
+ * Utility for the entities
+ */
 class EntityUtil
 {
     /**
-     * @param string $objClass
-     * @param array  $results
-     * @param array  $setters
+     * Set parameters for a entity
+     *
+     * @param string $objClass Which class
+     * @param array  $results Array of the results
+     * @param array  $setters Which keys should be overwritten
      *
      * @return object
      */
@@ -44,9 +49,11 @@ class EntityUtil
     }
 
     /**
-     * @param string $class
-     * @param array  $results
-     * @param array  $setters
+     * Set parameters for a entity
+     *
+     * @param string $class Which class
+     * @param array  $results Array of the results
+     * @param array  $setters Which keys should be overwritten
      *
      * @return null|object
      */
@@ -60,9 +67,11 @@ class EntityUtil
     }
 
     /**
-     * @param string $class
-     * @param array  $results
-     * @param array  $setters
+     * Set parameters for a entity
+     *
+     * @param string $class Which class
+     * @param array  $results Array of the results
+     * @param array  $setters Which keys should be overwritten
      *
      * @return array
      */

@@ -16,14 +16,22 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Estimate\Time as TimeEntity;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * The Time Estimates endpoint returns ETAs for all products offered at a given location,
+ * with the responses expressed as integers in seconds.
+ *
+ * We recommend that this endpoint be called every minute to provide the most accurate,up-to-date ETAs.
+ */
 class Time extends AbstractRequest
 {
     /**
+     * Get time estimaties
+     *
      * @param Coordinates $start
      * @param null|string $customerUuid
      * @param null|string $productId
      *
-     * @return \Lsv\UberApi\Entity\Estimate\Time[]
+     * @return TimeEntity[]
      */
     public function query(Coordinates $start, $customerUuid = null, $productId = null)
     {

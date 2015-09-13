@@ -14,10 +14,15 @@ namespace Lsv\UberApi\Endpoints\Request;
 use Lsv\UberApi\AbstractRequest;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Cancel an ongoing Request on behalf of a rider.
+ */
 class Cancel extends AbstractRequest
 {
     /**
-     * @param $requestId
+     * Cancel an request
+     *
+     * @param string $requestId Unique identifier representing a Request.
      *
      * @return string
      */

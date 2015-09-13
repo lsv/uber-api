@@ -16,12 +16,22 @@ use Lsv\UberApi\AbstractRequest;
 use Lsv\UberApi\Entity\Request\Estimate as EntityEstimate;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * The Request Estimate endpoint allows a ride to be estimated given the desired product, start, and end locations.
+ * If the end location is not provided, only the pickup ETA and details of surge pricing information are provided.
+ * If the pickup ETA is null, there are no cars available, but an estimate may still be given to the user.
+ *
+ * You can use this endpoint to determine if surge pricing is in effect.
+ * Do this before attempting to make a request so that you can preemptively have a user confirm surge by sending them to the surge_confirmation_href provided in the response.
+ */
 class Estimate extends AbstractRequest
 {
     /**
-     * @param $productId
-     * @param Coordinates      $start
-     * @param Coordinates|null $end
+     * Get estimate request
+     *
+     * @param string $productId The unique ID of the product being requested.
+     * @param Coordinates      $start The beginning or "pickup" coordinate.
+     * @param Coordinates|null $end The final or destination latitude. If not included, only the pickup ETA and details of surge pricing will be included.
      *
      * @return EntityEstimate|[]
      */

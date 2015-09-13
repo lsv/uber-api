@@ -14,51 +14,71 @@ namespace Lsv\UberApi\Entity\Request;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
+/**
+ * Request detail
+ */
 class Detail implements EntityInterface
 {
     /**
+     * The unique ID of the Request.
+     *
      * @var string
      */
     protected $requestId;
 
     /**
+     * The status of the Request indicating state.
+     *
      * @var string
      */
     protected $status;
 
     /**
+     * The object that contains vehicle details.
+     *
      * @var DetailVehicle
      */
     protected $vehicle;
 
     /**
+     * The object that contains driver details.
+     *
      * @var DetailDriver
      */
     protected $driver;
 
     /**
+     * The object that contains the location information of the vehicle and driver.
+     *
      * @var DetailLocation
      */
     protected $location;
 
     /**
+     * The estimated time of vehicle arrival in minutes.
+     *
      * @var int
      */
     protected $eta;
 
     /**
+     * The surge pricing multiplier used to calculate the increased price of a Request.
+     * A multiplier of 1.0 means surge pricing is not in effect.
+     *
      * @var float
      */
     protected $surgeMultiplier;
 
     /**
-     * @param string              $requestId
-     * @param string              $status
-     * @param DetailVehicle|null  $vehicle
-     * @param DetailDriver|null   $driver
-     * @param DetailLocation|null $location
-     * @param int                 $eta
-     * @param float               $surgeMultiplier
+     * Constructor
+     *
+     * @param string              $requestId The unique ID of the Request.
+     * @param string              $status The status of the Request indicating state.
+     * @param DetailVehicle|null  $vehicle The object that contains vehicle details.
+     * @param DetailDriver|null   $driver The object that contains driver details.
+     * @param DetailLocation|null $location The object that contains the location information of the vehicle and driver.
+     * @param int                 $eta The estimated time of vehicle arrival in minutes.
+     * @param float               $surgeMultiplier The surge pricing multiplier used to calculate the increased price of a Request
      */
     public function __construct($requestId = null, $status = null, DetailVehicle $vehicle = null, DetailDriver $driver = null, DetailLocation $location = null, $eta = null, $surgeMultiplier = null)
     {
@@ -239,6 +259,12 @@ class Detail implements EntityInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param array|null $results
+     * @return null|object
+     */
     public static function createFromArray(array $results = null)
     {
         return EntityUtil::singleCreateFromArray(self::class, $results, [
