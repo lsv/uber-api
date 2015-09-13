@@ -12,7 +12,7 @@
 namespace Lsv\UberApi\Entity\Request;
 
 /**
- * Trait for a charge
+ * Trait for a charge.
  */
 trait ChargeTrait
 {
@@ -31,7 +31,7 @@ trait ChargeTrait
     protected $amount;
 
     /**
-     * The key of the type
+     * The key of the type.
      *
      * @var string
      */

@@ -21,7 +21,7 @@ use Psr\Http\Message\ResponseInterface;
 class Map extends AbstractRequest
 {
     /**
-     * Query for the map
+     * Query for the map.
      *
      * @param string $requestId Unique identifier representing a Request.
      *

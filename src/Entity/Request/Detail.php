@@ -15,7 +15,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Request detail
+ * Request detail.
  */
 class Detail implements EntityInterface
 {
@@ -70,14 +70,14 @@ class Detail implements EntityInterface
     protected $surgeMultiplier;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string              $requestId The unique ID of the Request.
-     * @param string              $status The status of the Request indicating state.
-     * @param DetailVehicle|null  $vehicle The object that contains vehicle details.
-     * @param DetailDriver|null   $driver The object that contains driver details.
-     * @param DetailLocation|null $location The object that contains the location information of the vehicle and driver.
-     * @param int                 $eta The estimated time of vehicle arrival in minutes.
+     * @param string              $requestId       The unique ID of the Request.
+     * @param string              $status          The status of the Request indicating state.
+     * @param DetailVehicle|null  $vehicle         The object that contains vehicle details.
+     * @param DetailDriver|null   $driver          The object that contains driver details.
+     * @param DetailLocation|null $location        The object that contains the location information of the vehicle and driver.
+     * @param int                 $eta             The estimated time of vehicle arrival in minutes.
      * @param float               $surgeMultiplier The surge pricing multiplier used to calculate the increased price of a Request
      */
     public function __construct($requestId = null, $status = null, DetailVehicle $vehicle = null, DetailDriver $driver = null, DetailLocation $location = null, $eta = null, $surgeMultiplier = null)
@@ -263,6 +263,7 @@ class Detail implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

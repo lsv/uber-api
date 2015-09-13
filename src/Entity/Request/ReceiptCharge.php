@@ -15,18 +15,18 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Receipt charge object
+ * Receipt charge object.
  */
 class ReceiptCharge implements EntityInterface
 {
     use ChargeTrait;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $name The name of the charge.
+     * @param string $name   The name of the charge.
      * @param float  $amount The amount of the charge.
-     * @param string $type The type key of the charge
+     * @param string $type   The type key of the charge
      */
     public function __construct($name = null, $amount = null, $type = null)
     {
@@ -39,6 +39,7 @@ class ReceiptCharge implements EntityInterface
      * {@inheritdoc}
      *
      * @param array $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = [])

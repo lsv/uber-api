@@ -14,7 +14,7 @@ namespace Lsv\UberApi\Entity;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Promotion object
+ * Promotion object.
  */
 class Promotion implements EntityInterface
 {
@@ -48,18 +48,19 @@ class Promotion implements EntityInterface
 
     /**
      * ISO 4217 currency code.
+     *
      * @var string
      */
     protected $currencyCode;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $displayText A localized string we recommend to use when offering the promotion to users.
-     * @param string $value The value of the promotion that is available to a user in this location in the local currency.
+     * @param string $displayText    A localized string we recommend to use when offering the promotion to users.
+     * @param string $value          The value of the promotion that is available to a user in this location in the local currency.
      * @param string $localizedValue The localized value of the promotion.
-     * @param string $type The type of the promo which is either "trip_credit" or "account_credit".
-     * @param string $currencyCode ISO 4217 currency code.
+     * @param string $type           The type of the promo which is either "trip_credit" or "account_credit".
+     * @param string $currencyCode   ISO 4217 currency code.
      */
     public function __construct($displayText = null, $value = null, $localizedValue = null, $type = null, $currencyCode = null)
     {
@@ -194,6 +195,7 @@ class Promotion implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

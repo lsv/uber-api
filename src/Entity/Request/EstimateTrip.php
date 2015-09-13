@@ -15,7 +15,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Trip estimate
+ * Trip estimate.
  */
 class EstimateTrip implements EntityInterface
 {
@@ -41,10 +41,10 @@ class EstimateTrip implements EntityInterface
     protected $durationEstimate;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param float  $distanceEstimate Expected activity distance.
-     * @param string $distanceUnit The unit of distance (mile or km).
+     * @param string $distanceUnit     The unit of distance (mile or km).
      * @param int    $durationEstimate Expected activity duration (in minutes).
      */
     public function __construct($distanceEstimate = null, $distanceUnit = null, $durationEstimate = null)
@@ -130,6 +130,7 @@ class EstimateTrip implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

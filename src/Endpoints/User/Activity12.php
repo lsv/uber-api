@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 class Activity12 extends AbstractRequest
 {
     /**
-     * Get activity
+     * Get activity.
      *
      * @param null $offset
      * @param null $limit

@@ -24,10 +24,10 @@ use Psr\Http\Message\ResponseInterface;
 class Promotions extends AbstractRequest
 {
     /**
-     * Get promotions
+     * Get promotions.
      *
      * @param Coordinates $start Coordinates of start location.
-     * @param Coordinates $end Coordinates of end location.
+     * @param Coordinates $end   Coordinates of end location.
      *
      * @return Promotion
      */

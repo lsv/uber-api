@@ -27,11 +27,11 @@ use Psr\Http\Message\ResponseInterface;
 class Estimate extends AbstractRequest
 {
     /**
-     * Get estimate request
+     * Get estimate request.
      *
-     * @param string $productId The unique ID of the product being requested.
-     * @param Coordinates      $start The beginning or "pickup" coordinate.
-     * @param Coordinates|null $end The final or destination latitude. If not included, only the pickup ETA and details of surge pricing will be included.
+     * @param string           $productId The unique ID of the product being requested.
+     * @param Coordinates      $start     The beginning or "pickup" coordinate.
+     * @param Coordinates|null $end       The final or destination latitude. If not included, only the pickup ETA and details of surge pricing will be included.
      *
      * @return EntityEstimate|[]
      */

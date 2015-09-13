@@ -22,11 +22,11 @@ class ReceiptChargeAdjustment implements EntityInterface
     use ChargeTrait;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $name The name of the charge adjustment.
+     * @param string $name   The name of the charge adjustment.
      * @param float  $amount The amount of the charge adjustment.
-     * @param string $type The type key for the charge adjustment.
+     * @param string $type   The type key for the charge adjustment.
      */
     public function __construct($name = null, $amount = null, $type = null)
     {
@@ -39,6 +39,7 @@ class ReceiptChargeAdjustment implements EntityInterface
      * {@inheritdoc}
      *
      * @param array $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = [])

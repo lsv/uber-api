@@ -14,15 +14,15 @@ namespace Lsv\UberApi\Client;
 use GuzzleHttp\Client;
 
 /**
- * Oauth2 client
+ * Oauth2 client.
  */
 class Oauth2 extends Client
 {
     /**
-     * Create oauth2 client
+     * Create oauth2 client.
      *
      * @param string $accessToken Oauth2 access token
-     * @param array  $config Other Guzzle configs
+     * @param array  $config      Other Guzzle configs
      */
     public function __construct($accessToken, array $config = [])
     {

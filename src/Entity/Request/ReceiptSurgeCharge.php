@@ -22,11 +22,11 @@ class ReceiptSurgeCharge implements EntityInterface
     use ChargeTrait;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $name The name of the surge charge (includes multiplier).
+     * @param string $name   The name of the surge charge (includes multiplier).
      * @param float  $amount The amount of the surge charge.
-     * @param string $type The type key of the surge charge.
+     * @param string $type   The type key of the surge charge.
      */
     public function __construct($name = null, $amount = null, $type = null)
     {
@@ -39,6 +39,7 @@ class ReceiptSurgeCharge implements EntityInterface
      * {@inheritdoc}
      *
      * @param array $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = [])

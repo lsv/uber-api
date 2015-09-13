@@ -23,7 +23,7 @@ class Activity11 extends Activity12
      * {@inheritdoc}
      *
      * @param null $offset Offset the list of returned results by this amount. Default is zero.
-     * @param null $limit Number of items to retrieve. Default is 5, maximum is 50.
+     * @param null $limit  Number of items to retrieve. Default is 5, maximum is 50.
      *
      * @return History11[]
      */
