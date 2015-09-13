@@ -14,14 +14,14 @@ namespace Lsv\UberApi\Client;
 use GuzzleHttp\Client;
 
 /**
- * App server token client
+ * App server token client.
  */
 class ServerToken extends Client
 {
     /**
-     * Create server token client
+     * Create server token client.
      *
-     * @param string $token App server token
+     * @param string $token  App server token
      * @param array  $config Other Guzzle configs
      */
     public function __construct($token, array $config = [])

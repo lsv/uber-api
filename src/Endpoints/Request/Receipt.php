@@ -21,7 +21,7 @@ use Psr\Http\Message\ResponseInterface;
 class Receipt extends AbstractRequest
 {
     /**
-     * Get the receipt
+     * Get the receipt.
      *
      * @param string $requestId Unique identifier representing a Request.
      *

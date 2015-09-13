@@ -20,7 +20,7 @@ use Psr\Http\Message\ResponseInterface;
 class Cancel extends AbstractRequest
 {
     /**
-     * Cancel an request
+     * Cancel an request.
      *
      * @param string $requestId Unique identifier representing a Request.
      *

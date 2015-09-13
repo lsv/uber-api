@@ -22,11 +22,11 @@ use Psr\Http\Message\ResponseInterface;
 class Request extends AbstractRequest
 {
     /**
-     * Make a request
+     * Make a request.
      *
-     * @param string      $productId The unique ID of the product being requested.
-     * @param Coordinates $start The beginning or "pickup" coordinate.
-     * @param Coordinates $end The final or destination coordinate.
+     * @param string      $productId           The unique ID of the product being requested.
+     * @param Coordinates $start               The beginning or "pickup" coordinate.
+     * @param Coordinates $end                 The final or destination coordinate.
      * @param string      $surgeConfirmationId The unique identifier of the surge session for a user. Required when returned from a 409 Conflict response on previous POST attempt.
      *
      * @return Detail

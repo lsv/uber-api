@@ -15,7 +15,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Estimated price object
+ * Estimated price object.
  */
 class Price implements EntityInterface
 {
@@ -101,19 +101,19 @@ class Price implements EntityInterface
     protected $distance;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $productId Unique identifier representing a specific product
-     * @param string $currencyCode ISO 4217 currency code.
+     * @param string $productId            Unique identifier representing a specific product
+     * @param string $currencyCode         ISO 4217 currency code.
      * @param string $localizedDisplayName Display name of product.
-     * @param string $displayName Display name of product.
-     * @param string $estimate Formatted string of estimate in local currency
-     * @param int    $lowEstimate Lower bound of the estimated price.
-     * @param int    $minimum Minimum bound of the estimated price.
-     * @param int    $highEstimate Upper bound of the estimated price.
-     * @param float  $surgeMultiplier Expected surge multiplier
-     * @param int    $duration Expected activity duration (in seconds)
-     * @param float  $distance Expected activity distance (in miles).
+     * @param string $displayName          Display name of product.
+     * @param string $estimate             Formatted string of estimate in local currency
+     * @param int    $lowEstimate          Lower bound of the estimated price.
+     * @param int    $minimum              Minimum bound of the estimated price.
+     * @param int    $highEstimate         Upper bound of the estimated price.
+     * @param float  $surgeMultiplier      Expected surge multiplier
+     * @param int    $duration             Expected activity duration (in seconds)
+     * @param float  $distance             Expected activity distance (in miles).
      */
     public function __construct($productId = null, $currencyCode = null, $localizedDisplayName = null, $displayName = null, $estimate = null, $lowEstimate = null, $minimum = null, $highEstimate = null, $surgeMultiplier = null, $duration = null, $distance = null)
     {
@@ -398,6 +398,7 @@ class Price implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = null)

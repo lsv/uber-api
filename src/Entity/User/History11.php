@@ -14,7 +14,7 @@ namespace Lsv\UberApi\Entity\User;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * User history (version 1.1)
+ * User history (version 1.1).
  */
 class History11 extends History
 {
@@ -26,15 +26,15 @@ class History11 extends History
     protected $uuid;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $uuid Unique activity identifier.
+     * @param string $uuid        Unique activity identifier.
      * @param int    $requestTime Unix timestamp of activity request time.
-     * @param string $productId Unique identifier representing a specific product
-     * @param string $status Status of the activity. Only returns completed for now.
-     * @param float  $distance Length of activity in miles.
-     * @param int    $startTime Unix timestamp of activity start time.
-     * @param int    $endTime Unix timestamp of activity end time.
+     * @param string $productId   Unique identifier representing a specific product
+     * @param string $status      Status of the activity. Only returns completed for now.
+     * @param float  $distance    Length of activity in miles.
+     * @param int    $startTime   Unix timestamp of activity start time.
+     * @param int    $endTime     Unix timestamp of activity end time.
      */
     public function __construct($uuid = null, $requestTime = null, $productId = null, $status = null, $distance = null, $startTime = null, $endTime = null)
     {
@@ -70,6 +70,7 @@ class History11 extends History
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = null)

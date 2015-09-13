@@ -25,7 +25,7 @@ use Psr\Http\Message\ResponseInterface;
 class Time extends AbstractRequest
 {
     /**
-     * Get time estimaties
+     * Get time estimaties.
      *
      * @param Coordinates $start
      * @param null|string $customerUuid

@@ -48,12 +48,12 @@ class DetailVehicle implements EntityInterface
     protected $pictureUrl;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $make The vehicle make or brand.
-     * @param string $model The vehicle model or type.
+     * @param string $make         The vehicle make or brand.
+     * @param string $model        The vehicle model or type.
      * @param string $licensePlate The license plate number of the vehicle.
-     * @param string $pictureUrl The URL to a stock photo of the vehicle (may be null).
+     * @param string $pictureUrl   The URL to a stock photo of the vehicle (may be null).
      */
     public function __construct($make = null, $model = null, $licensePlate = null, $pictureUrl = null)
     {
@@ -163,6 +163,7 @@ class DetailVehicle implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

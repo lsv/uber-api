@@ -21,7 +21,7 @@ use Psr\Http\Message\ResponseInterface;
 class Detail extends AbstractRequest
 {
     /**
-     * Get details for a request
+     * Get details for a request.
      *
      * @param string $requestId Unique identifier representing a Request.
      *

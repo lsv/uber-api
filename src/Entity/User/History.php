@@ -16,7 +16,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * User history (version 1.2)
+ * User history (version 1.2).
  */
 class History implements EntityInterface
 {
@@ -35,7 +35,7 @@ class History implements EntityInterface
     protected $requestTime;
 
     /**
-     * Unique identifier representing a specific product
+     * Unique identifier representing a specific product.
      *
      * @var string
      */
@@ -77,16 +77,16 @@ class History implements EntityInterface
     protected $startCity;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $requestId Unique activity identifier.
+     * @param string $requestId   Unique activity identifier.
      * @param int    $requestTime Unix timestamp of activity request time.
-     * @param string $productId Unique identifier representing a specific product
-     * @param string $status Status of the activity. Only returns completed for now.
-     * @param float  $distance Length of activity in miles.
-     * @param int    $startTime Unix timestamp of activity start time.
-     * @param int    $endTime Unix timestamp of activity end time.
-     * @param City   $startCity Details about the city the activity started in.
+     * @param string $productId   Unique identifier representing a specific product
+     * @param string $status      Status of the activity. Only returns completed for now.
+     * @param float  $distance    Length of activity in miles.
+     * @param int    $startTime   Unix timestamp of activity start time.
+     * @param int    $endTime     Unix timestamp of activity end time.
+     * @param City   $startCity   Details about the city the activity started in.
      */
     public function __construct($requestId = null, $requestTime = null, $productId = null, $status = null, $distance = null, $startTime = null, $endTime = null, City $startCity = null)
     {
@@ -299,6 +299,7 @@ class History implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = null)

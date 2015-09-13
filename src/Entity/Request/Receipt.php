@@ -15,7 +15,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Request receipt
+ * Request receipt.
  */
 class Receipt implements EntityInterface
 {
@@ -78,7 +78,8 @@ class Receipt implements EntityInterface
     protected $totalOwed;
 
     /**
-     * Currency in ISO 4217
+     * Currency in ISO 4217.
+     *
      * @var string
      */
     protected $currencyCode;
@@ -105,20 +106,20 @@ class Receipt implements EntityInterface
     protected $distanceLabel;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string                    $requestId Unique identifier representing a Request.
-     * @param ReceiptCharge[]           $charges Describes the charges made against the rider.
-     * @param ReceiptSurgeCharge        $surgeCharges Describes the surge charge. May be null if surge pricing was not in effect.
+     * @param string                    $requestId         Unique identifier representing a Request.
+     * @param ReceiptCharge[]           $charges           Describes the charges made against the rider.
+     * @param ReceiptSurgeCharge        $surgeCharges      Describes the surge charge. May be null if surge pricing was not in effect.
      * @param ReceiptChargeAdjustment[] $chargeAdjustments Adjustments made to the charges such as promotions, and fees.
-     * @param float                     $normalFare The summation of the charges.
-     * @param float                     $subtotal The summation of the normal_fare and surge_charge.
-     * @param float                     $totalCharged The total amount charged to the users payment method.
-     * @param float                     $totalOwed The total amount still owed after attempting to charge the user
-     * @param string                    $currencyCode Currency in ISO 4217
-     * @param string                    $duration Time duration of the trip in ISO 8061 HH:MM:SS format.
-     * @param string                    $distance Distance of the trip charged.
-     * @param string                    $distanceLabel The localized unit of distance.
+     * @param float                     $normalFare        The summation of the charges.
+     * @param float                     $subtotal          The summation of the normal_fare and surge_charge.
+     * @param float                     $totalCharged      The total amount charged to the users payment method.
+     * @param float                     $totalOwed         The total amount still owed after attempting to charge the user
+     * @param string                    $currencyCode      Currency in ISO 4217
+     * @param string                    $duration          Time duration of the trip in ISO 8061 HH:MM:SS format.
+     * @param string                    $distance          Distance of the trip charged.
+     * @param string                    $distanceLabel     The localized unit of distance.
      */
     public function __construct($requestId = null, array $charges = null, ReceiptSurgeCharge $surgeCharges = null, array $chargeAdjustments = null, $normalFare = null, $subtotal = null, $totalCharged = null, $totalOwed = null, $currencyCode = null, $duration = null, $distance = null, $distanceLabel = null)
     {
@@ -428,6 +429,7 @@ class Receipt implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

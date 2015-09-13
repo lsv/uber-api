@@ -14,7 +14,7 @@ namespace Lsv\UberApi\Entity;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * City object
+ * City object.
  */
 class City implements EntityInterface
 {
@@ -33,17 +33,17 @@ class City implements EntityInterface
     protected $longitude;
 
     /**
-     * The name of the city
+     * The name of the city.
      *
      * @var string
      */
     protected $displayName;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param float  $latitude Latitude of the center of the city.
-     * @param float  $longitude Longitude of the center of the city.
+     * @param float  $latitude    Latitude of the center of the city.
+     * @param float  $longitude   Longitude of the center of the city.
      * @param string $displayName The name of the city
      */
     public function __construct($latitude = null, $longitude = null, $displayName = null)
@@ -129,6 +129,7 @@ class City implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

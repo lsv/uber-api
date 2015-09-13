@@ -15,7 +15,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Estimated time object
+ * Estimated time object.
  */
 class Time implements EntityInterface
 {
@@ -48,12 +48,12 @@ class Time implements EntityInterface
     protected $estimate;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $productId Unique identifier representing a specific product
+     * @param string $productId            Unique identifier representing a specific product
      * @param string $localizedDisplayName Display name of product.
-     * @param string $displayName Display name of product.
-     * @param int    $estimate ETA for the product (in seconds)
+     * @param string $displayName          Display name of product.
+     * @param int    $estimate             ETA for the product (in seconds)
      */
     public function __construct($productId = null, $localizedDisplayName = null, $displayName = null, $estimate = null)
     {
@@ -163,6 +163,7 @@ class Time implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return array
      */
     public static function createFromArray(array $results = null)

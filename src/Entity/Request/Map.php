@@ -15,7 +15,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Map object
+ * Map object.
  */
 class Map implements EntityInterface
 {
@@ -34,10 +34,10 @@ class Map implements EntityInterface
     protected $href;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $requestId Unique identifier representing a Request.
-     * @param string $href URL to a map representing the requested trip.
+     * @param string $href      URL to a map representing the requested trip.
      */
     public function __construct($requestId = null, $href = null)
     {
@@ -97,6 +97,7 @@ class Map implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

@@ -15,7 +15,7 @@ use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
- * Estimate object
+ * Estimate object.
  */
 class Estimate implements EntityInterface
 {
@@ -41,10 +41,10 @@ class Estimate implements EntityInterface
     protected $pickupEstimate;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param EstimatePrice $price Details of the estimated fare
-     * @param EstimateTrip  $trip Details of the estimated distance
+     * @param EstimatePrice $price          Details of the estimated fare
+     * @param EstimateTrip  $trip           Details of the estimated distance
      * @param int           $pickupEstimate The estimated time of vehicle arrival in minutes. null if there are no cars available.
      */
     public function __construct(EstimatePrice $price = null, EstimateTrip $trip = null, $pickupEstimate = null)
@@ -130,6 +130,7 @@ class Estimate implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)

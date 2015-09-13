@@ -64,7 +64,7 @@ class EstimatePrice implements EntityInterface
     protected $surgeMultiplier;
 
     /**
-     * Formatted string of estimate in local currency
+     * Formatted string of estimate in local currency.
      *
      * @var string
      */
@@ -78,16 +78,16 @@ class EstimatePrice implements EntityInterface
     protected $currencyCode;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $surgeConfirmationHref The URL a user must visit to accept surge pricing.
-     * @param int    $highEstimate Upper bound of the estimated price.
-     * @param string $surgeConfirmationId The unique identifier of the surge session for a user. null if no surge is currently in effect.
-     * @param int    $minimum The minimum fare of a trip. Should only be displayed or used if no end location is provided.
-     * @param int    $lowEstimate Lower bound of the estimated price.
-     * @param float  $surgeMultiplier Expected surge multiplier
-     * @param string $display Formatted string of estimate in local currency
-     * @param string $currencyCode ISO 4217 currency code.
+     * @param int    $highEstimate          Upper bound of the estimated price.
+     * @param string $surgeConfirmationId   The unique identifier of the surge session for a user. null if no surge is currently in effect.
+     * @param int    $minimum               The minimum fare of a trip. Should only be displayed or used if no end location is provided.
+     * @param int    $lowEstimate           Lower bound of the estimated price.
+     * @param float  $surgeMultiplier       Expected surge multiplier
+     * @param string $display               Formatted string of estimate in local currency
+     * @param string $currencyCode          ISO 4217 currency code.
      */
     public function __construct($surgeConfirmationHref = null, $highEstimate = null, $surgeConfirmationId = null, $minimum = null, $lowEstimate = null, $surgeMultiplier = null, $display = null, $currencyCode = null)
     {
@@ -297,6 +297,7 @@ class EstimatePrice implements EntityInterface
      * {@inheritdoc}
      *
      * @param array|null $results
+     *
      * @return null|object
      */
     public static function createFromArray(array $results = null)
