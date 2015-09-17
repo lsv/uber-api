@@ -10,10 +10,9 @@ Work in progress
 
 - [Install and usage](Resources/docs/1_install.md)
 - [Clients](Resources/docs/2_clients.md)
-- [Products](Resources/docs/3_types.md)
-- [Estimates](Resources/docs/4_estimates.md)
-- [User data](Resources/docs/5_user.md)
-- [Request](Resources/docs/6_request.md)
+- [Endpoints](Resources/docs/3_endpoints.md)
+- [Entities](Resources/docs/4_entities.md)
+- [Coordinates](Resources/docs/5_coordinates.md)
 
 ### TODO
 

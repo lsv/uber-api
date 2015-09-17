@@ -1,7 +1,7 @@
 Install and usage
 =================
 
-# Install
+### Install
 
 Install by using composer
 
@@ -23,7 +23,7 @@ and run
 composer update lsv/uber-api
 ```
 
-# Usage
+### Usage
 
 First you need to create a Über app - Go to [Manage apps](https://developer.uber.com/dashboard) and create your app, next copy the "server token" you will need this for a [serverToken client](2_clients.md#server-token-client).
 
