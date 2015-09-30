@@ -11,13 +11,14 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
+use Lsv\UberApi\Entity\AbstractEntity;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
  * Detail location.
  */
-class DetailLocation implements EntityInterface
+class DetailLocation extends AbstractEntity implements EntityInterface
 {
     /**
      * The current latitude of the vehicle.
@@ -127,14 +128,15 @@ class DetailLocation implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return null|object
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::singleCreateFromArray(self::class, $results);
+        return EntityUtil::singleCreateFromArray(self::class, $queryParameters, $pathParameters, $results);
     }
 }

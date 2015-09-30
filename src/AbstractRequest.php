@@ -152,7 +152,7 @@ abstract class AbstractRequest
             $this->request = new Request($this->httpMethod(), $this->makeEndpoint($pathParameters), $options);
             $this->response = self::$client->send($this->getRequest());
 
-            return $this->parseResponse($this->getResponse());
+            return $this->parseResponse($this->getResponse(), $queryParameters, $pathParameters);
         } catch (ClientException $e) {
             throw $e;
         }
@@ -229,10 +229,12 @@ abstract class AbstractRequest
      * Parse the query response.
      *
      * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
      *
      * @return mixed
      */
-    abstract protected function parseResponse(ResponseInterface $response);
+    abstract protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters);
 
     /**
      * API Endpoint.

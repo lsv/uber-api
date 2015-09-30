@@ -11,13 +11,14 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
+use Lsv\UberApi\Entity\AbstractEntity;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
  * Request detail.
  */
-class Detail implements EntityInterface
+class Detail extends AbstractEntity implements EntityInterface
 {
     /**
      * The unique ID of the Request.
@@ -260,15 +261,16 @@ class Detail implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return null|object
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::singleCreateFromArray(self::class, $results, [
+        return EntityUtil::singleCreateFromArray(self::class, $queryParameters, $pathParameters, $results, [
             'Driver'   => ['setter' => 'setDriver', 'class' => DetailDriver::class],
             'Location' => ['setter' => 'setLocation', 'class' => DetailLocation::class],
             'Vehicle'  => ['setter' => 'setVehicle', 'class' => DetailVehicle::class],

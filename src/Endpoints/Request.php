@@ -49,20 +49,6 @@ class Request extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return Detail
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return Detail::createFromArray($results);
-    }
-
-    /**
      * API Endpoint.
      *
      * @return string
@@ -80,5 +66,21 @@ class Request extends AbstractRequest
     protected function httpMethod()
     {
         return 'POST';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return Detail::createFromArray($results, $queryParameters, $pathParameters);
     }
 }

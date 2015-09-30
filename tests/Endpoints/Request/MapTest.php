@@ -12,6 +12,7 @@
 namespace Lsv\UberApiTest\Endpoints\Request;
 
 use Lsv\UberApi\Endpoints\Request\Map;
+use Lsv\UberApi\Entity\Request\Detail;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class MapTest extends AbstractTestCase
@@ -43,6 +44,13 @@ class MapTest extends AbstractTestCase
         $this->assertNull($results);
         $results = (new Map($client, true))->query(123);
         $this->assertNull($results);
+    }
+
+    public function test_by_detail()
+    {
+        $detail = new Detail(123);
+        $result = $this->getRequest()->queryByDetail($detail);
+        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\Map', $result);
     }
 
     public function test_count_results()

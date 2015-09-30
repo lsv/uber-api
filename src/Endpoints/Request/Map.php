@@ -12,6 +12,7 @@
 namespace Lsv\UberApi\Endpoints\Request;
 
 use Lsv\UberApi\AbstractRequest;
+use Lsv\UberApi\Entity\Request\Detail as DetailEntity;
 use Lsv\UberApi\Entity\Request\Map as MapEntity;
 use Psr\Http\Message\ResponseInterface;
 
@@ -35,17 +36,14 @@ class Map extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
+     * Query by detail
      *
-     * @param ResponseInterface $response
-     *
+     * @param DetailEntity $detail
      * @return MapEntity
      */
-    protected function parseResponse(ResponseInterface $response)
+    public function queryByDetail(DetailEntity $detail)
     {
-        $results = json_decode($response->getBody(), true);
-
-        return MapEntity::createFromArray($results);
+        return $this->query($detail->getRequestId());
     }
 
     /**
@@ -64,5 +62,21 @@ class Map extends AbstractRequest
     protected function requireOauth()
     {
         return true;
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return MapEntity::createFromArray($results, $queryParameters, $pathParameters);
     }
 }

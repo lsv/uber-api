@@ -16,7 +16,7 @@ use Lsv\UberApi\Util\EntityUtil;
 /**
  * Class ProductTypePrice.
  */
-class ProductTypePrice implements EntityInterface
+class ProductTypePrice extends AbstractEntity implements EntityInterface
 {
     /**
      * The base price.
@@ -291,15 +291,16 @@ class ProductTypePrice implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return null|object
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::singleCreateFromArray(self::class, $results, [
+        return EntityUtil::singleCreateFromArray(self::class, $queryParameters, $pathParameters, $results, [
             'ServiceFees' => ['setter' => 'setProductTypePriceFees', 'class' => ProductTypePriceFee::class],
         ]);
     }

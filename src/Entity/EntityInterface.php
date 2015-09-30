@@ -20,8 +20,25 @@ interface EntityInterface
      * Create entity from array.
      *
      * @param array|null $results
-     *
+     * @param array $queryParameters
+     * @param array $pathParameters
      * @return array|null|object
      */
-    public static function createFromArray(array $results = null);
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null);
+
+    /**
+     * Set query parameters
+     *
+     * @param array $queryParameters
+     * @return void
+     */
+    public function setQueryParameters(array $queryParameters);
+
+    /**
+     * Set path parameters
+     *
+     * @param array $pathParameters
+     * @return void
+     */
+    public function setPathParameters(array $pathParameters);
 }

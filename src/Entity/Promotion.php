@@ -16,7 +16,7 @@ use Lsv\UberApi\Util\EntityUtil;
 /**
  * Promotion object.
  */
-class Promotion implements EntityInterface
+class Promotion extends AbstractEntity implements EntityInterface
 {
     /**
      * A localized string we recommend to use when offering the promotion to users.
@@ -192,14 +192,15 @@ class Promotion implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return null|object
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::singleCreateFromArray(self::class, $results);
+        return EntityUtil::singleCreateFromArray(self::class, $queryParameters, $pathParameters, $results);
     }
 }

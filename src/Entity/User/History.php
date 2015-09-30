@@ -11,6 +11,7 @@
 
 namespace Lsv\UberApi\Entity\User;
 
+use Lsv\UberApi\Entity\AbstractEntity;
 use Lsv\UberApi\Entity\City;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
@@ -18,7 +19,7 @@ use Lsv\UberApi\Util\EntityUtil;
 /**
  * User history (version 1.2).
  */
-class History implements EntityInterface
+class History extends AbstractEntity implements EntityInterface
 {
     /**
      * Unique activity identifier.
@@ -295,16 +296,18 @@ class History implements EntityInterface
         return $this;
     }
 
+
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return array
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::multipleCreateFromArray(self::class, $results, [
+        return EntityUtil::multipleCreateFromArray(self::class, $queryParameters, $pathParameters, $results, [
             'StartCity' => ['setter' => 'setStartCity', 'class' => City::class],
         ]);
     }

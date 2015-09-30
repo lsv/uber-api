@@ -42,20 +42,6 @@ class Activity12 extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return History[]
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return History::createFromArray($results['history']);
-    }
-
-    /**
      * API Endpoint.
      *
      * @return string
@@ -83,5 +69,21 @@ class Activity12 extends AbstractRequest
     protected function getApiVersion()
     {
         return 'v1.2';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return History::createFromArray($results['history'], $queryParameters, $pathParameters);
     }
 }

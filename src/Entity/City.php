@@ -16,7 +16,7 @@ use Lsv\UberApi\Util\EntityUtil;
 /**
  * City object.
  */
-class City implements EntityInterface
+class City extends AbstractEntity implements EntityInterface
 {
     /**
      * Latitude of the center of the city.
@@ -126,14 +126,15 @@ class City implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return null|object
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::singleCreateFromArray(self::class, $results);
+        return EntityUtil::singleCreateFromArray(self::class, $queryParameters, $pathParameters, $results);
     }
 }

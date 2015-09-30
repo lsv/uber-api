@@ -16,7 +16,7 @@ use Lsv\UberApi\Util\EntityUtil;
 /**
  * Class ProductType.
  */
-class ProductType implements EntityInterface
+class ProductType extends AbstractEntity implements EntityInterface
 {
     /**
      * Unique identifier representing a specific product for a given latitude & longitude.
@@ -231,9 +231,9 @@ class ProductType implements EntityInterface
      *
      * @return array
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::multipleCreateFromArray(self::class, $results, [
+        return EntityUtil::multipleCreateFromArray(self::class, $queryParameters, $pathParameters, $results, [
             'PriceDetails' => ['setter' => 'setPriceDetail', 'class' => ProductTypePrice::class],
         ]);
     }

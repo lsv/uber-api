@@ -15,6 +15,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Lsv\UberApi\Endpoints\Request\Cancel;
+use Lsv\UberApi\Entity\Request\Detail;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class CancelTest extends AbstractTestCase
@@ -39,6 +40,13 @@ class CancelTest extends AbstractTestCase
 
         $this->assertEquals('DELETE', $req->getMethod());
         $this->assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
+    }
+
+    public function test_by_detail()
+    {
+        $detail = new Detail(123);
+        $request = $this->getRequest()->queryByDetail($detail);
+        $this->assertEquals('[204] Success', $request);
     }
 
     public function test_can_cancel()

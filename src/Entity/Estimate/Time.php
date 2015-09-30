@@ -11,13 +11,14 @@
 
 namespace Lsv\UberApi\Entity\Estimate;
 
+use Lsv\UberApi\Entity\AbstractEntity;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
  * Estimated time object.
  */
-class Time implements EntityInterface
+class Time extends AbstractEntity implements EntityInterface
 {
     /**
      * Unique identifier representing a specific product for a given latitude & longitude.
@@ -159,15 +160,17 @@ class Time implements EntityInterface
         return $this;
     }
 
+
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return array
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::multipleCreateFromArray(self::class, $results);
+        return EntityUtil::multipleCreateFromArray(self::class, $queryParameters, $pathParameters, $results);
     }
 }

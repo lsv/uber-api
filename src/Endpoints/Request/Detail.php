@@ -35,20 +35,6 @@ class Detail extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return DetailEntity
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return DetailEntity::createFromArray($results);
-    }
-
-    /**
      * API Endpoint.
      *
      * @return string
@@ -66,5 +52,21 @@ class Detail extends AbstractRequest
     protected function requireOauth()
     {
         return true;
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return DetailEntity::createFromArray($results, $queryParameters, $pathParameters);
     }
 }

@@ -67,14 +67,15 @@ class History11 extends History
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return array
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::multipleCreateFromArray(self::class, $results);
+        return EntityUtil::multipleCreateFromArray(self::class, $queryParameters, $pathParameters, $results);
     }
 }

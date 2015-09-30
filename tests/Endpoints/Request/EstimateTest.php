@@ -12,6 +12,7 @@
 namespace Lsv\UberApiTest\Endpoints\Request;
 
 use Lsv\UberApi\Endpoints\Request\Estimate;
+use Lsv\UberApi\Entity\ProductType;
 use Lsv\UberApiTest\AbstractTestCase;
 
 class EstimateTest extends AbstractTestCase
@@ -32,6 +33,19 @@ class EstimateTest extends AbstractTestCase
 
         $this->assertEquals('POST', $req->getMethod());
         $this->assertEquals('/v1/requests/estimate', $req->getUri()->getPath());
+    }
+
+    public function test_product_query()
+    {
+        $coordinate = $this->getCoordinates();
+        $type = new ProductType(123);
+        $type->setQueryParameters(['start_latitude' => $coordinate->getLatitude(), 'start_longitude' => $coordinate->getLongitude()]);
+
+        $request = $this->getRequest();
+        $result = $request->queryByProduct($type);
+
+        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\Estimate', $result);
+        $this->assertEquals($coordinate->getLatitude(), $result->getQueryParameters()['start_latitude']);
     }
 
     public function test_null_results()

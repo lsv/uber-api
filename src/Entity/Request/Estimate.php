@@ -11,13 +11,14 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
+use Lsv\UberApi\Entity\AbstractEntity;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
  * Estimate object.
  */
-class Estimate implements EntityInterface
+class Estimate extends AbstractEntity implements EntityInterface
 {
     /**
      * Details of the estimated fare. If end location is omitted, only the minimum is returned.
@@ -127,15 +128,16 @@ class Estimate implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
      * @param array|null $results
-     *
-     * @return null|object
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = null)
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::singleCreateFromArray(self::class, $results, [
+        return EntityUtil::singleCreateFromArray(self::class, $queryParameters, $pathParameters, $results, [
             'Price' => ['setter' => 'setPrice', 'class' => EstimatePrice::class],
             'Trip'  => ['setter' => 'setTrip', 'class' => EstimateTrip::class],
         ]);

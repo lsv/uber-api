@@ -25,11 +25,12 @@ class DetailTest extends AbstractTestCase
     {
         $key = 789654123;
         $request = $this->getRequest();
-        $request->query($key);
+        $result = $request->query($key);
         $req = $request->getRequest();
 
         $this->assertEquals('GET', $req->getMethod());
         $this->assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
+        $this->assertEquals(789654123, $result->getPathParameters()['request_id']);
     }
 
     public function test_null_results()

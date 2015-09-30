@@ -52,20 +52,6 @@ class Time extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return TimeEntity[]
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return TimeEntity::createFromArray($results['times']);
-    }
-
-    /**
      * API Endpoint.
      *
      * @return string
@@ -73,5 +59,21 @@ class Time extends AbstractRequest
     protected function getEndPoint()
     {
         return 'estimates/time';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return TimeEntity::createFromArray($results['times'], $queryParameters, $pathParameters);
     }
 }

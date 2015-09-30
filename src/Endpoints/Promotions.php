@@ -42,20 +42,6 @@ class Promotions extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return Promotion
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return Promotion::createFromArray($results);
-    }
-
-    /**
      * API Endpoint.
      *
      * @return string
@@ -63,5 +49,21 @@ class Promotions extends AbstractRequest
     protected function getEndPoint()
     {
         return 'promotions';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return Promotion::createFromArray($results, $queryParameters, $pathParameters);
     }
 }

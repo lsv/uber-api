@@ -36,20 +36,6 @@ class Activity11 extends Activity12
     }
 
     /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return History11[]
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return History11::createFromArray($results['history']);
-    }
-
-    /**
      * API version of the method.
      *
      * @return string
@@ -57,5 +43,21 @@ class Activity11 extends Activity12
     protected function getApiVersion()
     {
         return 'v1.1';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return History11::createFromArray($results['history'], $queryParameters, $pathParameters);
     }
 }

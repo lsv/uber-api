@@ -27,8 +27,9 @@ class EntityUtil
      *
      * @return object
      */
-    private static function createFromArray($objClass, array $results, array $setters)
+    private static function createFromArray($objClass, array $queryParameters, array $pathParameters, array $results, array $setters)
     {
+        /** @var EntityInterface $obj */
         $obj = new $objClass();
         foreach ($results as $key => $value) {
             $key = ucfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
@@ -36,7 +37,7 @@ class EntityUtil
                 $method = $setters[$key]['setter'];
                 /** @var EntityInterface $class */
                 $class = $setters[$key]['class'];
-                $value = $class::createFromArray($value);
+                $value = $class::createFromArray($value, $queryParameters, $pathParameters);
                 $obj->$method($value);
                 continue;
             }
@@ -45,6 +46,8 @@ class EntityUtil
             $obj->{$setter}($value);
         }
 
+        $obj->setQueryParameters($queryParameters);
+        $obj->setPathParameters($pathParameters);
         return $obj;
     }
 
@@ -57,13 +60,13 @@ class EntityUtil
      *
      * @return null|object
      */
-    public static function singleCreateFromArray($class, array $results = null, array $setters = [])
+    public static function singleCreateFromArray($class, array $queryParameters = null, array $pathParameters = null, array $results = null, array $setters = [])
     {
-        if (!$results) {
-            return;
+        if (! $results) {
+            return null;
         }
 
-        return self::createFromArray($class, $results, $setters);
+        return self::createFromArray($class, $queryParameters, $pathParameters, $results, $setters);
     }
 
     /**
@@ -75,7 +78,7 @@ class EntityUtil
      *
      * @return array
      */
-    public static function multipleCreateFromArray($class, array $results = null, array $setters = [])
+    public static function multipleCreateFromArray($class, array $queryParameters = null, array $pathParameters = null, array $results = null, array $setters = [])
     {
         $objects = [];
         if (!$results) {
@@ -83,7 +86,7 @@ class EntityUtil
         }
 
         foreach ($results as $result) {
-            $objects[] = self::createFromArray($class, $result, $setters);
+            $objects[] = self::createFromArray($class, $queryParameters, $pathParameters, $result, $setters);
         }
 
         return $objects;

@@ -12,6 +12,7 @@
 namespace Lsv\UberApi\Endpoints\Request;
 
 use Lsv\UberApi\AbstractRequest;
+use Lsv\UberApi\Entity\Request\Detail;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -34,15 +35,14 @@ class Cancel extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
+     * Cancel by detail
      *
-     * @param ResponseInterface $response
-     *
-     * @return mixed
+     * @param Detail $detail
+     * @return string
      */
-    protected function parseResponse(ResponseInterface $response)
+    public function queryByDetail(Detail $detail)
     {
-        return sprintf('[%d] %s', $response->getStatusCode(), $response->getBody());
+        return $this->query($detail->getRequestId());
     }
 
     /**
@@ -73,5 +73,19 @@ class Cancel extends AbstractRequest
     protected function httpMethod()
     {
         return 'DELETE';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        return sprintf('[%d] %s', $response->getStatusCode(), $response->getBody());
     }
 }

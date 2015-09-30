@@ -45,20 +45,6 @@ class Price extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
-     *
-     * @param ResponseInterface $response
-     *
-     * @return PriceEntity[]
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        $results = json_decode($response->getBody(), true);
-
-        return PriceEntity::createFromArray($results['prices']);
-    }
-
-    /**
      * API Endpoint.
      *
      * @return string
@@ -66,5 +52,21 @@ class Price extends AbstractRequest
     protected function getEndPoint()
     {
         return 'estimates/price';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return PriceEntity::createFromArray($results['prices'], $queryParameters, $pathParameters);
     }
 }

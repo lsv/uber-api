@@ -11,13 +11,14 @@
 
 namespace Lsv\UberApi\Entity\Request;
 
+use Lsv\UberApi\Entity\AbstractEntity;
 use Lsv\UberApi\Entity\EntityInterface;
 use Lsv\UberApi\Util\EntityUtil;
 
 /**
  * Adjustments made to the charges such as promotions, and fees.
  */
-class ReceiptChargeAdjustment implements EntityInterface
+class ReceiptChargeAdjustment extends AbstractEntity implements EntityInterface
 {
     use ChargeTrait;
 
@@ -36,14 +37,15 @@ class ReceiptChargeAdjustment implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create entity from array.
      *
-     * @param array $results
-     *
-     * @return array
+     * @param array|null $results
+     * @param array $queryParameters
+     * @param array $pathParameters
+     * @return array|null|object
      */
-    public static function createFromArray(array $results = [])
+    public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {
-        return EntityUtil::multipleCreateFromArray(self::class, $results);
+        return EntityUtil::multipleCreateFromArray(self::class, $queryParameters, $pathParameters, $results);
     }
 }

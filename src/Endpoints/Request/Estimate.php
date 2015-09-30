@@ -13,6 +13,7 @@ namespace Lsv\UberApi\Endpoints\Request;
 
 use Geocoder\Model\Coordinates;
 use Lsv\UberApi\AbstractRequest;
+use Lsv\UberApi\Entity\ProductType;
 use Lsv\UberApi\Entity\Request\Estimate as EntityEstimate;
 use Psr\Http\Message\ResponseInterface;
 
@@ -52,17 +53,22 @@ class Estimate extends AbstractRequest
     }
 
     /**
-     * Parse the query response.
+     * Get estimate from producttype
      *
-     * @param ResponseInterface $response
-     *
+     * @param ProductType $product The queried product type
+     * @param Coordinates|null $end The final or destination latitude. If not included, only the pickup ETA and details of surge pricing will be included.
      * @return EntityEstimate|[]
      */
-    protected function parseResponse(ResponseInterface $response)
+    public function queryByProduct(ProductType $product, Coordinates $end = null)
     {
-        $results = json_decode($response->getBody(), true);
-
-        return EntityEstimate::createFromArray($results);
+        return $this->query(
+            $product->getProductId(),
+            new Coordinates(
+                $product->getQueryParameters()['start_latitude'],
+                $product->getQueryParameters()['start_longitude']
+            ),
+            $end
+        );
     }
 
     /**
@@ -93,5 +99,21 @@ class Estimate extends AbstractRequest
     protected function httpMethod()
     {
         return 'POST';
+    }
+
+    /**
+     * Parse the query response.
+     *
+     * @param ResponseInterface $response
+     * @param array $queryParameters
+     * @param array $pathParameters
+     *
+     * @return mixed
+     */
+    protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
+    {
+        $results = json_decode($response->getBody(), true);
+
+        return EntityEstimate::createFromArray($results, $queryParameters, $pathParameters);
     }
 }
