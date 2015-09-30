@@ -36,9 +36,10 @@ class Map extends AbstractRequest
     }
 
     /**
-     * Query by detail
+     * Query by detail.
      *
      * @param DetailEntity $detail
+     *
      * @return MapEntity
      */
     public function queryByDetail(DetailEntity $detail)
@@ -68,8 +69,8 @@ class Map extends AbstractRequest
      * Parse the query response.
      *
      * @param ResponseInterface $response
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array             $queryParameters
+     * @param array             $pathParameters
      *
      * @return mixed
      */

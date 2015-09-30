@@ -48,6 +48,7 @@ class EntityUtil
 
         $obj->setQueryParameters($queryParameters);
         $obj->setPathParameters($pathParameters);
+
         return $obj;
     }
 
@@ -62,8 +63,8 @@ class EntityUtil
      */
     public static function singleCreateFromArray($class, array $queryParameters = null, array $pathParameters = null, array $results = null, array $setters = [])
     {
-        if (! $results) {
-            return null;
+        if (!$results) {
+            return;
         }
 
         return self::createFromArray($class, $queryParameters, $pathParameters, $results, $setters);

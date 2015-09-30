@@ -49,8 +49,8 @@ class Activity11 extends Activity12
      * Parse the query response.
      *
      * @param ResponseInterface $response
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array             $queryParameters
+     * @param array             $pathParameters
      *
      * @return mixed
      */
