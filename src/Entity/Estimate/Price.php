@@ -399,8 +399,9 @@ class Price extends AbstractEntity implements EntityInterface
      * Create entity from array.
      *
      * @param array|null $results
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array      $queryParameters
+     * @param array      $pathParameters
+     *
      * @return array|null|object
      */
     public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)

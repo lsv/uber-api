@@ -35,9 +35,10 @@ class Cancel extends AbstractRequest
     }
 
     /**
-     * Cancel by detail
+     * Cancel by detail.
      *
      * @param Detail $detail
+     *
      * @return string
      */
     public function queryByDetail(Detail $detail)
@@ -79,8 +80,8 @@ class Cancel extends AbstractRequest
      * Parse the query response.
      *
      * @param ResponseInterface $response
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array             $queryParameters
+     * @param array             $pathParameters
      *
      * @return mixed
      */

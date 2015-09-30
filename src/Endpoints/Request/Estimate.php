@@ -53,10 +53,11 @@ class Estimate extends AbstractRequest
     }
 
     /**
-     * Get estimate from producttype
+     * Get estimate from producttype.
      *
-     * @param ProductType $product The queried product type
-     * @param Coordinates|null $end The final or destination latitude. If not included, only the pickup ETA and details of surge pricing will be included.
+     * @param ProductType      $product The queried product type
+     * @param Coordinates|null $end     The final or destination latitude. If not included, only the pickup ETA and details of surge pricing will be included.
+     *
      * @return EntityEstimate|[]
      */
     public function queryByProduct(ProductType $product, Coordinates $end = null)
@@ -105,8 +106,8 @@ class Estimate extends AbstractRequest
      * Parse the query response.
      *
      * @param ResponseInterface $response
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array             $queryParameters
+     * @param array             $pathParameters
      *
      * @return mixed
      */

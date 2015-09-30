@@ -53,8 +53,8 @@ class ProductTypes extends AbstractRequest
      * Parse the query response.
      *
      * @param ResponseInterface $response
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array             $queryParameters
+     * @param array             $pathParameters
      *
      * @return mixed
      */

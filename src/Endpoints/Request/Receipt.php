@@ -36,9 +36,10 @@ class Receipt extends AbstractRequest
     }
 
     /**
-     * Get receipt by detail
+     * Get receipt by detail.
      *
      * @param DetailEntity $detail
+     *
      * @return ReceiptEntity
      */
     public function queryByDetail(DetailEntity $detail)
@@ -68,8 +69,8 @@ class Receipt extends AbstractRequest
      * Parse the query response.
      *
      * @param ResponseInterface $response
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array             $queryParameters
+     * @param array             $pathParameters
      *
      * @return mixed
      */
