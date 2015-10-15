@@ -49,11 +49,11 @@ class RequestTest extends AbstractTestCase
         $price = new EstimatePrice(null, null, 123);
         $estimate = new Estimate($price);
         $estimate->setQueryParameters([
-            'product_id' => 123,
-            'start_latitude' => $coordinates->getLatitude(),
+            'product_id'      => 123,
+            'start_latitude'  => $coordinates->getLatitude(),
             'start_longitude' => $coordinates->getLongitude(),
-            'end_latitude' => $coordinates->getLatitude(),
-            'end_longitude' => $coordinates->getLongitude()
+            'end_latitude'    => $coordinates->getLatitude(),
+            'end_longitude'   => $coordinates->getLongitude(),
         ]);
         $detail = $this->getRequest()->queryByEstimate($estimate);
         self::assertInstanceOf('Lsv\UberApi\Entity\Request\Detail', $detail);

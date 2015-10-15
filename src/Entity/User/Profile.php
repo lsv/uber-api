@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Lsv\UberApi package
+ *
+ * (c) Martin Aarhof <martin.aarhof@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Lsv\UberApi\Entity\User;
 
 use Lsv\UberApi\Entity\AbstractEntity;
@@ -68,7 +78,7 @@ class Profile extends AbstractEntity implements EntityInterface
     }
 
     /**
-     * Get FirstName
+     * Get FirstName.
      *
      * @return string
      */
@@ -78,19 +88,21 @@ class Profile extends AbstractEntity implements EntityInterface
     }
 
     /**
-     * Set FirstName
+     * Set FirstName.
      *
      * @param string $firstName
+     *
      * @return Profile
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
     /**
-     * Get LastName
+     * Get LastName.
      *
      * @return string
      */
@@ -100,19 +112,21 @@ class Profile extends AbstractEntity implements EntityInterface
     }
 
     /**
-     * Set LastName
+     * Set LastName.
      *
      * @param string $lastName
+     *
      * @return Profile
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
     /**
-     * Get Email
+     * Get Email.
      *
      * @return string
      */
@@ -122,19 +136,21 @@ class Profile extends AbstractEntity implements EntityInterface
     }
 
     /**
-     * Set Email
+     * Set Email.
      *
      * @param string $email
+     *
      * @return Profile
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
     /**
-     * Get Picture
+     * Get Picture.
      *
      * @return string
      */
@@ -144,19 +160,21 @@ class Profile extends AbstractEntity implements EntityInterface
     }
 
     /**
-     * Set Picture
+     * Set Picture.
      *
      * @param string $picture
+     *
      * @return Profile
      */
     public function setPicture($picture)
     {
         $this->picture = $picture;
+
         return $this;
     }
 
     /**
-     * Get PromoCode
+     * Get PromoCode.
      *
      * @return string
      */
@@ -166,19 +184,21 @@ class Profile extends AbstractEntity implements EntityInterface
     }
 
     /**
-     * Set PromoCode
+     * Set PromoCode.
      *
      * @param string $promoCode
+     *
      * @return Profile
      */
     public function setPromoCode($promoCode)
     {
         $this->promoCode = $promoCode;
+
         return $this;
     }
 
     /**
-     * Get Uuid
+     * Get Uuid.
      *
      * @return string
      */
@@ -188,14 +208,16 @@ class Profile extends AbstractEntity implements EntityInterface
     }
 
     /**
-     * Set Uuid
+     * Set Uuid.
      *
      * @param string $uuid
+     *
      * @return Profile
      */
     public function setUuid($uuid)
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -203,8 +225,8 @@ class Profile extends AbstractEntity implements EntityInterface
      * Create entity from array.
      *
      * @param array|null $results
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array      $queryParameters
+     * @param array      $pathParameters
      *
      * @return array|null|Profile
      */

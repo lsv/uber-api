@@ -67,5 +67,4 @@ class CancelTest extends AbstractTestCase
         $request = $cancel->query(123);
         self::assertEquals($request, '[202] Error');
     }
-
 }
