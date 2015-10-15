@@ -27,7 +27,7 @@ To get a price estimate, you can call this.
 $estimate = (new Lsv\UberApi\Endpoints\Estimate\Price())->query($start_coordinates, $end_coordinates);
 ```
 
-Which will return a [Price estimate entity](4_entities.md#price_estimate)
+Which will return a [Price estimate entity](4_entities.md#price-estimate)
 
 ##### Time estimate
 
@@ -66,7 +66,7 @@ To get the user profile
 $user = (new Lsv\UberApi\Endpoints\User\Profile())->query();
 ```
 
-Returns a [Profile entity](4_entities.md#user_profile)
+Returns a [Profile entity](4_entities.md#user-profile)
 
 ##### User history/activity
 
@@ -78,7 +78,7 @@ To get a user activity/history you can call this
 $activities = (new Lsv\UberApi\Endpoints\User\Activity())->query();
 ```
 
-Returns an array of [Activity entities](4_entities.md#user_activity)
+Returns an array of [Activity entities](4_entities.md#user-activity)
 
 Note:
 
@@ -111,7 +111,7 @@ Or you can query it with a [Request estimate (see below)](#estimate)
 $request = (new Lsv\UberApi\Endpoints\Request())->queryByEstimate($requestEstimateEntity);
 ```
 
-All three will return a [Detail entity](4_entities.md#request_detail)
+All three will return a [Detail entity](4_entities.md#request-detail)
 
 But most of the details are empty, and you should query the [details (see below)](#detail) because it can take some time before a driver accepts your request.
 
@@ -130,7 +130,7 @@ Or you can query it with a [ProductType entity](4_entities.md#producttype)
 $request = (new Lsv\UberApi\Endpoints\Request\Estimate())->queryByProduct($productTypeEntity, $end_coordinates);
 ```
 
-These will return a [Request estimate entity](4_entities.md#request_estimate)
+These will return a [Request estimate entity](4_entities.md#request-estimate)
 
 ##### Detail
 
@@ -141,13 +141,13 @@ $requestId = 123;
 $request = (new Lsv\UberApi\Endpoints\Request\Detail())->query($requestId);
 ```
 
-Or you can query it with [Request entity](4_entities.md#request_detail)
+Or you can query it with [Detail entity](4_entities.md#request_detail)
 
 ```php
 $request = (new Lsv\UberApi\Endpoints\Request())->queryByDetail($requestEntity);
 ```
 
-Both will return a [Detail entity](4_entities.md#request_detail)
+Both will return a [Detail entity](4_entities.md#request-detail)
 
 ##### Cancel
 
@@ -158,7 +158,7 @@ $requestId = 123;
 $request = (new Lsv\UberApi\Endpoints\Request\Cancel())->query($requestId);
 ```
 
-Or you can query it with [Request entity](4_entities.md#request_detail)
+Or you can query it with [Detail entity](4_entities.md#request-detail)
 
 ```php
 $request = (new Lsv\UberApi\Endpoints\Request\Cancel())->queryByDetail($requestEntity);
@@ -179,7 +179,7 @@ $requestId = 123;
 $request = (new Lsv\UberApi\Endpoints\Request\Map())->query($requestId);
 ```
 
-Or you can query it with [Request entity](4_entities.md#request_detail)
+Or you can query it with [Detail entity](4_entities.md#request_detail)
 
 ```php
 $request = (new Lsv\UberApi\Endpoints\Request\Map())->queryByDetail($requestEntity);
@@ -196,7 +196,7 @@ $requestId = 123;
 $request = (new Lsv\UberApi\Endpoints\Request\Receipt())->query($requestId);
 ```
 
-Or you can query it with [Request entity](4_entities.md#request_detail)
+Or you can query it with [Detail entity](4_entities.md#request_detail)
 
 ```php
 $request = (new Lsv\UberApi\Endpoints\Request\Receipt())->queryByDetail($requestEntity);
