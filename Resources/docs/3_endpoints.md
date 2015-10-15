@@ -37,7 +37,7 @@ To get a time estimate, you can call this.
 $estimate = (new Lsv\UberApi\Endpoints\Estimate\Time())->query($start_coordinates, $end_coordinates);
 ```
 
-Which will return a [Time estimate entity](4_entities.md#time_estimate)
+Which will return a [Time estimate entity](4_entities.md#time-estimate)
 
 ### Promotions
 
