@@ -141,7 +141,7 @@ $requestId = 123;
 $request = (new Lsv\UberApi\Endpoints\Request\Detail())->query($requestId);
 ```
 
-Or you can query it with [Detail entity](4_entities.md#request_detail)
+Or you can query it with [Detail entity](4_entities.md#request-detail)
 
 ```php
 $request = (new Lsv\UberApi\Endpoints\Request())->queryByDetail($requestEntity);
@@ -179,7 +179,7 @@ $requestId = 123;
 $request = (new Lsv\UberApi\Endpoints\Request\Map())->query($requestId);
 ```
 
-Or you can query it with [Detail entity](4_entities.md#request_detail)
+Or you can query it with [Detail entity](4_entities.md#request-detail)
 
 ```php
 $request = (new Lsv\UberApi\Endpoints\Request\Map())->queryByDetail($requestEntity);
@@ -196,7 +196,7 @@ $requestId = 123;
 $request = (new Lsv\UberApi\Endpoints\Request\Receipt())->query($requestId);
 ```
 
-Or you can query it with [Detail entity](4_entities.md#request_detail)
+Or you can query it with [Detail entity](4_entities.md#request-detail)
 
 ```php
 $request = (new Lsv\UberApi\Endpoints\Request\Receipt())->queryByDetail($requestEntity);
