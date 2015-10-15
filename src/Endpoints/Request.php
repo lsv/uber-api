@@ -55,11 +55,13 @@ class Request extends AbstractRequest
      *
      * @param ProductType $productType
      * @param Coordinates $end
+     *
      * @return Detail
      */
     public function queryByProduct(ProductType $productType, Coordinates $end)
     {
         $start = new Coordinates($productType->getQueryParameters()['latitude'], $productType->getQueryParameters()['longitude']);
+
         return $this->query(
             $productType->getProductId(),
             $start,
@@ -72,6 +74,7 @@ class Request extends AbstractRequest
      * Make a request from a estimate.
      *
      * @param Estimate $estimate
+     *
      * @return Detail
      */
     public function queryByEstimate(Estimate $estimate)

@@ -21,7 +21,7 @@ use Psr\Http\Message\ResponseInterface;
 class Profile extends AbstractRequest
 {
     /**
-     * Get profile data
+     * Get profile data.
      *
      * @return ProfileEntity
      */
@@ -34,8 +34,8 @@ class Profile extends AbstractRequest
      * Parse the query response.
      *
      * @param ResponseInterface $response
-     * @param array $queryParameters
-     * @param array $pathParameters
+     * @param array             $queryParameters
+     * @param array             $pathParameters
      *
      * @return ProfileEntity
      */

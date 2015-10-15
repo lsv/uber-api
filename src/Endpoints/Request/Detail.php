@@ -42,6 +42,7 @@ class Detail extends AbstractRequest
      * Get details for a request from a request.
      *
      * @param DetailEntity $request
+     *
      * @return DetailEntity
      */
     public function queryByDetail(DetailEntity $request)
