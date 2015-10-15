@@ -28,9 +28,9 @@ class DetailTest extends AbstractTestCase
         $result = $request->query($key);
         $req = $request->getRequest();
 
-        $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
-        $this->assertEquals(789654123, $result->getPathParameters()['request_id']);
+        self::assertEquals('GET', $req->getMethod());
+        self::assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
+        self::assertEquals(789654123, $result->getPathParameters()['request_id']);
     }
 
     public function test_null_results()
@@ -38,15 +38,26 @@ class DetailTest extends AbstractTestCase
         $client = $this->getNullResultsHandler(null, true);
 
         $results = (new Detail($client, true))->query(123);
-        $this->assertEquals(0, $results);
+        self::assertEquals(0, $results);
         $results = (new Detail($client, true))->query(123);
-        $this->assertEquals(0, $results);
+        self::assertEquals(0, $results);
+    }
+
+    public function test_result_by_detail()
+    {
+        $detail = new \Lsv\UberApi\Entity\Request\Detail(123);
+        $result = $this->getRequest()->queryByDetail($detail);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\Detail', $result);
+
+        $detail = new \Lsv\UberApi\Entity\Request\Detail(123);
+        $result = $this->getRequest()->query($detail);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\Detail', $result);
     }
 
     public function test_count_results()
     {
         $result = $this->getRequest()->query(123);
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\Detail', $result);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\Detail', $result);
     }
 
     /**
@@ -55,13 +66,13 @@ class DetailTest extends AbstractTestCase
     public function test_type_getter()
     {
         $detail = $this->getRequest()->query(123);
-        $this->assertEquals('b2205127-a334-4df4-b1ba-fc9f28f56c96', $detail->getRequestId(), 'getRequestId');
-        $this->assertEquals('accepted', $detail->getStatus(), 'getStatus');
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\DetailVehicle', $detail->getVehicle(), 'getVehicle');
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\DetailDriver', $detail->getDriver(), 'getDriver');
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\DetailLocation', $detail->getLocation(), 'getLocation');
-        $this->assertEquals(4, $detail->getEta(), 'Eta');
-        $this->assertEquals(1.0, $detail->getSurgeMultiplier(), 'getSurgeMultiplier');
+        self::assertEquals('b2205127-a334-4df4-b1ba-fc9f28f56c96', $detail->getRequestId(), 'getRequestId');
+        self::assertEquals('accepted', $detail->getStatus(), 'getStatus');
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\DetailVehicle', $detail->getVehicle(), 'getVehicle');
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\DetailDriver', $detail->getDriver(), 'getDriver');
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\DetailLocation', $detail->getLocation(), 'getLocation');
+        self::assertEquals(4, $detail->getEta(), 'Eta');
+        self::assertEquals(1.0, $detail->getSurgeMultiplier(), 'getSurgeMultiplier');
     }
 
     /**
@@ -71,10 +82,10 @@ class DetailTest extends AbstractTestCase
     {
         $result = $this->getRequest()->query(123);
         $detail = $result->getVehicle();
-        $this->assertEquals('I<3Uber', $detail->getLicensePlate());
-        $this->assertEquals('Bugatti', $detail->getMake());
-        $this->assertEquals('Veyron', $detail->getModel());
-        $this->assertEquals('https://d1w2poirtb3as9.cloudfront.net/car.jpeg', $detail->getPictureUrl());
+        self::assertEquals('I<3Uber', $detail->getLicensePlate());
+        self::assertEquals('Bugatti', $detail->getMake());
+        self::assertEquals('Veyron', $detail->getModel());
+        self::assertEquals('https://d1w2poirtb3as9.cloudfront.net/car.jpeg', $detail->getPictureUrl());
     }
 
     /**
@@ -84,10 +95,10 @@ class DetailTest extends AbstractTestCase
     {
         $result = $this->getRequest()->query(123);
         $detail = $result->getDriver();
-        $this->assertEquals('Bob', $detail->getName());
-        $this->assertEquals('(555)555-5555', $detail->getPhoneNumber());
-        $this->assertEquals('https://d1w2poirtb3as9.cloudfront.net/img.jpeg', $detail->getPictureUrl());
-        $this->assertEquals(5, $detail->getRating());
+        self::assertEquals('Bob', $detail->getName());
+        self::assertEquals('(555)555-5555', $detail->getPhoneNumber());
+        self::assertEquals('https://d1w2poirtb3as9.cloudfront.net/img.jpeg', $detail->getPictureUrl());
+        self::assertEquals(5, $detail->getRating());
     }
 
     /**
@@ -97,8 +108,8 @@ class DetailTest extends AbstractTestCase
     {
         $result = $this->getRequest()->query(123);
         $detail = $result->getLocation();
-        $this->assertEquals(33, $detail->getBearing());
-        $this->assertEquals(37.776033, $detail->getLatitude());
-        $this->assertEquals(-122.418143, $detail->getLongitude());
+        self::assertEquals(33, $detail->getBearing());
+        self::assertEquals(37.776033, $detail->getLatitude());
+        self::assertEquals(-122.418143, $detail->getLongitude());
     }
 }

@@ -87,6 +87,10 @@ class Cancel extends AbstractRequest
      */
     protected function parseResponse(ResponseInterface $response, $queryParameters, $pathParameters)
     {
+        if ($response->getStatusCode() === 204) {
+            return true;
+        }
+
         return sprintf('[%d] %s', $response->getStatusCode(), $response->getBody());
     }
 }

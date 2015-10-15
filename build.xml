@@ -59,14 +59,26 @@
     <!-- PHP Documentor 2 (phpdoc)                     -->
     <!-- ============================================  -->
     <target name="phpdoc">
-        <exec command="${bindir}/phpdoc run -t ${docsdir} -d ${srcdir} --title='${title}' --sourcecode --log='${builddir}/phpdoc.log' --template=responsive-twig" logoutput="false" checkreturn="true" />
+        <available property="test_phpdoc" type="file" file="${bindir}/phpdoc" />
+        <if>
+            <equals arg1="${test_phpdoc}" arg2="true" />
+            <then>
+                <exec command="${bindir}/phpdoc run -t ${docsdir} -d ${srcdir} --title='${title}' --sourcecode --log='${builddir}/phpdoc.log' --template=responsive-twig" logoutput="false" checkreturn="true" />
+            </then>
+        </if>
     </target>
 
     <!-- ============================================  -->
     <!-- Apigen (agigen)                               -->
     <!-- ============================================  -->
     <target name="apigen">
-        <exec command="${bindir}/apigen generate -s ${srcdir} -d ${docsdir} --tree --todo --title='${title}' --template-theme=bootstrap" logoutput="false" checkreturn="true" />
+        <available property="test_apigen" type="file" file="${bindir}/apigen" />
+        <if>
+            <equals arg1="${test_apigen}" arg2="true" />
+            <then>
+                <exec command="${bindir}/apigen generate -s ${srcdir} -d ${docsdir} --tree --todo --title='${title}' --template-theme=bootstrap" logoutput="false" checkreturn="true" />
+            </then>
+        </if>
     </target>
 
     <!-- ============================================  -->
@@ -79,7 +91,7 @@
     <!-- ============================================  -->
     <!-- Target: build                                 -->
     <!-- ============================================  -->
-    <target name="build" depends="prepare, phpcsfixer, phpmessdetector, phploc, apigen, phpunit" />
+    <target name="build" depends="prepare, phpcsfixer, phpmessdetector, phploc, phpdoc, apigen, phpunit" />
 
     <!-- ============================================  -->
     <!-- (DEFAULT)  Target: dist                       -->

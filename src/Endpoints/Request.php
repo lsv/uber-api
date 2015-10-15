@@ -13,7 +13,9 @@ namespace Lsv\UberApi\Endpoints;
 
 use Geocoder\Model\Coordinates;
 use Lsv\UberApi\AbstractRequest;
+use Lsv\UberApi\Entity\ProductType;
 use Lsv\UberApi\Entity\Request\Detail;
+use Lsv\UberApi\Entity\Request\Estimate;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -46,6 +48,43 @@ class Request extends AbstractRequest
         }
 
         return $this->doQuery($params);
+    }
+
+    /**
+     * Make a request from a producttype.
+     *
+     * @param ProductType $productType
+     * @param Coordinates $end
+     * @return Detail
+     */
+    public function queryByProduct(ProductType $productType, Coordinates $end)
+    {
+        $start = new Coordinates($productType->getQueryParameters()['latitude'], $productType->getQueryParameters()['longitude']);
+        return $this->query(
+            $productType->getProductId(),
+            $start,
+            $end,
+            $productType->getPriceDetail()
+        );
+    }
+
+    /**
+     * Make a request from a estimate.
+     *
+     * @param Estimate $estimate
+     * @return Detail
+     */
+    public function queryByEstimate(Estimate $estimate)
+    {
+        $start = new Coordinates($estimate->getQueryParameters()['start_latitude'], $estimate->getQueryParameters()['start_longitude']);
+        $end = new Coordinates($estimate->getQueryParameters()['end_latitude'], $estimate->getQueryParameters()['end_longitude']);
+
+        return $this->query(
+            $estimate->getQueryParameters()['product_id'],
+            $start,
+            $end,
+            $estimate->getPrice()->getSurgeConfirmationId()
+        );
     }
 
     /**

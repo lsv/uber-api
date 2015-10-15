@@ -134,7 +134,7 @@ class Estimate extends AbstractEntity implements EntityInterface
      * @param array      $queryParameters
      * @param array      $pathParameters
      *
-     * @return array|null|object
+     * @return array|null|Estimate
      */
     public static function createFromArray(array $results = null, array $queryParameters = null, array $pathParameters = null)
     {

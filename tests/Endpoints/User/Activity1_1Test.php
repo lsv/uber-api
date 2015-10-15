@@ -27,8 +27,8 @@ class Activity1_1Test extends AbstractTestCase
         $request->query();
         $req = $request->getRequest();
 
-        $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1.1/history', $req->getUri()->getPath());
+        self::assertEquals('GET', $req->getMethod());
+        self::assertEquals('/v1.1/history', $req->getUri()->getPath());
     }
 
     public function test_null_results()
@@ -36,15 +36,15 @@ class Activity1_1Test extends AbstractTestCase
         $client = $this->getNullResultsHandler('history', true);
 
         $results = (new Activity11($client, true))->query();
-        $this->assertCount(0, $results);
+        self::assertCount(0, $results);
         $results = (new Activity11($client, true))->query();
-        $this->assertCount(0, $results);
+        self::assertCount(0, $results);
     }
 
     public function test_count_results()
     {
         $results = $this->getRequest()->query();
-        $this->assertCount(2, $results);
+        self::assertCount(2, $results);
     }
 
     /**
@@ -55,12 +55,12 @@ class Activity1_1Test extends AbstractTestCase
         $results = $this->getRequest()->query();
         $detail = $results[0];
 
-        $this->assertEquals('7354db54-cc9b-4961-81f2-0094b8e2d215', $detail->getUuid());
-        $this->assertEquals(new \DateTime('@1401884467'), $detail->getRequestTime());
-        $this->assertEquals('edf5e5eb-6ae6-44af-bec6-5bdcf1e3ed2c', $detail->getProductId());
-        $this->assertEquals('completed', $detail->getStatus());
-        $this->assertEquals(0.0279562, $detail->getDistance());
-        $this->assertEquals(new \DateTime('@1401884646'), $detail->getStartTime());
-        $this->assertEquals(new \DateTime('@1401884732'), $detail->getEndTime());
+        self::assertEquals('7354db54-cc9b-4961-81f2-0094b8e2d215', $detail->getUuid());
+        self::assertEquals(new \DateTime('@1401884467'), $detail->getRequestTime());
+        self::assertEquals('edf5e5eb-6ae6-44af-bec6-5bdcf1e3ed2c', $detail->getProductId());
+        self::assertEquals('completed', $detail->getStatus());
+        self::assertEquals(0.0279562, $detail->getDistance());
+        self::assertEquals(new \DateTime('@1401884646'), $detail->getStartTime());
+        self::assertEquals(new \DateTime('@1401884732'), $detail->getEndTime());
     }
 }

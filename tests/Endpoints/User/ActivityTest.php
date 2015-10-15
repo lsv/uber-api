@@ -27,8 +27,8 @@ class ActivityTest extends AbstractTestCase
         $request->query();
         $req = $request->getRequest();
 
-        $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1.2/history', $req->getUri()->getPath());
+        self::assertEquals('GET', $req->getMethod());
+        self::assertEquals('/v1.2/history', $req->getUri()->getPath());
     }
 
     public function test_null_results()
@@ -36,15 +36,15 @@ class ActivityTest extends AbstractTestCase
         $client = $this->getNullResultsHandler('history', true);
 
         $results = (new Activity($client, true))->query();
-        $this->assertCount(0, $results);
+        self::assertCount(0, $results);
         $results = (new Activity($client, true))->query();
-        $this->assertCount(0, $results);
+        self::assertCount(0, $results);
     }
 
     public function test_count_results()
     {
         $results = $this->getRequest()->query();
-        $this->assertCount(3, $results);
+        self::assertCount(3, $results);
     }
 
     /**
@@ -55,13 +55,13 @@ class ActivityTest extends AbstractTestCase
         $results = $this->getRequest()->query();
         $detail = $results[0];
 
-        $this->assertEquals('completed', $detail->getStatus());
-        $this->assertEquals(1.64691465, $detail->getDistance());
-        $this->assertEquals(new \DateTime('@1428876188'), $detail->getRequestTime());
-        $this->assertEquals(new \DateTime('@1428876374'), $detail->getStartTime());
-        $this->assertEquals(new \DateTime('@1428876927'), $detail->getEndTime());
-        $this->assertEquals('37d57a99-2647-4114-9dd2-c43bccf4c30b', $detail->getRequestId());
-        $this->assertEquals('a1111c8c-c720-46c3-8534-2fcdd730040d', $detail->getProductId());
+        self::assertEquals('completed', $detail->getStatus());
+        self::assertEquals(1.64691465, $detail->getDistance());
+        self::assertEquals(new \DateTime('@1428876188'), $detail->getRequestTime());
+        self::assertEquals(new \DateTime('@1428876374'), $detail->getStartTime());
+        self::assertEquals(new \DateTime('@1428876927'), $detail->getEndTime());
+        self::assertEquals('37d57a99-2647-4114-9dd2-c43bccf4c30b', $detail->getRequestId());
+        self::assertEquals('a1111c8c-c720-46c3-8534-2fcdd730040d', $detail->getProductId());
     }
 
     /**
@@ -72,8 +72,8 @@ class ActivityTest extends AbstractTestCase
         $results = $this->getRequest()->query();
         $detail = $results[0]->getStartCity();
 
-        $this->assertEquals(37.7749295, $detail->getLatitude());
-        $this->assertEquals('San Francisco', $detail->getDisplayName());
-        $this->assertEquals(-122.4194155, $detail->getLongitude());
+        self::assertEquals(37.7749295, $detail->getLatitude());
+        self::assertEquals('San Francisco', $detail->getDisplayName());
+        self::assertEquals(-122.4194155, $detail->getLongitude());
     }
 }

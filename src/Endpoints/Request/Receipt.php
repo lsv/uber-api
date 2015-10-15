@@ -30,6 +30,10 @@ class Receipt extends AbstractRequest
      */
     public function query($requestId)
     {
+        if ($requestId instanceof DetailEntity) {
+            return $this->queryByDetail($requestId);
+        }
+
         return $this->doQuery([], [
             'request_id' => $requestId,
         ]);

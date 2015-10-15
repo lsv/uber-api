@@ -28,8 +28,8 @@ class Activity12 extends AbstractRequest
     /**
      * Get activity.
      *
-     * @param null $offset
-     * @param null $limit
+     * @param int $offset Offset the list of returned results by this amount. Default is zero.
+     * @param int $limit  Number of items to retrieve. Default is 5, maximum is 50.
      *
      * @return History[]
      */

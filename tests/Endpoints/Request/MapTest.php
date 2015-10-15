@@ -32,8 +32,8 @@ class MapTest extends AbstractTestCase
         $request->query($requestId);
         $req = $request->getRequest();
 
-        $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1/requests/'.$requestId.'/map', $req->getUri()->getPath());
+        self::assertEquals('GET', $req->getMethod());
+        self::assertEquals('/v1/requests/'.$requestId.'/map', $req->getUri()->getPath());
     }
 
     public function test_null_results()
@@ -41,22 +41,22 @@ class MapTest extends AbstractTestCase
         $client = $this->getNullResultsHandler(null, true);
 
         $results = (new Map($client, true))->query(123);
-        $this->assertNull($results);
+        self::assertNull($results);
         $results = (new Map($client, true))->query(123);
-        $this->assertNull($results);
+        self::assertNull($results);
     }
 
     public function test_by_detail()
     {
         $detail = new Detail(123);
         $result = $this->getRequest()->queryByDetail($detail);
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\Map', $result);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\Map', $result);
     }
 
     public function test_count_results()
     {
         $result = $this->getRequest()->query(123);
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\Map', $result);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\Map', $result);
     }
 
     /**
@@ -65,7 +65,7 @@ class MapTest extends AbstractTestCase
     public function test_type_getter()
     {
         $detail = $this->getRequest()->query(123);
-        $this->assertEquals('b5512127-a134-4bf4-b1ba-fe9f48f56d9d', $detail->getRequestId());
-        $this->assertEquals('https://trip.uber.com/abc123', $detail->getHref());
+        self::assertEquals('b5512127-a134-4bf4-b1ba-fe9f48f56d9d', $detail->getRequestId());
+        self::assertEquals('https://trip.uber.com/abc123', $detail->getHref());
     }
 }

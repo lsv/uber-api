@@ -29,9 +29,24 @@ class Detail extends AbstractRequest
      */
     public function query($requestId)
     {
+        if ($requestId instanceof DetailEntity) {
+            return $this->queryByDetail($requestId);
+        }
+
         return $this->doQuery([], [
             'request_id' => $requestId,
         ]);
+    }
+
+    /**
+     * Get details for a request from a request.
+     *
+     * @param DetailEntity $request
+     * @return DetailEntity
+     */
+    public function queryByDetail(DetailEntity $request)
+    {
+        return $this->query($request->getRequestId());
     }
 
     /**

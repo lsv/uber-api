@@ -31,8 +31,8 @@ class EstimateTest extends AbstractTestCase
         $request->query(123, $this->getCoordinates());
         $req = $request->getRequest();
 
-        $this->assertEquals('POST', $req->getMethod());
-        $this->assertEquals('/v1/requests/estimate', $req->getUri()->getPath());
+        self::assertEquals('POST', $req->getMethod());
+        self::assertEquals('/v1/requests/estimate', $req->getUri()->getPath());
     }
 
     public function test_product_query()
@@ -44,8 +44,8 @@ class EstimateTest extends AbstractTestCase
         $request = $this->getRequest();
         $result = $request->queryByProduct($type);
 
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\Estimate', $result);
-        $this->assertEquals($coordinate->getLatitude(), $result->getQueryParameters()['start_latitude']);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\Estimate', $result);
+        self::assertEquals($coordinate->getLatitude(), $result->getQueryParameters()['start_latitude']);
     }
 
     public function test_null_results()
@@ -53,15 +53,15 @@ class EstimateTest extends AbstractTestCase
         $client = $this->getNullResultsHandler(null, true);
 
         $results = (new Estimate($client, true))->query(123, $this->getCoordinates(), $this->getCoordinates());
-        $this->assertNull($results);
+        self::assertNull($results);
         $results = (new Estimate($client, true))->query(123, $this->getCoordinates(), $this->getCoordinates());
-        $this->assertNull($results);
+        self::assertNull($results);
     }
 
     public function test_count_results()
     {
         $result = $this->getRequest()->query(123, $this->getCoordinates(), $this->getCoordinates());
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\Estimate', $result);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\Estimate', $result);
     }
 
     /**
@@ -70,9 +70,9 @@ class EstimateTest extends AbstractTestCase
     public function test_type_getter()
     {
         $detail = $this->getRequest()->query(123, $this->getCoordinates(), $this->getCoordinates());
-        $this->assertEquals(2, $detail->getPickupEstimate());
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\EstimatePrice', $detail->getPrice());
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Request\EstimateTrip', $detail->getTrip());
+        self::assertEquals(2, $detail->getPickupEstimate());
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\EstimatePrice', $detail->getPrice());
+        self::assertInstanceOf('Lsv\UberApi\Entity\Request\EstimateTrip', $detail->getTrip());
     }
 
     /**
@@ -83,14 +83,14 @@ class EstimateTest extends AbstractTestCase
         $result = $this->getRequest()->query(123, $this->getCoordinates(), $this->getCoordinates());
         $detail = $result->getPrice();
 
-        $this->assertEquals('https://api.uber.com/v1/surge-confirmations/7d604f5e', $detail->getSurgeConfirmationHref());
-        $this->assertEquals(6, $detail->getHighEstimate());
-        $this->assertEquals('7d604f5e', $detail->getSurgeConfirmationId());
-        $this->assertEquals(5, $detail->getMinimum());
-        $this->assertEquals(5, $detail->getLowEstimate());
-        $this->assertEquals(1.2, $detail->getSurgeMultiplier());
-        $this->assertEquals('$5-6', $detail->getDisplay());
-        $this->assertEquals('USD', $detail->getCurrencyCode());
+        self::assertEquals('https://api.uber.com/v1/surge-confirmations/7d604f5e', $detail->getSurgeConfirmationHref());
+        self::assertEquals(6, $detail->getHighEstimate());
+        self::assertEquals('7d604f5e', $detail->getSurgeConfirmationId());
+        self::assertEquals(5, $detail->getMinimum());
+        self::assertEquals(5, $detail->getLowEstimate());
+        self::assertEquals(1.2, $detail->getSurgeMultiplier());
+        self::assertEquals('$5-6', $detail->getDisplay());
+        self::assertEquals('USD', $detail->getCurrencyCode());
     }
 
     /**
@@ -101,8 +101,8 @@ class EstimateTest extends AbstractTestCase
         $result = $this->getRequest()->query(123, $this->getCoordinates(), $this->getCoordinates());
         $detail = $result->getTrip();
 
-        $this->assertEquals('mile', $detail->getDistanceUnit());
-        $this->assertEquals(9, $detail->getDurationEstimate());
-        $this->assertEquals(2.1, $detail->getDistanceEstimate());
+        self::assertEquals('mile', $detail->getDistanceUnit());
+        self::assertEquals(9, $detail->getDurationEstimate());
+        self::assertEquals(2.1, $detail->getDistanceEstimate());
     }
 }

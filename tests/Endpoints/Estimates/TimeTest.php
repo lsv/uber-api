@@ -30,8 +30,8 @@ class TimeTest extends AbstractTestCase
         $request->query($this->getCoordinates());
         $req = $request->getRequest();
 
-        $this->assertEquals('GET', $req->getMethod(), 'method');
-        $this->assertEquals('/v1/estimates/time', $req->getUri()->getPath(), 'uri');
+        self::assertEquals('GET', $req->getMethod(), 'method');
+        self::assertEquals('/v1/estimates/time', $req->getUri()->getPath(), 'uri');
     }
 
     public function test_null_results()
@@ -39,15 +39,15 @@ class TimeTest extends AbstractTestCase
         $client = $this->getNullResultsHandler('times');
 
         $results = (new Time($client, true))->query($this->getCoordinates(), 123, 123);
-        $this->assertCount(0, $results);
+        self::assertCount(0, $results);
         $results = (new Time($client, true))->query($this->getCoordinates());
-        $this->assertCount(0, $results);
+        self::assertCount(0, $results);
     }
 
     public function test_count_results()
     {
         $results = $this->getRequest()->query($this->getCoordinates());
-        $this->assertCount(4, $results);
+        self::assertCount(4, $results);
     }
 
     /**
@@ -56,9 +56,9 @@ class TimeTest extends AbstractTestCase
     public function test_time_getters()
     {
         $result = $this->getRequest()->query($this->getCoordinates())[0];
-        $this->assertEquals('5f41547d-805d-4207-a297-51c571cf2a8c', $result->getProductId());
-        $this->assertEquals('UberBLACK', $result->getDisplayName());
-        $this->assertEquals('UberBLACKLocal', $result->getLocalizedDisplayName());
-        $this->assertEquals(410, $result->getEstimate());
+        self::assertEquals('5f41547d-805d-4207-a297-51c571cf2a8c', $result->getProductId());
+        self::assertEquals('UberBLACK', $result->getDisplayName());
+        self::assertEquals('UberBLACKLocal', $result->getLocalizedDisplayName());
+        self::assertEquals(410, $result->getEstimate());
     }
 }

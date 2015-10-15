@@ -38,20 +38,34 @@ class CancelTest extends AbstractTestCase
         $request->query($key);
         $req = $request->getRequest();
 
-        $this->assertEquals('DELETE', $req->getMethod());
-        $this->assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
+        self::assertEquals('DELETE', $req->getMethod());
+        self::assertEquals('/v1/requests/'.$key, $req->getUri()->getPath());
     }
 
     public function test_by_detail()
     {
         $detail = new Detail(123);
         $request = $this->getRequest()->queryByDetail($detail);
-        $this->assertEquals('[204] Success', $request);
+        self::assertTrue($request);
     }
 
     public function test_can_cancel()
     {
         $request = $this->getRequest()->query(123);
-        $this->assertEquals('[204] Success', $request);
+        self::assertTrue($request);
     }
+
+    public function test_cannot_cancel()
+    {
+        $mock = new MockHandler([
+            new Response(202, [], 'Error'),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $client = $this->getOauthClient(['handler' => $handler]);
+        $cancel = new Cancel($client, true);
+
+        $request = $cancel->query(123);
+        self::assertEquals($request, '[202] Error');
+    }
+
 }

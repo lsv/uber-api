@@ -27,14 +27,14 @@ class PromotionsTest extends AbstractTestCase
         $request->query($this->getCoordinates(), $this->getCoordinates());
         $req = $request->getRequest();
 
-        $this->assertEquals('GET', $req->getMethod());
-        $this->assertEquals('/v1/promotions', $req->getUri()->getPath());
+        self::assertEquals('GET', $req->getMethod());
+        self::assertEquals('/v1/promotions', $req->getUri()->getPath());
     }
 
     public function test_count_results()
     {
         $result = $this->getRequest()->query($this->getCoordinates(), $this->getCoordinates());
-        $this->assertInstanceOf('Lsv\UberApi\Entity\Promotion', $result);
+        self::assertInstanceOf('Lsv\UberApi\Entity\Promotion', $result);
     }
 
     /**
@@ -43,10 +43,10 @@ class PromotionsTest extends AbstractTestCase
     public function test_type_getter()
     {
         $detail = $this->getRequest()->query($this->getCoordinates(), $this->getCoordinates());
-        $this->assertEquals('Free ride up to $20', $detail->getDisplayText());
-        $this->assertEquals('$20', $detail->getLocalizedValue());
-        $this->assertEquals('trip_credit', $detail->getType());
-        $this->assertEquals(20, $detail->getValue());
-        $this->assertEquals('USD', $detail->getCurrencyCode());
+        self::assertEquals('Free ride up to $20', $detail->getDisplayText());
+        self::assertEquals('$20', $detail->getLocalizedValue());
+        self::assertEquals('trip_credit', $detail->getType());
+        self::assertEquals(20, $detail->getValue());
+        self::assertEquals('USD', $detail->getCurrencyCode());
     }
 }
